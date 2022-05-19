@@ -1,0 +1,14 @@
+.tile {
+    display: grid;
+    place-content: center;
+    width: 75px;
+    height: 75px;
+}
+
+.dark-tile {
+    background-color: #5C19B0;
+}
+
+.light-tile {
+    background-color: #FFFFFF;
+}

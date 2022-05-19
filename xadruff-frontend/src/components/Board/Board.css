@@ -7,15 +7,3 @@
     background-color: blue;
 }
 
-#board .tile {
-    width: 75px;
-    height: 75px;
-}
-
-#board .dark-tile {
-    background-color: #5C19B0;
-}
-
-#board .light-tile {
-    background-color: #FFFFFF;
-}
