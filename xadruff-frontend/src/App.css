@@ -2,20 +2,16 @@ html {
   background-color: #2F2F2F;
 }
 
-#app {
-  display: flex;
-  background-color: #2F2F2F;
-  height: 100vh;
-}
-
 #logo {
-  float: left;
-  width: 200px;
-  height: 61px;
-  margin:5% 0% 10%  5%;
+  margin-left: 45%;
+  margin-right: 40%;
+  width: 150px;
+  height: 45px;
 }
 
-
-#board-area {
-  margin:5% 0% 5%  5%;
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

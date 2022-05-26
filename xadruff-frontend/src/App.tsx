@@ -1,11 +1,15 @@
+import { useEffect } from 'react';
 import './App.css';
 import Board from './components/Board/Board'
 
 function App() {
+  useEffect(() => {
+    document.title = "XadrUFF"
+  }, [])
   return (
-    <div id='app'>
+    <div>
       <img id='logo' src='images/logo.png' alt="XadrUFF"/>
-      <div id='board-area'><Board/></div>
+      <div className='center'><Board/></div>
     </div>
   );
 }

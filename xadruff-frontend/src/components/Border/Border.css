@@ -1,0 +1,20 @@
+.border {
+  display: grid;
+  place-content: center;
+  background-color: grey;
+}
+
+.border-horizontal {
+  width: 70px;
+  height: 20px;
+}
+
+.border-vertical {
+  width: 20px;
+  height: 70px;
+}
+
+.border-corner {
+  width: 20px;
+  height: 20px;
+}
