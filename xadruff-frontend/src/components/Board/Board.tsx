@@ -3,7 +3,7 @@ import Tile from "../Tile/Tile"
 import Border from "../Border/Border"
 
 
-function render_horizontal_border (horizontalAxis: string[], board: any[]){
+function render_horizontal_border (horizontalAxis: string[], board: JSX.Element[]){
   board.push(<Border text={""} axis="C"/>)
   for (let i = 0; i < horizontalAxis.length; i++) {
     board.push(<Border text={horizontalAxis[i]} axis="H"/>)
@@ -11,7 +11,7 @@ function render_horizontal_border (horizontalAxis: string[], board: any[]){
   board.push(<Border text={""} axis="C"/>)
 }
 
-function render_board_vertical_border(horizontalAxis: string[], verticalAxis:string[], board: any[], addition: number){
+function render_board_vertical_border(horizontalAxis: string[], verticalAxis:string[], board: JSX.Element[], addition: number){
   for (let j = verticalAxis.length - 1; j >= 0; j--) {
     board.push(<Border text={verticalAxis[j]} axis="V"/>)
     for (let i = 0; i < horizontalAxis.length; i++) {
@@ -32,7 +32,7 @@ function render_board_vertical_border(horizontalAxis: string[], verticalAxis:str
 }
 
 function render_board(starter: boolean){
-  let board: any[] = [];
+  let board: JSX.Element[] = [];
   let verticalAxis = [];
   let horizontalAxis = [];
   let addition = null
