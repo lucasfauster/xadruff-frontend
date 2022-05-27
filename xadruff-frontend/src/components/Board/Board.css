@@ -1,0 +1,13 @@
+#board {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    20px 70px 70px 70px 70px 70px 70px 70px 70px 20px
+  );
+  grid-template-rows: repeat(
+    auto-fit,
+    20px 70px 70px 70px 70px 70px 70px 70px 70px 20px
+  );
+  width: 600px;
+  height: 600px;
+}
