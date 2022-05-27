@@ -6,25 +6,26 @@ interface Props{
 }
 
 export default function Border({text, axis}: Props){
-    if(axis === 'V') {
-        return  <div className="border border-vertical">
-                    <div >
-                        {text.toUpperCase()}
+    switch ( axis ) {
+        case 'V':
+            return  <div className="border border-vertical">
+                        <div >
+                            {text.toUpperCase()}
+                        </div>
                     </div>
-                </div>
-    } else if (axis === 'H') {
-        return   <div className="border border-horizontal">
-                    <div >
-                        {text.toUpperCase()}
+        case 'H':
+            return  <div className="border border-horizontal">
+                        <div >
+                            {text.toUpperCase()}
+                        </div>
                     </div>
-                </div>
-    } else if (axis === 'C') {
-        return   <div className="border border-corner">
-                    <div >
-                        {text}
+        case 'C':
+            return  <div className="border border-corner">
+                        <div >
+                            {text}
+                        </div>
                     </div>
-                </div>
-    } else {
-        return null
-    };
+        default: 
+            return null
+     }
 }
