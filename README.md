@@ -15,6 +15,6 @@ Esse projeto é responsável pela parte de Front-End do XadrUFF, ele foi desenvo
 ## Instalação
 Para instalar a aplicação e gerar a pasta node_modules rode o comado `npm install`
 
-## Subindo o servidor
+## Subindo aplicação local
 Para subir o servidor rode o comando `npm start` e acesse a página [http://localhost:3000](http://localhost:3000) em seu navegador.
 
