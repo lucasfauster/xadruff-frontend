@@ -13,6 +13,10 @@
     background-color: #FFFFFF;
 }
 
+.selected-tile {
+    background-color: #1C7C54;
+}
+
 .piece {
     width: 60px;
     height: 60px;

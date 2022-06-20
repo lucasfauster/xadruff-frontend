@@ -1,7 +1,7 @@
 import "./Board.css";
 import Tile from "../Tile/Tile";
 import Border from "../Border/Border";
-import {useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 
 interface Piece {
   image: string;
@@ -101,7 +101,7 @@ function render_board(
 }
 
 export default function Board() {
-  const [activePiece, setActivePiece] = useState<HTMLElement | null>(null)
+  const [activeTile, setActiveTile] = useState<HTMLElement | null>(null)
   const [gridX, setGridX] = useState(0);
   const [gridY, setGridY] = useState(0);
   const [pieces, setPieces] = useState<Piece[]>(initialBoardState);
@@ -109,82 +109,56 @@ export default function Board() {
 
   let board = render_board(pieces,true);
 
-  function grabPiece(e: React.MouseEvent) {
-    const element = e.target as HTMLElement;
-    const board = boardRef.current;
+  function selectPiece(e: React.MouseEvent) {
+    const piece = e.target as HTMLElement;
 
-    if (element.classList.contains("piece") && board) {
-      setGridX(Math.floor((e.clientX - board.offsetLeft)/75));
-      setGridY(Math.abs(Math.ceil((e.clientY - board.offsetTop-600)/75)));
+    // Se clicou numa peça
+    if (piece.classList.contains("piece")){
 
-      const x_pos = e.clientX - 30;
-      const y_pos = e.clientY - 30;
+      // Pega a casa em que a peça está
+      const tile = piece.parentElement;
 
-      element.style.position = "absolute";
-      element.style.left = `${x_pos}px`;
-      element.style.top = `${y_pos}px`;
-
-      setActivePiece(element);
-    }
-  }
-
-  function movePiece(e: React.MouseEvent) {
-    const board = boardRef.current;
-
-    if (activePiece && board) {
-      const minX = board.offsetLeft + 15;
-      const maxX = board.offsetLeft + board.offsetWidth - 75;
-      const minY = board.offsetTop + 15;
-      const maxY = board.offsetTop + board.offsetHeight - 80;
-      const x_pos = e.clientX - 30;
-      const y_pos = e.clientY - 30;
-
-      if (minX > x_pos) {
-        activePiece.style.left = `${minX}px`;
-      } else if (maxX < x_pos) {
-        activePiece.style.left = `${maxX}px`;
-      } else {
-        activePiece.style.left = `${x_pos}px`;
+      // Se ainda tem uma casa ativa
+      if (!activeTile && piece.classList.contains("piece")) {
+        if (tile && !tile.classList.contains('selected-tile')) {
+          tile!.classList.add('selected-tile');
+          setActiveTile(tile);
+        }
       }
 
-      if (minY > y_pos) {
-        activePiece.style.top = `${minY}px`;
-      } else if (maxY < y_pos) {
-        activePiece.style.top = `${maxY}px`;
-      } else {
-        activePiece.style.top = `${y_pos}px`;
+      // Se já tem casa ativa
+      else if (activeTile){
+
+        // Se a casa seleciona for a ativa desseleciona
+        if (activeTile === tile){
+
+          tile!.classList.remove('selected-tile');
+          setActiveTile(null);
+        }
+        // Se a casa selecionada não é a ativa troca
+        else{
+          activeTile.classList.remove('selected-tile');
+          tile!.classList.add('selected-tile');
+          setActiveTile(tile);
+        }
       }
     }
-  }
 
-  function dropPiece(e: React.MouseEvent) {
-    const board = boardRef.current;
-
-    if (activePiece && board) {
-      const x = Math.floor((e.clientX - board.offsetLeft)/75);
-      const y = Math.abs(Math.ceil((e.clientY - board.offsetTop-600)/75));
-      console.log(x,y)
-
-      setPieces(value=> {
-        const pieces = value.map(p => {
-          if(p.x_pos === gridX && p.y_pos === gridY) {
-            p.x_pos = x;
-            p.y_pos = y;
-          }
-          return p;
-        })
-        return pieces;
-      });
-      setActivePiece(null);
+    // Se não clicou numa peça mas tem uma ativa desseleciona
+    else if (!piece.classList.contains("piece") && activeTile){
+      activeTile.classList.remove('selected-tile');
+      setActiveTile(null);
     }
+
+
   }
+
 
   return (
     <div>
       <div
-        onMouseDown={(e) => grabPiece(e)}
-        onMouseMove={(e) => movePiece(e)}
-        onMouseUp={(e) => dropPiece(e)}
+        onClick={(e) => selectPiece(e)}
+
         id="board"
         ref={boardRef}
       >
