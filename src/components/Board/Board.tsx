@@ -1,7 +1,7 @@
 import "./Board.css";
 import Tile from "../Tile/Tile";
 import Border from "../Border/Border";
-import { useRef } from "react";
+import {useRef, useState} from "react";
 
 interface Piece {
   image: string;
@@ -9,9 +9,12 @@ interface Piece {
   y_pos: number;
 }
 
-const pieces: Piece[] = [];
+const initialBoardState: Piece[] = [];
 
-function render_pieces(pieces: Piece[], starter: boolean){
+function render_pieces(
+  pieces: Piece[],
+  starter: boolean
+){
   const w_pawns_y = starter ? 1:6;
   const b_pawns_y = starter ? 6:1;
 
@@ -34,6 +37,7 @@ function render_pieces(pieces: Piece[], starter: boolean){
     }
   }
 }
+
 function render_horizontal_border(
   horizontalAxis: string[],
   board: JSX.Element[]
@@ -46,6 +50,7 @@ function render_horizontal_border(
 }
 
 function render_board_vertical_border(
+  pieces: Piece[],
   horizontalAxis: string[],
   verticalAxis: string[],
   board: JSX.Element[],
@@ -69,7 +74,10 @@ function render_board_vertical_border(
   }
 }
 
-function render_board(starter: boolean) {
+function render_board(
+  pieces: Piece[],
+  starter: boolean
+) {
   let board: JSX.Element[] = [];
   let verticalAxis = [];
   let horizontalAxis = [];
@@ -86,22 +94,29 @@ function render_board(starter: boolean) {
   }
 
   render_horizontal_border(horizontalAxis, board);
-  render_board_vertical_border(horizontalAxis, verticalAxis, board, addition);
+  render_board_vertical_border(pieces, horizontalAxis, verticalAxis, board, addition);
   render_horizontal_border(horizontalAxis, board);
-  render_pieces(pieces, starter);
-
+  render_pieces(initialBoardState,starter);
   return board;
 }
 
 export default function Board() {
+  const [activePiece, setActivePiece] = useState<HTMLElement | null>(null)
+  const [gridX, setGridX] = useState(0);
+  const [gridY, setGridY] = useState(0);
+  const [pieces, setPieces] = useState<Piece[]>(initialBoardState);
   const boardRef = useRef<HTMLDivElement>(null);
-  let board = render_board(false);
 
-  let activePiece: HTMLElement | null = null;
+  let board = render_board(pieces,true);
 
   function grabPiece(e: React.MouseEvent) {
     const element = e.target as HTMLElement;
-    if (element.classList.contains("piece")) {
+    const board = boardRef.current;
+
+    if (element.classList.contains("piece") && board) {
+      setGridX(Math.floor((e.clientX - board.offsetLeft)/75));
+      setGridY(Math.abs(Math.ceil((e.clientY - board.offsetTop-600)/75)));
+
       const x_pos = e.clientX - 30;
       const y_pos = e.clientY - 30;
 
@@ -109,7 +124,7 @@ export default function Board() {
       element.style.left = `${x_pos}px`;
       element.style.top = `${y_pos}px`;
 
-      activePiece = element;
+      setActivePiece(element);
     }
   }
 
@@ -143,8 +158,24 @@ export default function Board() {
   }
 
   function dropPiece(e: React.MouseEvent) {
-    if (activePiece) {
-      activePiece = null;
+    const board = boardRef.current;
+
+    if (activePiece && board) {
+      const x = Math.floor((e.clientX - board.offsetLeft)/75);
+      const y = Math.abs(Math.ceil((e.clientY - board.offsetTop-600)/75));
+      console.log(x,y)
+
+      setPieces(value=> {
+        const pieces = value.map(p => {
+          if(p.x_pos === gridX && p.y_pos === gridY) {
+            p.x_pos = x;
+            p.y_pos = y;
+          }
+          return p;
+        })
+        return pieces;
+      });
+      setActivePiece(null);
     }
   }
 
