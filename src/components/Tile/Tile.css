@@ -10,7 +10,23 @@
 }
 
 .light-tile {
-  background-color: #ffffff;
+    background-color: #FFFFFF;
+}
+
+.piece {
+    width: 60px;
+    height: 60px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60px;
+}
+
+.piece:hover {
+    cursor: grab;
+}
+
+.piece:active {
+    cursor: grabbing;
 }
 
 /* .piece {
