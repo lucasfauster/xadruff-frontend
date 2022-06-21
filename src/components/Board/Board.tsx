@@ -4,6 +4,7 @@ import Border from "../Border/Border";
 import React, {useRef, useState} from "react";
 
 interface Piece {
+  color: string;
   image: string;
   x_pos: number;
   y_pos: number;
@@ -39,22 +40,27 @@ function render_pieces(
 
   const w_pieces_y = starter ? 0:7;
   const b_pieces_y = starter ? 7:0;
+
+
+
   for (let color = 0; color < 2; color++) {
     const type = color === 0 ? "b" : "w";
     const y_pos = color === 0 ? b_pieces_y : w_pieces_y;
     const pawns_y = color === 0 ? b_pawns_y : w_pawns_y;
-    pieces.push({ image: `images/pieces/${type}_rook.png`, x_pos: 0, y_pos });
-    pieces.push({ image: `images/pieces/${type}_rook.png`, x_pos: 7, y_pos });
-    pieces.push({ image: `images/pieces/${type}_knight.png`, x_pos: 1, y_pos });
-    pieces.push({ image: `images/pieces/${type}_knight.png`, x_pos: 6, y_pos });
-    pieces.push({ image: `images/pieces/${type}_bishop.png`, x_pos: 2, y_pos });
-    pieces.push({ image: `images/pieces/${type}_bishop.png`, x_pos: 5, y_pos });
-    pieces.push({ image: `images/pieces/${type}_queen.png`, x_pos: 3, y_pos });
-    pieces.push({ image: `images/pieces/${type}_king.png`, x_pos: 4, y_pos });
-    for (let i = 0; i < 8; i++) {
-      pieces.push({ image: `images/pieces/${type}_pawn.png`, x_pos: i, y_pos: pawns_y });
+    pieces.push({ image: `images/pieces/${type}_rook.png`, x_pos: 0, y_pos, color:type });
+    pieces.push({ image: `images/pieces/${type}_rook.png`, x_pos: 7, y_pos, color:type });
+    pieces.push({ image: `images/pieces/${type}_knight.png`, x_pos: 1, y_pos, color:type });
+    pieces.push({ image: `images/pieces/${type}_knight.png`, x_pos: 6, y_pos, color:type });
+    pieces.push({ image: `images/pieces/${type}_bishop.png`, x_pos: 2, y_pos, color:type });
+    pieces.push({ image: `images/pieces/${type}_bishop.png`, x_pos: 5, y_pos, color:type });
+    pieces.push({ image: `images/pieces/${type}_queen.png`, x_pos: 3, y_pos, color:type });
+    pieces.push({ image: `images/pieces/${type}_king.png`, x_pos: 4, y_pos, color:type });
+    for (let i = 0; i < 7; i++) { // Mudar dps para 8
+      pieces.push({ image: `images/pieces/${type}_pawn.png`, x_pos: i, y_pos: pawns_y, color:type});
     }
   }
+  pieces.push({ image: `images/pieces/w_pawn.png`, x_pos: 2, y_pos: 5, color:'w'});
+  pieces.push({ image: `images/pieces/b_pawn.png`, x_pos: 0, y_pos: 2, color:'b'});
 }
 
 function render_horizontal_border(
@@ -73,22 +79,23 @@ function render_board_vertical_border(
   horizontalAxis: string[],
   verticalAxis: string[],
   board: JSX.Element[],
-  addition: number
 ) {
   for (let j = verticalAxis.length - 1; j >= 0; j--) {
     board.push(<Border text={verticalAxis[j]} axis="V" />);
     for (let i = 0; i < horizontalAxis.length; i++) {
       const number = j + i + 2;
       let image = "";
+      let piece_color = "";
 
       pieces.forEach((p) => {
         if (p.x_pos === i && p.y_pos === j) {
           image = p.image;
+          piece_color = p.color;
         }
       });
 
       const id = horizontalAxis[i].toString()+verticalAxis[j].toString();
-      board.push(<Tile key={`${id}, ${j}, ${i}`} id={id} image={image} color={number} />);
+      board.push(<Tile key={`${id}, ${j}, ${i} ${piece_color}`} id={id} image={image} color={number} piece_color={piece_color} />);
     }
     board.push(<Border text={verticalAxis[j]} axis="V" />);
   }
@@ -114,110 +121,207 @@ function render_board(
   }
 
   render_horizontal_border(horizontalAxis, board);
-  render_board_vertical_border(pieces, horizontalAxis, verticalAxis, board, addition);
+  render_board_vertical_border(pieces, horizontalAxis, verticalAxis, board);
   render_horizontal_border(horizontalAxis, board);
   render_pieces(initialBoardState,starter);
   return board;
 }
 
-function get_legal_movements(
-    AllLegalMovements: LegalMovements[] | null,
-    tile: HTMLElement
-) {
-  const movements: LegalMovements[] = [];
-  if (AllLegalMovements){
-    AllLegalMovements.forEach( function (p){
-      if (p.piece === tile.id){
-        p.movements.forEach(function (m) {
-          let tile = document.getElementById(m);
-          highlight_legal_movements(tile);
-          movements.push(p);
-        });
-      }
-    });
-  }
-  return movements;
-}
-
-function highlight_legal_movements(tile: HTMLElement | null)
-{
-    if (tile && tile.classList.contains('dark-tile')){
-      tile.classList.add('legal-moviments-dark-tile');
-    }
-    else if (tile && tile.classList.contains('light-tile')){
-      tile.classList.add('legal-moviments-light-tile');
-    }
-}
-
-function unhighlight_legal_movements(){
-  const dark_tiles = Array.from(document.getElementsByClassName('legal-moviments-dark-tile'));
-  const light_tiles = Array.from(document.getElementsByClassName('legal-moviments-light-tile'));
-  dark_tiles.forEach(function (t){t.classList.remove('legal-moviments-dark-tile');})
-  light_tiles.forEach(function (t){t.classList.remove('legal-moviments-light-tile');})
-}
-
-
 mock_legal_movements()
 
 export default function Board() {
+  const starter = true;
+
+  const player_color = starter ? 'w':'b';
   const [activeTile, setActiveTile] = useState<HTMLElement | null>(null)
   const [ActiveLegalMovements, setActiveLegalMovements] = useState<LegalMovements[] | null>(null)
   const [AllLegalMovements, setAllLegalMovements] = useState<LegalMovements[] | null>(legalMovements)
+
+  const [gridX, setGridX] = useState(0);
+  const [gridY, setGridY] = useState(0);
+
   const [pieces, setPieces] = useState<Piece[]>(initialBoardState);
   const boardRef = useRef<HTMLDivElement>(null);
 
-  let board = render_board(pieces,true);
+  let board = render_board(pieces,starter);
 
   function selectPiece(e: React.MouseEvent) {
-    const piece = e.target as HTMLElement;
+    const clicked = e.target as HTMLElement;
+    const board = boardRef.current;
 
-    if (piece.classList.contains("piece")){
-      // Se clicou numa peça, pega a casa em que a peça está
-      const tile = piece.parentElement;
+    // Se clicou numa peça
+    if (clicked.classList.contains("piece") && board){
+      const tile = clicked.parentElement;
 
-      // Se ainda não tem uma casa ativa
-      if (!activeTile && piece.classList.contains("piece")) {
-        if (tile && !tile.classList.contains('selected-tile')) {
-          tile!.classList.add('selected-tile');
-          setActiveTile(tile);
-          const active: LegalMovements[] = get_legal_movements(AllLegalMovements,tile)
-          setActiveLegalMovements(active);
-        }
+      // Se não tem nenhuma casa ativa
+      if (!activeTile &&  tile && !tile.classList.contains('selected-tile')) {
+          selects_piece(tile,board,e);
+          updates_active_legal_movements(tile);
       }
 
       // Se já tem casa ativa
-      else if (activeTile){
-        // Se a casa selecionada for a ativa desseleciona
+      else if (activeTile && tile){
+        // Se a casa selecionada for a própria ativa desseleciona
         if (activeTile === tile){
-          tile!.classList.remove('selected-tile');
-          unhighlight_legal_movements();
-          setActiveTile(null);
-          setActiveLegalMovements(null);
+          unselect_all();
         }
-        // Se a casa selecionada não é a ativa troca
+        // Se a casa está nos legal movements, come
+        else if (tile.classList.contains('attack-movements-dark-tile') || tile.classList.contains('attack-movements-dark-tile')){
+          kills_piece(e);
+        }
+        // Se a casa selecionada não é a ativa, troca
         else{
-          activeTile.classList.remove('selected-tile');
-          if (tile){
-            tile!.classList.add('selected-tile');
-            unhighlight_legal_movements();
-            setActiveTile(tile);
-            setActiveLegalMovements(null);
-            const active: LegalMovements[] = get_legal_movements(AllLegalMovements,tile)
-            setActiveLegalMovements(active);
-          }
+          change_selected_piece(tile, board, e);
         }
       }
     }
 
-    // Se não clicou numa peça mas tem uma ativa desseleciona
-    else if (!piece.classList.contains("piece") && activeTile){
-      activeTile.classList.remove('selected-tile');
-      unhighlight_legal_movements();
-      setActiveLegalMovements(null);
-      setActiveTile(null);
-      console.log(ActiveLegalMovements)
+    // Se clicou numa casa legal movements
+    else if (clicked.classList.contains("legal-movements-dark-tile") || clicked.classList.contains("legal-movements-light-tile")){
+      movePiece(e);
+    }
+
+    // Se clicou fora e tem casa ativa, desseleciona tudo
+    else if (!clicked.classList.contains("piece") && activeTile){
+      unselect_all();
     }
   }
+
+  function get_piece_position(board: HTMLDivElement, e: React.MouseEvent){
+    const x = Math.floor((e.clientX - board.offsetLeft)/75);
+    const y = Math.abs(Math.ceil((e.clientY - board.offsetTop-600)/75));
+    setGridX(x);
+    setGridY(y);
+  }
+
+  function selects_piece(tile: HTMLElement, board: HTMLDivElement, e: React.MouseEvent){
+    get_piece_position(board,e);
+    tile!.classList.add('selected-tile');
+    setActiveTile(tile);
+  }
+
+  function change_selected_piece(tile: HTMLElement, board: HTMLDivElement, e: React.MouseEvent){
+    activeTile!.classList.remove('selected-tile');
+    if (tile){
+      selects_piece(tile,board,e);
+      updates_active_legal_movements(tile);
+    }
+  }
+
+  function movePiece(e: React.MouseEvent) {
+    const board = boardRef.current;
+    if (activeTile && board) {
+      const x = Math.floor((e.clientX - board.offsetLeft)/75);
+      const y = Math.abs(Math.ceil((e.clientY - board.offsetTop-600)/75));
+      setPieces(value=> {
+        const ps = value.map(p => {
+          if(p.x_pos === gridX && p.y_pos === gridY) {
+            p.x_pos = x;
+            p.y_pos = y;
+          }
+          return p;
+        })
+        return ps;
+      });
+
+      // Aqui deverá passar a casa escolhida para o endpoint
+      unselect_all()
+    }
+  }
+
+  function kills_piece(e: React.MouseEvent){
+    // const target = e.target as HTMLElement;
+    // console.log(target);
+    // const board = boardRef.current;
+    // if (activeTile && board) {
+    //   const x = Math.floor((e.clientX - board.offsetLeft)/75);
+    //   const y = Math.abs(Math.ceil((e.clientY - board.offsetTop-600)/75));
+    //   setPieces(value=> {
+    //     console.log(value)
+    //     const ps = value.map(p => {
+    //       if(p.x_pos === gridX && p.y_pos === gridY) {
+    //         p.x_pos = x;
+    //         p.y_pos = y;
+    //       }
+    //       return p;
+    //     })
+    //     return ps;
+    //   });
+    //
+    //   // Aqui deverá passar a casa escolhida para o endpoint
+    //   unselect_all()
+    // }
+  }
+
+  function unselect_all(){
+    activeTile!.classList.remove('selected-tile');
+    unhighlight_movements();
+    setActiveLegalMovements(null);
+    setActiveTile(null);
+  }
+
+  function get_legal_movements(tile: HTMLElement) {
+    const movements: LegalMovements[] = [];
+    if (AllLegalMovements){
+      AllLegalMovements.forEach( function (p){
+        if (p.piece === tile.id){
+          p.movements.forEach(function (m) {
+            let tile = document.getElementById(m);
+            if (tile){
+              if (tile.childNodes.length > 0) {
+                const piece = tile.firstElementChild;
+                if (piece && !piece.classList.contains(player_color)){
+                  highlight_attack_movement(tile);
+                  movements.push(p);
+                }
+              }
+              else{
+                highlight_legal_movement(tile);
+                movements.push(p);
+              }
+            }
+          });
+        }
+      });
+    }
+    return movements;
+  }
+
+  function updates_active_legal_movements(tile: HTMLElement){
+    unhighlight_movements();
+    setActiveLegalMovements(null);
+    const active: LegalMovements[] = get_legal_movements(tile);
+    setActiveLegalMovements(active);
+  }
+
+  function highlight_legal_movement(tile: HTMLElement) {
+    if (tile && tile.classList.contains('dark-tile')){
+      tile.classList.add('legal-movements-dark-tile');
+    }
+    else if (tile && tile.classList.contains('light-tile')){
+      tile.classList.add('legal-movements-light-tile');
+    }
+  }
+  function highlight_attack_movement(tile: HTMLElement) {
+    if (tile && tile.classList.contains('dark-tile')){
+      tile.classList.add('attack-movements-dark-tile');
+    }
+    else if (tile && tile.classList.contains('light-tile')){
+      tile.classList.add('attack-movements-light-tile');
+    }
+  }
+
+  function unhighlight_movements(){
+    const dark_tiles = Array.from(document.getElementsByClassName('legal-movements-dark-tile'));
+    const light_tiles = Array.from(document.getElementsByClassName('legal-movements-light-tile'));
+    const dark_attack_tiles = Array.from(document.getElementsByClassName('attack-movements-dark-tile'));
+    const light_attack_tiles = Array.from(document.getElementsByClassName('attack-movements-light-tile'));
+    dark_tiles.forEach(function (t){t.classList.remove('legal-movements-dark-tile');})
+    light_tiles.forEach(function (t){t.classList.remove('legal-movements-light-tile');})
+    dark_attack_tiles.forEach(function (t){t.classList.remove('attack-movements-dark-tile');})
+    light_attack_tiles.forEach(function (t){t.classList.remove('attack-movements-light-tile');})
+  }
+
 
   return (
     <div>

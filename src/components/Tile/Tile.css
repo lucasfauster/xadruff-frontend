@@ -17,11 +17,18 @@
     background-color: #2b572d;
 }
 
-.legal-moviments-dark-tile {
+.legal-movements-dark-tile {
     background-color: #66A78A;
 }
-.legal-moviments-light-tile {
+.legal-movements-light-tile {
     background-color: #578d75;
+}
+
+.attack-movements-dark-tile {
+    background-color: #9b202c;
+}
+.attack-movements-light-tile {
+    background-color: #8c0814;
 }
 
 .piece {
