@@ -9,7 +9,26 @@ interface Piece {
   y_pos: number;
 }
 
+interface LegalMovements {
+  piece: string;
+  movements: string[];
+}
+
+function mock_legal_movements(){
+  legalMovements.push({piece: 'a2', movements: ['a3','a4']});
+  legalMovements.push({piece: 'b2', movements: ['b3','b4']});
+  legalMovements.push({piece: 'c2', movements: ['c3','c4']});
+  legalMovements.push({piece: 'd2', movements: ['d3','d4']});
+  legalMovements.push({piece: 'e2', movements: ['e3','e4']});
+  legalMovements.push({piece: 'f2', movements: ['f3','f4']});
+  legalMovements.push({piece: 'g2', movements: ['g3','g4']});
+  legalMovements.push({piece: 'h2', movements: ['h3','h4']});
+  legalMovements.push({piece: 'b1', movements: ['a3','c3']});
+  legalMovements.push({piece: 'g1', movements: ['f3','h3']});
+}
+
 const initialBoardState: Piece[] = [];
+const legalMovements: LegalMovements[] = [];
 
 function render_pieces(
   pieces: Piece[],
@@ -68,7 +87,8 @@ function render_board_vertical_border(
         }
       });
 
-      board.push(<Tile key={`${j}, ${i}`} image={image} color={number} />);
+      const id = horizontalAxis[i].toString()+verticalAxis[j].toString();
+      board.push(<Tile key={`${id}, ${j}, ${i}`} id={id} image={image} color={number} />);
     }
     board.push(<Border text={verticalAxis[j]} axis="V" />);
   }
@@ -100,10 +120,49 @@ function render_board(
   return board;
 }
 
+function get_legal_movements(
+    AllLegalMovements: LegalMovements[] | null,
+    tile: HTMLElement
+) {
+  const movements: LegalMovements[] = [];
+  if (AllLegalMovements){
+    AllLegalMovements.forEach( function (p){
+      if (p.piece === tile.id){
+        p.movements.forEach(function (m) {
+          let tile = document.getElementById(m);
+          highlight_legal_movements(tile);
+          movements.push(p);
+        });
+      }
+    });
+  }
+  return movements;
+}
+
+function highlight_legal_movements(tile: HTMLElement | null)
+{
+    if (tile && tile.classList.contains('dark-tile')){
+      tile.classList.add('legal-moviments-dark-tile');
+    }
+    else if (tile && tile.classList.contains('light-tile')){
+      tile.classList.add('legal-moviments-light-tile');
+    }
+}
+
+function unhighlight_legal_movements(){
+  const dark_tiles = Array.from(document.getElementsByClassName('legal-moviments-dark-tile'));
+  const light_tiles = Array.from(document.getElementsByClassName('legal-moviments-light-tile'));
+  dark_tiles.forEach(function (t){t.classList.remove('legal-moviments-dark-tile');})
+  light_tiles.forEach(function (t){t.classList.remove('legal-moviments-light-tile');})
+}
+
+
+mock_legal_movements()
+
 export default function Board() {
   const [activeTile, setActiveTile] = useState<HTMLElement | null>(null)
-  const [gridX, setGridX] = useState(0);
-  const [gridY, setGridY] = useState(0);
+  const [ActiveLegalMovements, setActiveLegalMovements] = useState<LegalMovements[] | null>(null)
+  const [AllLegalMovements, setAllLegalMovements] = useState<LegalMovements[] | null>(legalMovements)
   const [pieces, setPieces] = useState<Piece[]>(initialBoardState);
   const boardRef = useRef<HTMLDivElement>(null);
 
@@ -112,34 +171,40 @@ export default function Board() {
   function selectPiece(e: React.MouseEvent) {
     const piece = e.target as HTMLElement;
 
-    // Se clicou numa peça
     if (piece.classList.contains("piece")){
-
-      // Pega a casa em que a peça está
+      // Se clicou numa peça, pega a casa em que a peça está
       const tile = piece.parentElement;
 
-      // Se ainda tem uma casa ativa
+      // Se ainda não tem uma casa ativa
       if (!activeTile && piece.classList.contains("piece")) {
         if (tile && !tile.classList.contains('selected-tile')) {
           tile!.classList.add('selected-tile');
           setActiveTile(tile);
+          const active: LegalMovements[] = get_legal_movements(AllLegalMovements,tile)
+          setActiveLegalMovements(active);
         }
       }
 
       // Se já tem casa ativa
       else if (activeTile){
-
-        // Se a casa seleciona for a ativa desseleciona
+        // Se a casa selecionada for a ativa desseleciona
         if (activeTile === tile){
-
           tile!.classList.remove('selected-tile');
+          unhighlight_legal_movements();
           setActiveTile(null);
+          setActiveLegalMovements(null);
         }
         // Se a casa selecionada não é a ativa troca
         else{
           activeTile.classList.remove('selected-tile');
-          tile!.classList.add('selected-tile');
-          setActiveTile(tile);
+          if (tile){
+            tile!.classList.add('selected-tile');
+            unhighlight_legal_movements();
+            setActiveTile(tile);
+            setActiveLegalMovements(null);
+            const active: LegalMovements[] = get_legal_movements(AllLegalMovements,tile)
+            setActiveLegalMovements(active);
+          }
         }
       }
     }
@@ -147,12 +212,12 @@ export default function Board() {
     // Se não clicou numa peça mas tem uma ativa desseleciona
     else if (!piece.classList.contains("piece") && activeTile){
       activeTile.classList.remove('selected-tile');
+      unhighlight_legal_movements();
+      setActiveLegalMovements(null);
       setActiveTile(null);
+      console.log(ActiveLegalMovements)
     }
-
-
   }
-
 
   return (
     <div>
