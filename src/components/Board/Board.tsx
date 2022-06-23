@@ -188,8 +188,8 @@ export default function Board() {
   }
 
   function get_piece_position(board: HTMLDivElement, e: React.MouseEvent){
-    const x = Math.floor((e.clientX - board.offsetLeft)/75);
-    const y = Math.abs(Math.ceil((e.clientY - board.offsetTop-600)/75));
+    const x = Math.floor((e.clientX - board.offsetLeft-20)/75);
+    const y = Math.abs(Math.ceil((e.clientY - board.offsetTop-590)/75));
     setGridX(x);
     setGridY(y);
   }
