@@ -155,8 +155,8 @@ export default function Board() {
 
       // Se não tem nenhuma casa ativa
       if (!activeTile &&  tile && !tile.classList.contains('selected-tile')) {
-          selects_piece(tile,board,e);
-          updates_active_legal_movements(tile);
+        selects_piece(tile,board,e);
+        updates_active_legal_movements(tile);
       }
 
       // Se já tem casa ativa
@@ -211,8 +211,8 @@ export default function Board() {
   function movePiece(e: React.MouseEvent) {
     const board = boardRef.current;
     if (activeTile && board) {
-      const x = Math.floor((e.clientX - board.offsetLeft)/75);
-      const y = Math.abs(Math.ceil((e.clientY - board.offsetTop-600)/75));
+      const x = Math.floor((e.clientX - board.offsetLeft-20)/75);
+      const y = Math.abs(Math.ceil((e.clientY - board.offsetTop-590)/75));
       setPieces(value=> {
         return value.map(p => {
           if(p.x_pos === gridX && p.y_pos === gridY) {
@@ -241,8 +241,8 @@ export default function Board() {
     const board = boardRef.current;
 
     if (activeTile && clicked.classList.contains("piece") && board && is_opponents_piece(clicked)) {
-      const x = Math.floor((e.clientX - board.offsetLeft)/75);
-      const y = Math.abs(Math.ceil((e.clientY - board.offsetTop-600)/75));
+      const x = Math.floor((e.clientX - board.offsetLeft-20)/75);
+      const y = Math.abs(Math.ceil((e.clientY - board.offsetTop-590)/75));
       const piece = get_piece(x,y);
       deadPieces.push(piece)
       pieces.splice(pieces.indexOf(piece),1)
