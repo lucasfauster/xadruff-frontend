@@ -145,16 +145,16 @@ export default function Board() {
 
 
 
-  function selectPiece(e: React.MouseEvent) {
+  function select_piece(e: React.MouseEvent) {
     const clicked = e.target as HTMLElement;
     const board = boardRef.current;
 
     // Se clicou numa peça
-    if (clicked.classList.contains("piece") && board){
+    if (clicked.classList.contains("piece")  && board){
       const tile = clicked.parentElement;
 
       // Se não tem nenhuma casa ativa
-      if (!activeTile &&  tile && !tile.classList.contains('selected-tile')) {
+      if (!activeTile &&  tile && !tile.classList.contains('selected-tile') && !is_opponents_piece(clicked)) {
         selects_piece(tile,board,e);
         updates_active_legal_movements(tile);
       }
@@ -178,7 +178,7 @@ export default function Board() {
 
     // Se clicou numa casa legal movements
     else if (clicked.classList.contains("legal-movements-dark-tile") || clicked.classList.contains("legal-movements-light-tile")){
-      movePiece(e);
+      move_piece(e);
     }
 
     // Se clicou fora e tem casa ativa, desseleciona tudo
@@ -208,7 +208,7 @@ export default function Board() {
     }
   }
 
-  function movePiece(e: React.MouseEvent) {
+  function move_piece(e: React.MouseEvent) {
     const board = boardRef.current;
     if (activeTile && board) {
       const x = Math.floor((e.clientX - board.offsetLeft-20)/75);
@@ -333,7 +333,7 @@ export default function Board() {
   return (
     <div>
       <div
-        onClick={(e) => selectPiece(e)}
+        onClick={(e) => select_piece(e)}
 
         id="board"
         ref={boardRef}
