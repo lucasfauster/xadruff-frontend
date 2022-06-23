@@ -137,8 +137,12 @@ export default function Board() {
   const [gridY, setGridY] = useState(0);
 
   let board = render_board(initialBoardState,starter);
-  const [pieces, setPieces] = useState<Piece[]>(initialBoardState);
   const boardRef = useRef<HTMLDivElement>(null);
+
+  const [pieces, setPieces] = useState<Piece[]>(initialBoardState);
+  const [deadPieces, setdeadPieces] = useState<Piece[]>([]);
+  const [deadPiecesOpponent, setdeadPiecesOpponent] = useState<Piece[]>([]);
+
 
 
   function selectPiece(e: React.MouseEvent) {
@@ -228,9 +232,8 @@ export default function Board() {
     return !piece.classList.contains(player_color);
   }
 
-
   function get_piece(x: number, y: number) {
-    return  pieces.filter(p=> p.x_pos===x && p.y_pos===y);
+    return  pieces.filter(p=> p.x_pos===x && p.y_pos===y)[0];
   }
 
   function kills_piece(e: React.MouseEvent){
@@ -241,8 +244,8 @@ export default function Board() {
       const x = Math.floor((e.clientX - board.offsetLeft)/75);
       const y = Math.abs(Math.ceil((e.clientY - board.offsetTop-600)/75));
       const piece = get_piece(x,y);
-
-      pieces.splice(pieces.indexOf(piece[0]),1)
+      deadPieces.push(piece)
+      pieces.splice(pieces.indexOf(piece),1)
       setPieces(value=> {
         return value.map(p => {
           if(p.x_pos === gridX && p.y_pos === gridY) {
