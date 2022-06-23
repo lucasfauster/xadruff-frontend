@@ -28,8 +28,8 @@ function mock_legal_movements(){
   legalMovements.push({piece: 'g1', movements: ['f3','h3']});
 }
 
-const initialBoardState: Piece[] = [];
-const legalMovements: LegalMovements[] = [];
+let initialBoardState: Piece[] = [];
+let legalMovements: LegalMovements[] = [];
 
 function render_pieces(
   pieces: Piece[],
@@ -106,32 +106,28 @@ function render_board(
   starter: boolean
 ) {
   let board: JSX.Element[] = [];
-  let verticalAxis = [];
-  let horizontalAxis = [];
-  let addition = null;
+  let verticalAxis;
+  let horizontalAxis;
 
   if (starter) {
     verticalAxis = ["1", "2", "3", "4", "5", "6", "7", "8"];
     horizontalAxis = ["a", "b", "c", "d", "e", "f", "g", "h"];
-    addition = 2;
   } else {
-    verticalAxis = ["1", "2", "3", "4", "5", "6", "7", "8"].reverse();;
+    verticalAxis = ["1", "2", "3", "4", "5", "6", "7", "8"].reverse();
     horizontalAxis = ["a", "b", "c", "d", "e", "f", "g", "h"].reverse();
-    addition = 1;
   }
 
   render_horizontal_border(horizontalAxis, board);
   render_board_vertical_border(pieces, horizontalAxis, verticalAxis, board);
   render_horizontal_border(horizontalAxis, board);
-  render_pieces(initialBoardState,starter);
   return board;
 }
 
 mock_legal_movements()
+const starter = true;
+render_pieces(initialBoardState,starter);
 
 export default function Board() {
-  const starter = true;
-
   const player_color = starter ? 'w':'b';
   const [activeTile, setActiveTile] = useState<HTMLElement | null>(null)
   const [ActiveLegalMovements, setActiveLegalMovements] = useState<LegalMovements[] | null>(null)
@@ -140,10 +136,10 @@ export default function Board() {
   const [gridX, setGridX] = useState(0);
   const [gridY, setGridY] = useState(0);
 
+  let board = render_board(initialBoardState,starter);
   const [pieces, setPieces] = useState<Piece[]>(initialBoardState);
   const boardRef = useRef<HTMLDivElement>(null);
 
-  let board = render_board(pieces,starter);
 
   function selectPiece(e: React.MouseEvent) {
     const clicked = e.target as HTMLElement;
@@ -214,14 +210,13 @@ export default function Board() {
       const x = Math.floor((e.clientX - board.offsetLeft)/75);
       const y = Math.abs(Math.ceil((e.clientY - board.offsetTop-600)/75));
       setPieces(value=> {
-        const ps = value.map(p => {
+        return value.map(p => {
           if(p.x_pos === gridX && p.y_pos === gridY) {
             p.x_pos = x;
             p.y_pos = y;
           }
           return p;
-        })
-        return ps;
+        });
       });
 
       // Aqui deverá passar a casa escolhida para o endpoint
@@ -229,28 +224,37 @@ export default function Board() {
     }
   }
 
+  function is_opponents_piece(piece: HTMLElement){
+    return !piece.classList.contains(player_color);
+  }
+
+
+  function get_piece(x: number, y: number) {
+    return  pieces.filter(p=> p.x_pos===x && p.y_pos===y);
+  }
+
   function kills_piece(e: React.MouseEvent){
-    // const target = e.target as HTMLElement;
-    // console.log(target);
-    // const board = boardRef.current;
-    // if (activeTile && board) {
-    //   const x = Math.floor((e.clientX - board.offsetLeft)/75);
-    //   const y = Math.abs(Math.ceil((e.clientY - board.offsetTop-600)/75));
-    //   setPieces(value=> {
-    //     console.log(value)
-    //     const ps = value.map(p => {
-    //       if(p.x_pos === gridX && p.y_pos === gridY) {
-    //         p.x_pos = x;
-    //         p.y_pos = y;
-    //       }
-    //       return p;
-    //     })
-    //     return ps;
-    //   });
-    //
-    //   // Aqui deverá passar a casa escolhida para o endpoint
-    //   unselect_all()
-    // }
+    const clicked = e.target as HTMLElement;
+    const board = boardRef.current;
+
+    if (activeTile && clicked.classList.contains("piece") && board && is_opponents_piece(clicked)) {
+      const x = Math.floor((e.clientX - board.offsetLeft)/75);
+      const y = Math.abs(Math.ceil((e.clientY - board.offsetTop-600)/75));
+      const piece = get_piece(x,y);
+
+      pieces.splice(pieces.indexOf(piece[0]),1)
+      setPieces(value=> {
+        return value.map(p => {
+          if(p.x_pos === gridX && p.y_pos === gridY) {
+            p.x_pos = x;
+            p.y_pos = y;
+          }
+          return p;
+        });
+      });
+      // Aqui deverá passar a casa escolhida para o endpoint
+      unselect_all()
+    }
   }
 
   function unselect_all(){
