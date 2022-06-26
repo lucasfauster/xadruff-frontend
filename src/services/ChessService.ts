@@ -1,7 +1,7 @@
 import {ChessResponse} from "../components/Board/Board";
 
-export function startNewGame(): Promise<ChessResponse> {
-    return fetch(`https://xadruff-backend.herokuapp.com/chess/new-game?start-by=PLAYER&level=BEGINNER`)
+export function startNewGame(start_by: string): Promise<ChessResponse> {
+    return fetch(`https://xadruff-backend.herokuapp.com/chess/new-game?start-by=${start_by}&level=INTERMEDIATE`)
         .then(data => data.json())
 }
 
@@ -15,3 +15,4 @@ export function makeMovement(board_id: string, move: string): Promise<ChessRespo
         body: JSON.stringify({"move": move})
     }).then(data => data.json())
 }
+

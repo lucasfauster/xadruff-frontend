@@ -7,7 +7,7 @@ import {makeMovement, startNewGame} from "../../services/ChessService";
 interface Piece {
   color: string;
   image: string;
-  tile_pos: string;
+  tilePos: string;
 }
 
 interface ActiveLegalMovements {
@@ -32,37 +32,32 @@ export interface ChessResponse {
 
 let initialBoardState: Piece[] = [];
 
-function render_pieces_by_type(pieces: Piece[], type: string, tile_pos: number) {
-  pieces.push({ image: `images/pieces/${type}_rook.png`, color:type, tile_pos: "a" + tile_pos });
-  pieces.push({ image: `images/pieces/${type}_rook.png`, color:type, tile_pos: "h" + tile_pos });
-  pieces.push({ image: `images/pieces/${type}_knight.png`, color:type, tile_pos: "b" + tile_pos });
-  pieces.push({ image: `images/pieces/${type}_knight.png`, color:type, tile_pos: "g" + tile_pos });
-  pieces.push({ image: `images/pieces/${type}_bishop.png`, color:type, tile_pos: "c" + tile_pos });
-  pieces.push({ image: `images/pieces/${type}_bishop.png`, color:type, tile_pos: "f" + tile_pos });
-  pieces.push({ image: `images/pieces/${type}_queen.png`, color:type, tile_pos: "d" + tile_pos });
-  pieces.push({ image: `images/pieces/${type}_king.png`, color:type, tile_pos: "e" + tile_pos });
+function renderPiecesByType(pieces: Piece[], type: string, tilePos: number) {
+  pieces.push({ image: `images/pieces/${type}_rook.png`, color:type, tilePos: "a" + tilePos });
+  pieces.push({ image: `images/pieces/${type}_rook.png`, color:type, tilePos: "h" + tilePos });
+  pieces.push({ image: `images/pieces/${type}_knight.png`, color:type, tilePos: "b" + tilePos });
+  pieces.push({ image: `images/pieces/${type}_knight.png`, color:type, tilePos: "g" + tilePos });
+  pieces.push({ image: `images/pieces/${type}_bishop.png`, color:type, tilePos: "c" + tilePos });
+  pieces.push({ image: `images/pieces/${type}_bishop.png`, color:type, tilePos: "f" + tilePos });
+  pieces.push({ image: `images/pieces/${type}_queen.png`, color:type, tilePos: "d" + tilePos });
+  pieces.push({ image: `images/pieces/${type}_king.png`, color:type, tilePos: "e" + tilePos });
 }
 
-function render_pawns_by_type(pieces: Piece[], type: string, tile_pos: number) {
+function renderPawnsByType(pieces: Piece[], type: string, tilePos: number) {
   const letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
   for (const index in letters) {
-    pieces.push({ image: `images/pieces/${type}_pawn.png`, color:type, tile_pos: letters[index] + tile_pos});
+    pieces.push({ image: `images/pieces/${type}_pawn.png`, color:type, tilePos: letters[index] + tilePos});
   }
 }
 
-function render_pieces(
-  pieces: Piece[],
-  starter: boolean
-){
-  render_pieces_by_type(pieces, 'b', 8)
-  render_pieces_by_type(pieces, 'w', 1)
-  render_pawns_by_type(pieces, 'b', 7)
-  render_pawns_by_type(pieces, 'w', 2)
-
-  console.log(pieces)
+function renderPieces(pieces: Piece[]){
+  renderPiecesByType(pieces, 'b', 8)
+  renderPiecesByType(pieces, 'w', 1)
+  renderPawnsByType(pieces, 'b', 7)
+  renderPawnsByType(pieces, 'w', 2)
 }
 
-function render_horizontal_border(
+function renderHorizontalBorder(
   horizontalAxis: string[],
   board: JSX.Element[]
 ) {
@@ -73,7 +68,7 @@ function render_horizontal_border(
   board.push(<Border text={""} axis="C" />);
 }
 
-function render_board_vertical_border(
+function renderBoardVerticalBorder(
   pieces: Piece[],
   horizontalAxis: string[],
   verticalAxis: string[],
@@ -84,23 +79,23 @@ function render_board_vertical_border(
     for (let i = 0; i < horizontalAxis.length; i++) {
       const number = j + i + 2;
       let image = "";
-      let piece_color = "";
+      let pieceColor = "";
 
       pieces.forEach((p) => {
-        if (p.tile_pos === horizontalAxis[i]+verticalAxis[j]) {
+        if (p.tilePos === horizontalAxis[i]+verticalAxis[j]) {
           image = p.image;
-          piece_color = p.color;
+          pieceColor = p.color;
         }
       });
 
       const id = horizontalAxis[i].toString()+verticalAxis[j].toString();
-      board.push(<Tile key={`${id}, ${j}, ${i} ${piece_color}`} id={id} image={image} color={number} piece_color={piece_color} />);
+      board.push(<Tile key={`${id}, ${j}, ${i} ${pieceColor}`} id={id} image={image} color={number} pieceColor={pieceColor} />);
     }
     board.push(<Border text={verticalAxis[j]} axis="V" />);
   }
 }
 
-function render_board(
+function renderBoard(
   pieces: Piece[],
   starter: boolean
 ) {
@@ -116,22 +111,22 @@ function render_board(
     horizontalAxis = ["a", "b", "c", "d", "e", "f", "g", "h"].reverse();
   }
 
-  render_horizontal_border(horizontalAxis, board);
-  render_board_vertical_border(pieces, horizontalAxis, verticalAxis, board);
-  render_horizontal_border(horizontalAxis, board);
+  renderHorizontalBorder(horizontalAxis, board);
+  renderBoardVerticalBorder(pieces, horizontalAxis, verticalAxis, board);
+  renderHorizontalBorder(horizontalAxis, board);
   return board;
 }
 
 const starter = true;
-render_pieces(initialBoardState,starter);
+renderPieces(initialBoardState);
 
 export default function Board() {
-  const player_color = starter ? 'w':'b';
+  const playerColor = starter ? 'w':'b';
   const [activeTile, setActiveTile] = useState<HTMLElement | null>(null)
   const [allLegalMovements, setAllLegalMovements] = useState<LegalMovements | null>(null)
   const [currentBoardID, setCurrentBoardID] = useState<string | null>(null)
 
-  let board = render_board(initialBoardState,starter);
+  let board = renderBoard(initialBoardState, starter);
   const boardRef = useRef<HTMLDivElement>(null);
 
   const [pieces, setPieces] = useState<Piece[]>(initialBoardState);
@@ -140,180 +135,171 @@ export default function Board() {
 
   useEffect(() => {
     let mounted = true;
-    startNewGame()
-        .then(items => {
+    const startBy = starter ? "PLAYER": "AI"
+    startNewGame(startBy)
+        .then(chessResponse => {
           if(mounted) {
-            console.log(items)
-            setCurrentBoardID(items.board_id)
-            setAllLegalMovements(items.legal_movements)
-            console.log(items.legal_movements)
-            console.log(items.board_id)
+            setCurrentBoardID(chessResponse.board_id)
+            setAllLegalMovements(chessResponse.legal_movements)
+            if(!starter) {
+              changePiecePosition(chessResponse.ai_movement)
+            }
           }
         })
     return () => { mounted = false; }
   }, [])
 
-  function select_piece(e: React.MouseEvent) {
-    const clicked = e.target as HTMLElement;
-    const board = boardRef.current;
 
-    // Se clicou numa peça
-    if (clicked.classList.contains("piece")  && board){
-      const tile = clicked.parentElement;
-
-      // Se não tem nenhuma casa ativa
-      if (!activeTile &&  tile && !tile.classList.contains('selected-tile') && !is_opponents_piece(clicked)) {
-        selects_piece(tile);
-        updates_active_legal_movements(tile);
-      }
-
-      // Se já tem casa ativa
-      else if (activeTile && tile){
-        // Se a casa selecionada for a própria ativa desseleciona
-        if (activeTile === tile){
-          unselect_all();
-        }
-        // Se a casa está nos legal movements, come
-        else if (tile.classList.contains('attack-movements-dark-tile') || tile.classList.contains('attack-movements-dark-tile')){
-          kills_piece(e);
-        }
-        // Se a casa selecionada não é a ativa, troca
-        else{
-          change_selected_piece(tile);
-        }
-      }
-    }
-
-    // Se clicou numa casa legal movements
-    else if (clicked.classList.contains("legal-movements-dark-tile") || clicked.classList.contains("legal-movements-light-tile")){
-      move_piece(e);
-    }
-
-    // Se clicou fora e tem casa ativa, desseleciona tudo
-    else if (!clicked.classList.contains("piece") && activeTile){
-      unselect_all();
+  function handleNoActiveTile(clicked: HTMLElement, tile: HTMLElement) {
+    if (!isOpponentsPiece(clicked)) {
+      selectsPiece(tile);
+      updatesActiveLegalMovements(tile);
     }
   }
 
-  function selects_piece(tile: HTMLElement){
+  function handleActiveTile(tile: HTMLElement) {
+    if (activeTile === tile){
+      unselectAll();
+    }
+    else if (isInActiveLegalMovements(tile.id)){
+      movePiece(tile);
+    }
+    else{
+      changeSelectedPiece(tile);
+    }
+  }
+
+  function handleClickedPiece(clicked: HTMLElement) {
+    const tile = clicked.parentElement!;
+    if (!activeTile) {
+      handleNoActiveTile(clicked, tile);
+    }
+    else if (activeTile){
+      handleActiveTile(tile)
+    }
+  }
+
+  function selectPiece(e: React.MouseEvent) {
+    const clicked = e.target as HTMLElement;
+    const board = boardRef.current;
+    if (clicked.classList.contains("piece") && board){
+      handleClickedPiece(clicked)
+    }
+    else if (clicked.classList.contains("tile") && isInActiveLegalMovements(clicked.id)){
+      movePiece(clicked);
+    }
+    else if (activeTile){
+      unselectAll();
+    }
+  }
+
+  function isInActiveLegalMovements(tileId: string): boolean {
+    const activeLegalMovements = getActiveLegalMovements(activeTile!)
+    const movements = activeLegalMovements.movements.find(movement => movement.includes(tileId))
+    if (!movements) {
+      return false
+    }
+    return movements.length >= 1
+  }
+
+  function selectsPiece(tile: HTMLElement){
     tile!.classList.add('selected-tile');
     setActiveTile(tile);
   }
 
-  function change_selected_piece(tile: HTMLElement){
+  function changeSelectedPiece(tile: HTMLElement){
     activeTile!.classList.remove('selected-tile');
     if (tile){
-      selects_piece(tile);
-      updates_active_legal_movements(tile);
+      selectsPiece(tile);
+      updatesActiveLegalMovements(tile);
     }
   }
 
-  function make_movement(currentTileId: string) {
-    const move = activeTile?.id + currentTileId // = "a2a3"
-    console.log("move = " + move)
-    makeMovement(currentBoardID!, move).then(chess_response => {
-        console.log(chess_response)
-        setAllLegalMovements(chess_response.legal_movements)
-        change_piece_position(chess_response.ai_movement)
-        console.log(chess_response.legal_movements)
-        console.log(chess_response.board_id)
+  function callMakeMovement(currentTileId: string) {
+    const futurePositionAndAction = allLegalMovements![activeTile!.id].find(position =>
+        position.includes(currentTileId))!
+
+    const move = activeTile?.id + futurePositionAndAction
+    makeMovement(currentBoardID!, move).then(chessResponse => {
+        setAllLegalMovements(chessResponse.legal_movements)
+        changePiecePosition(chessResponse.ai_movement)
     })
   }
 
-  function change_piece_position(movement: string) {
-    const original_pos = movement.slice(0, 2)
-    console.log(original_pos)
-    const future_pos = movement.slice(2, 4)
-    console.log(future_pos)
-    setPieces(value => {
-      return value.map(piece => {
-        if (piece.tile_pos === original_pos) {
-          piece.tile_pos = future_pos
-        }
-        return piece;
-      });
-    });
+  function handleCapture(futurePos: string) {
+    const enemyPiece = pieces.find(piece => piece.tilePos === futurePos)
+    if (enemyPiece) {
+      return pieces.map(piece => {
+            if (piece.tilePos === futurePos) {
+              piece.tilePos = "death"
+            }
+            return piece
+          }
+      )
+    }
+    return pieces
   }
 
-  function move_piece(e: React.MouseEvent) {
+  function changePiecePosition(movement: string) {
+    const originalPos = movement.slice(0, 2)
+    const futurePos = movement.slice(2, 4)
+
+    const newPieces = handleCapture(futurePos).map(
+        piece => {
+          if (piece.tilePos === originalPos) {
+            piece.tilePos = futurePos
+          }
+          return piece
+        }
+    )
+    setPieces(newPieces)
+  }
+
+  function movePiece(currentTile: HTMLElement) {
     const board = boardRef.current;
     if (activeTile && board) {
-      const current_tile = e.target as HTMLElement
-      const current_tile_id = current_tile.id
-      change_piece_position(activeTile.id+current_tile_id);
-      console.log(activeTile.id+current_tile_id)
-
-      make_movement(current_tile.id)
-
-      // Aqui deverá passar a casa escolhida para o endpoint
-      unselect_all()
+      const currentTileId = currentTile.id
+      changePiecePosition(activeTile.id+currentTileId);
+      callMakeMovement(currentTile.id)
+      unselectAll()
     }
   }
 
-  function is_opponents_piece(piece: HTMLElement){
-    return !piece.classList.contains(player_color);
+  function isOpponentsPiece(piece: HTMLElement){
+    return !piece.classList.contains(playerColor);
   }
 
-  function get_piece(tile_pos: string) {
-    return  pieces.find(p=> p.tile_pos === tile_pos);
-  }
-
-  function kills_piece(e: React.MouseEvent){
-    // const clicked = e.target as HTMLElement;
-    // const board = boardRef.current;
-    //
-    // if (activeTile && clicked.classList.contains("piece") && board && is_opponents_piece(clicked)) {
-    //   // const x = Math.floor((e.clientX - board.offsetLeft-20)/75);
-    //   // const y = Math.abs(Math.ceil((e.clientY - board.offsetTop-590)/75));
-    //   const piece = get_piece("a"); // TODO
-    //   deadPieces.push(piece)
-    //   // pieces.splice(pieces.indexOf(piece),1)
-    //   setPieces(value=> {
-    //     return value.map(p => {
-    //       // if(p.x_pos === gridX && p.y_pos === gridY) {
-    //       //   p.x_pos = x;
-    //       //   p.y_pos = y;
-    //       // }
-    //       return p;
-    //     });
-    //   });
-      // Aqui deverá passar a casa escolhida para o endpoint
-      unselect_all()
-    // }
-  }
-
-  function unselect_all(){
+  function unselectAll(){
     activeTile!.classList.remove('selected-tile');
-    unhighlight_movements();
+    unhighlightMovements();
     setActiveTile(null);
   }
 
-  function getMovementsAndPieceFromLegalMovements(tile: HTMLElement) {
-    const entry = Object.entries(allLegalMovements!).find(([piece, _movements]) => piece === tile.id)!
-    const activeLegalMovements : ActiveLegalMovements = {piece: entry[0], movements: entry[1]}
-    return activeLegalMovements
+  function getActiveLegalMovements(tile: HTMLElement): ActiveLegalMovements {
+    const entry = allLegalMovements![tile.id]
+    return {piece: tile.id, movements: entry ? entry : []}
   }
 
-  function highlight_movements(activeLegalMovements: ActiveLegalMovements) {
+  function highlightMovements(activeLegalMovements: ActiveLegalMovements) {
     if (allLegalMovements) {
       activeLegalMovements.movements.forEach(function (movement) {
-        let tile = document.getElementById(movement)!;
-          if (movement.includes('C')) {
-            highlight_attack_movement(tile);
-          } else {
-            highlight_legal_movement(tile);
-          }
+        let tile = document.getElementById(movement.slice(0, 2))!;
+        if (movement.includes('C')) {
+          highlightAttackMovement(tile);
+        } else {
+          highlightLegalMovement(tile);
+        }
       });
     }
   }
 
-  function updates_active_legal_movements(tile: HTMLElement){
-    unhighlight_movements();
-    const activeLegalMovements: ActiveLegalMovements = getMovementsAndPieceFromLegalMovements(tile)
-    highlight_movements(activeLegalMovements);
+  function updatesActiveLegalMovements(tile: HTMLElement){
+    unhighlightMovements();
+    const activeLegalMovements: ActiveLegalMovements = getActiveLegalMovements(tile)
+    highlightMovements(activeLegalMovements);
   }
 
-  function highlight_legal_movement(tile: HTMLElement) {
+  function highlightLegalMovement(tile: HTMLElement) {
     if (tile && tile.classList.contains('dark-tile')){
       tile.classList.add('legal-movements-dark-tile');
     }
@@ -321,7 +307,7 @@ export default function Board() {
       tile.classList.add('legal-movements-light-tile');
     }
   }
-  function highlight_attack_movement(tile: HTMLElement) {
+  function highlightAttackMovement(tile: HTMLElement) {
     if (tile && tile.classList.contains('dark-tile')){
       tile.classList.add('attack-movements-dark-tile');
     }
@@ -330,22 +316,22 @@ export default function Board() {
     }
   }
 
-  function unhighlight_movements(){
-    const dark_tiles = Array.from(document.getElementsByClassName('legal-movements-dark-tile'));
-    const light_tiles = Array.from(document.getElementsByClassName('legal-movements-light-tile'));
-    const dark_attack_tiles = Array.from(document.getElementsByClassName('attack-movements-dark-tile'));
-    const light_attack_tiles = Array.from(document.getElementsByClassName('attack-movements-light-tile'));
-    dark_tiles.forEach(function (t){t.classList.remove('legal-movements-dark-tile');})
-    light_tiles.forEach(function (t){t.classList.remove('legal-movements-light-tile');})
-    dark_attack_tiles.forEach(function (t){t.classList.remove('attack-movements-dark-tile');})
-    light_attack_tiles.forEach(function (t){t.classList.remove('attack-movements-light-tile');})
+  function unhighlightMovements(){
+    const darkTiles = Array.from(document.getElementsByClassName('legal-movements-dark-tile'));
+    const lightTiles = Array.from(document.getElementsByClassName('legal-movements-light-tile'));
+    const darkAttackTiles = Array.from(document.getElementsByClassName('attack-movements-dark-tile'));
+    const lightAttackTiles = Array.from(document.getElementsByClassName('attack-movements-light-tile'));
+    darkTiles.forEach(function (t){t.classList.remove('legal-movements-dark-tile');})
+    lightTiles.forEach(function (t){t.classList.remove('legal-movements-light-tile');})
+    darkAttackTiles.forEach(function (t){t.classList.remove('attack-movements-dark-tile');})
+    lightAttackTiles.forEach(function (t){t.classList.remove('attack-movements-light-tile');})
   }
 
 
   return (
     <div>
       <div
-        onClick={(e) => select_piece(e)}
+        onClick={(e) => selectPiece(e)}
 
         id="board"
         ref={boardRef}
