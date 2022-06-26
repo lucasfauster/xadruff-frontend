@@ -1,23 +1,34 @@
-import './Tile.css';
+import "./Tile.css";
 
-interface Props{
-    image: string;
-    color: number
+interface Props {
+  id: string;
+  image: string;
+  color: number;
+  pieceColor: string;
 }
 
-export default function Tile({color, image}: Props){
-
-    if(color % 2 === 0) {
-        return  <div className='tile dark-tile'>
-                    <div >
-                        <img src={image}></img>
-                    </div>
-                </div>
-    } else {
-        return  <div className='tile light-tile'>
-                    <div >
-                        <img src={image}></img>
-                    </div>
-                </div>
-    }
+export default function Tile({ id, image, color, pieceColor }: Props) {
+  if (color % 2 === 0) {
+    return (
+      <div id={id} className="tile dark-tile">
+        {image && (
+          <div
+            style={{ backgroundImage: `url(${image})` }}
+            className={`${pieceColor} piece`}
+          ></div>
+        )}
+      </div>
+    );
+  } else {
+    return (
+      <div id={id} className="tile light-tile">
+        {image && (
+          <div
+            style={{ backgroundImage: `url(${image})` }}
+            className={`${pieceColor} piece`}
+          ></div>
+        )}
+      </div>
+    );
+  }
 }
