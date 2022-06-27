@@ -1,95 +1,343 @@
 import "./Board.css";
 import Tile from "../Tile/Tile";
 import Border from "../Border/Border";
+import React, {useEffect, useRef, useState} from "react";
+import {makeMovement, startNewGame} from "../../services/ChessService";
 
 interface Piece {
+  color: string;
   image: string;
-  x_pos: number;
-  y_pos: number;
+  tilePos: string;
 }
 
-const pieces: Piece[] = [];
-
-for (let p = 0; p < 2; p++) {
-  const type = p === 0 ? "b" : "w";
-  const y_pos = p === 0 ? 7 : 0;
-
-  pieces.push({ image: `images/pieces/${type}_rook.png`, x_pos: 0, y_pos });
-  pieces.push({ image: `images/pieces/${type}_rook.png`, x_pos: 7, y_pos });
-  pieces.push({ image: `images/pieces/${type}_knight.png`, x_pos: 1, y_pos });
-  pieces.push({ image: `images/pieces/${type}_knight.png`, x_pos: 6, y_pos });
-  pieces.push({ image: `images/pieces/${type}_bishop.png`, x_pos: 2, y_pos });
-  pieces.push({ image: `images/pieces/${type}_bishop.png`, x_pos: 5, y_pos });
-  pieces.push({ image: `images/pieces/${type}_queen.png`, x_pos: 3, y_pos });
-  pieces.push({ image: `images/pieces/${type}_king.png`, x_pos: 4, y_pos });
+interface ActiveLegalMovements {
+  piece: string;
+  movements: string[];
 }
 
-for (let i = 0; i < 8; i++) {
-  pieces.push({ image: "images/pieces/w_pawn.png", x_pos: i, y_pos: 1 });
-}
-for (let i = 0; i < 8; i++) {
-  pieces.push({ image: "images/pieces/b_pawn.png", x_pos: i, y_pos: 6 });
+interface LegalMovements {
+  [piece: string]: string[];
 }
 
+interface Board {
+  positions: string[][];
+}
 
-function render_horizontal_border (horizontalAxis: string[], board: JSX.Element[]){
-  board.push(<Border text={""} axis="C"/>)
+export interface ChessResponse {
+  board_id: string;
+  board: Board;
+  legal_movements: LegalMovements;
+  ai_movement: string;
+}
+
+let initialBoardState: Piece[] = [];
+
+function renderPiecesByType(pieces: Piece[], type: string, tilePos: number) {
+  pieces.push({ image: `images/pieces/${type}_rook.png`, color:type, tilePos: "a" + tilePos });
+  pieces.push({ image: `images/pieces/${type}_rook.png`, color:type, tilePos: "h" + tilePos });
+  pieces.push({ image: `images/pieces/${type}_knight.png`, color:type, tilePos: "b" + tilePos });
+  pieces.push({ image: `images/pieces/${type}_knight.png`, color:type, tilePos: "g" + tilePos });
+  pieces.push({ image: `images/pieces/${type}_bishop.png`, color:type, tilePos: "c" + tilePos });
+  pieces.push({ image: `images/pieces/${type}_bishop.png`, color:type, tilePos: "f" + tilePos });
+  pieces.push({ image: `images/pieces/${type}_queen.png`, color:type, tilePos: "d" + tilePos });
+  pieces.push({ image: `images/pieces/${type}_king.png`, color:type, tilePos: "e" + tilePos });
+}
+
+function renderPawnsByType(pieces: Piece[], type: string, tilePos: number) {
+  const letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
+  for (const index in letters) {
+    pieces.push({ image: `images/pieces/${type}_pawn.png`, color:type, tilePos: letters[index] + tilePos});
+  }
+}
+
+function renderPieces(pieces: Piece[]){
+  renderPiecesByType(pieces, 'b', 8)
+  renderPiecesByType(pieces, 'w', 1)
+  renderPawnsByType(pieces, 'b', 7)
+  renderPawnsByType(pieces, 'w', 2)
+}
+
+function renderHorizontalBorder(
+  horizontalAxis: string[],
+  board: JSX.Element[]
+) {
+  board.push(<Border text={""} axis="C" />);
   for (let i = 0; i < horizontalAxis.length; i++) {
-    board.push(<Border text={horizontalAxis[i]} axis="H"/>)
+    board.push(<Border text={horizontalAxis[i]} axis="H" />);
   }
-  board.push(<Border text={""} axis="C"/>)
+  board.push(<Border text={""} axis="C" />);
 }
 
-function render_board_vertical_border(horizontalAxis: string[], verticalAxis:string[], board: JSX.Element[], addition: number){
+function renderBoardVerticalBorder(
+  pieces: Piece[],
+  horizontalAxis: string[],
+  verticalAxis: string[],
+  board: JSX.Element[],
+) {
   for (let j = verticalAxis.length - 1; j >= 0; j--) {
-    board.push(<Border text={verticalAxis[j]} axis="V"/>)
+    board.push(<Border text={verticalAxis[j]} axis="V" />);
     for (let i = 0; i < horizontalAxis.length; i++) {
-        const number = j + i + addition;
-        let image = "";
+      const number = j + i + 2;
+      let image = "";
+      let pieceColor = "";
 
-        pieces.forEach(p => {
-          if(p.x_pos == i && p.y_pos == j){
-            image=p.image
-          }
-        })
+      pieces.forEach((p) => {
+        if (p.tilePos === horizontalAxis[i]+verticalAxis[j]) {
+          image = p.image;
+          pieceColor = p.color;
+        }
+      });
 
-      board.push(<Tile image={image} color={number} />);
+      const id = horizontalAxis[i].toString()+verticalAxis[j].toString();
+      board.push(<Tile key={`${id}, ${j}, ${i} ${pieceColor}`} id={id} image={image} color={number} pieceColor={pieceColor} />);
     }
-    board.push(<Border text={verticalAxis[j]} axis="V"/>)
-    
+    board.push(<Border text={verticalAxis[j]} axis="V" />);
   }
 }
 
-function render_board(starter: boolean){
+function renderBoard(
+  pieces: Piece[],
+  starter: boolean
+) {
   let board: JSX.Element[] = [];
-  let verticalAxis = [];
-  let horizontalAxis = [];
-  let addition = null
-  
-  if (starter){
+  let verticalAxis;
+  let horizontalAxis;
+
+  if (starter) {
     verticalAxis = ["1", "2", "3", "4", "5", "6", "7", "8"];
     horizontalAxis = ["a", "b", "c", "d", "e", "f", "g", "h"];
-    addition = 2
-  }
-  else{
-    verticalAxis = ["a", "b", "c", "d", "e", "f", "g", "h"];
-    horizontalAxis = ["1", "2", "3", "4", "5", "6", "7", "8"].reverse();
-    addition = 1
+  } else {
+    verticalAxis = ["1", "2", "3", "4", "5", "6", "7", "8"].reverse();
+    horizontalAxis = ["a", "b", "c", "d", "e", "f", "g", "h"].reverse();
   }
 
-  render_horizontal_border(horizontalAxis, board)
-  render_board_vertical_border(horizontalAxis, verticalAxis, board, addition)
-  render_horizontal_border(horizontalAxis, board)
-
+  renderHorizontalBorder(horizontalAxis, board);
+  renderBoardVerticalBorder(pieces, horizontalAxis, verticalAxis, board);
+  renderHorizontalBorder(horizontalAxis, board);
   return board;
 }
 
+const starter = true;
+renderPieces(initialBoardState);
 
 export default function Board() {
-  let board = render_board(true);
-  return  <div>
-            <div id="board">
-              {board}
-            </div>
-          </div>
+  const playerColor = starter ? 'w':'b';
+  const [activeTile, setActiveTile] = useState<HTMLElement | null>(null)
+  const [allLegalMovements, setAllLegalMovements] = useState<LegalMovements | null>(null)
+  const [currentBoardID, setCurrentBoardID] = useState<string | null>(null)
+
+  let board = renderBoard(initialBoardState, starter);
+  const boardRef = useRef<HTMLDivElement>(null);
+
+  const [pieces, setPieces] = useState<Piece[]>(initialBoardState);
+  const [deadPieces, setdeadPieces] = useState<Piece[]>([]);
+  const [deadPiecesOpponent, setdeadPiecesOpponent] = useState<Piece[]>([]);
+
+  useEffect(() => {
+    let mounted = true;
+    const startBy = starter ? "PLAYER": "AI"
+    startNewGame(startBy)
+        .then(chessResponse => {
+          if(mounted) {
+            setCurrentBoardID(chessResponse.board_id)
+            setAllLegalMovements(chessResponse.legal_movements)
+            if(!starter) {
+              changePiecePosition(chessResponse.ai_movement)
+            }
+          }
+        })
+    return () => { mounted = false; }
+  }, [])
+
+
+  function handleNoActiveTile(clicked: HTMLElement, tile: HTMLElement) {
+    if (!isOpponentsPiece(clicked)) {
+      selectsPiece(tile);
+      updatesActiveLegalMovements(tile);
+    }
+  }
+
+  function handleActiveTile(tile: HTMLElement) {
+    if (activeTile === tile){
+      unselectAll();
+    }
+    else if (isInActiveLegalMovements(tile.id)){
+      movePiece(tile);
+    }
+    else{
+      changeSelectedPiece(tile);
+    }
+  }
+
+  function handleClickedPiece(clicked: HTMLElement) {
+    const tile = clicked.parentElement!;
+    if (!activeTile) {
+      handleNoActiveTile(clicked, tile);
+    }
+    else if (activeTile){
+      handleActiveTile(tile)
+    }
+  }
+
+  function selectPiece(e: React.MouseEvent) {
+    const clicked = e.target as HTMLElement;
+    const board = boardRef.current;
+    if (clicked.classList.contains("piece") && board){
+      handleClickedPiece(clicked)
+    }
+    else if (clicked.classList.contains("tile") && isInActiveLegalMovements(clicked.id)){
+      movePiece(clicked);
+    }
+    else if (activeTile){
+      unselectAll();
+    }
+  }
+
+  function isInActiveLegalMovements(tileId: string): boolean {
+    const activeLegalMovements = getActiveLegalMovements(activeTile!)
+    const movements = activeLegalMovements.movements.find(movement => movement.includes(tileId))
+    if (!movements) {
+      return false
+    }
+    return movements.length >= 1
+  }
+
+  function selectsPiece(tile: HTMLElement){
+    tile!.classList.add('selected-tile');
+    setActiveTile(tile);
+  }
+
+  function changeSelectedPiece(tile: HTMLElement){
+    activeTile!.classList.remove('selected-tile');
+    if (tile){
+      selectsPiece(tile);
+      updatesActiveLegalMovements(tile);
+    }
+  }
+
+  function callMakeMovement(currentTileId: string) {
+    const futurePositionAndAction = allLegalMovements![activeTile!.id].find(position =>
+        position.includes(currentTileId))!
+
+    const move = activeTile?.id + futurePositionAndAction
+    makeMovement(currentBoardID!, move).then(chessResponse => {
+        setAllLegalMovements(chessResponse.legal_movements)
+        changePiecePosition(chessResponse.ai_movement)
+    })
+  }
+
+  function handleCapture(futurePos: string) {
+    const enemyPiece = pieces.find(piece => piece.tilePos === futurePos)
+    if (enemyPiece) {
+      return pieces.map(piece => {
+            if (piece.tilePos === futurePos) {
+              piece.tilePos = "death"
+            }
+            return piece
+          }
+      )
+    }
+    return pieces
+  }
+
+  function changePiecePosition(movement: string) {
+    const originalPos = movement.slice(0, 2)
+    const futurePos = movement.slice(2, 4)
+
+    const newPieces = handleCapture(futurePos).map(
+        piece => {
+          if (piece.tilePos === originalPos) {
+            piece.tilePos = futurePos
+          }
+          return piece
+        }
+    )
+    setPieces(newPieces)
+  }
+
+  function movePiece(currentTile: HTMLElement) {
+    const board = boardRef.current;
+    if (activeTile && board) {
+      const currentTileId = currentTile.id
+      changePiecePosition(activeTile.id+currentTileId);
+      callMakeMovement(currentTile.id)
+      unselectAll()
+    }
+  }
+
+  function isOpponentsPiece(piece: HTMLElement){
+    return !piece.classList.contains(playerColor);
+  }
+
+  function unselectAll(){
+    activeTile!.classList.remove('selected-tile');
+    unhighlightMovements();
+    setActiveTile(null);
+  }
+
+  function getActiveLegalMovements(tile: HTMLElement): ActiveLegalMovements {
+    const entry = allLegalMovements![tile.id]
+    return {piece: tile.id, movements: entry ? entry : []}
+  }
+
+  function highlightMovements(activeLegalMovements: ActiveLegalMovements) {
+    if (allLegalMovements) {
+      activeLegalMovements.movements.forEach(function (movement) {
+        let tile = document.getElementById(movement.slice(0, 2))!;
+        if (movement.includes('C')) {
+          highlightAttackMovement(tile);
+        } else {
+          highlightLegalMovement(tile);
+        }
+      });
+    }
+  }
+
+  function updatesActiveLegalMovements(tile: HTMLElement){
+    unhighlightMovements();
+    const activeLegalMovements: ActiveLegalMovements = getActiveLegalMovements(tile)
+    highlightMovements(activeLegalMovements);
+  }
+
+  function highlightLegalMovement(tile: HTMLElement) {
+    if (tile && tile.classList.contains('dark-tile')){
+      tile.classList.add('legal-movements-dark-tile');
+    }
+    else if (tile && tile.classList.contains('light-tile')){
+      tile.classList.add('legal-movements-light-tile');
+    }
+  }
+  function highlightAttackMovement(tile: HTMLElement) {
+    if (tile && tile.classList.contains('dark-tile')){
+      tile.classList.add('attack-movements-dark-tile');
+    }
+    else if (tile && tile.classList.contains('light-tile')){
+      tile.classList.add('attack-movements-light-tile');
+    }
+  }
+
+  function unhighlightMovements(){
+    const darkTiles = Array.from(document.getElementsByClassName('legal-movements-dark-tile'));
+    const lightTiles = Array.from(document.getElementsByClassName('legal-movements-light-tile'));
+    const darkAttackTiles = Array.from(document.getElementsByClassName('attack-movements-dark-tile'));
+    const lightAttackTiles = Array.from(document.getElementsByClassName('attack-movements-light-tile'));
+    darkTiles.forEach(function (t){t.classList.remove('legal-movements-dark-tile');})
+    lightTiles.forEach(function (t){t.classList.remove('legal-movements-light-tile');})
+    darkAttackTiles.forEach(function (t){t.classList.remove('attack-movements-dark-tile');})
+    lightAttackTiles.forEach(function (t){t.classList.remove('attack-movements-light-tile');})
+  }
+
+
+  return (
+    <div>
+      <div
+        onClick={(e) => selectPiece(e)}
+
+        id="board"
+        ref={boardRef}
+      >
+        {board}
+      </div>
+    </div>
+  );
 }
