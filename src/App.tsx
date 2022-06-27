@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import './App.css';
+import Menu from './components/Menu/Menu'
 import Board from './components/Board/Board'
 
 function App() {
@@ -8,8 +9,7 @@ function App() {
   }, [])
   return (
     <div>
-      <img id='logo' src='images/logo.png' alt="XadrUFF"/>
-      <div className='center'><Board/></div>
+      <div className='center'><Menu/></div>
     </div>
   );
 }
