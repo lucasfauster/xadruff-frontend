@@ -4,69 +4,74 @@ import Board from "../Board/Board";
 
 export default function Menu() {
 
-  const [color, setColor] = useState<String | null>(null);
-  const [start, setStart] = useState<boolean>(false);
-  const [colorMenu, setColorMenu] = useState<boolean>(false);
+  const [color, setColor] = useState<boolean | null>(null);
+  const [canRenderBoard, setCanRenderBoard] = useState<boolean>(false);
+  const [canRenderColorMenu, setCanRenderColorMenu] = useState<boolean>(false);
 
-  function render_color_selection(){
+  function renderColorSelection(){
     document.getElementById("row")!.remove();
-    setColorMenu(true);
+    setCanRenderColorMenu(true);
   }
 
-  function start_game(option: String){
-    setColorMenu(false);
+  function startGame(option: boolean){
+    setCanRenderColorMenu(false);
     setColor(option);
-    setStart(true);
+    setCanRenderBoard(true);
   }
 
-  function random_color() : String {
-    const random:number = Math.floor(Math.random() * 2)
-    return random === 0 ? 'w' : 'b';
+  function randomColor() : boolean {
+    return Math.floor(Math.random() * 2) === 0 ;
   }
 
-  if (!start){
-    return(
-      <div id='menu'>
-        <div id ='row'>
-          <img id='main-logo' src='images/logo.png' alt="XadrUFF"/>
-          <button id='button' className={'text'}
-                  onClick={() => render_color_selection()}>
-            JOGAR
-          </button>
+  function renderColorMenu(){
+    return (
+      <div id='color-menu'>
+        <h2 className={'text'}>COM QUAIS PEÇAS VOCÊ QUER JOGAR?</h2>
+        <div className={'color-option'}>
+          <div className={'color-button'} data-testid="test-pretas"
+               onClick={() => startGame(false)}>
+            <img  className={'menu-piece'} src='images/pieces/b_knight.png' alt="Cavalo Preto"/>
+          </div>
+          <h3 className={'text'}>PRETAS</h3>
         </div>
-
-        { colorMenu &&
-            <div id='color-menu'>
-                <h2 className={'text'}>COM QUAIS PEÇAS VOCÊ QUER JOGAR?</h2>
-                <div className={'color-option'}>
-                    <div className={'color-button'}
-                         onClick={() => start_game("b")}>
-                        <img  className={'piece'} src='images/pieces/b_knight.png' alt="Cavalo Preto"/>
-                    </div>
-                    <h3 className={'text'}>PRETAS</h3>
-                </div>
-                <div className={'color-option'}>
-                    <div className={'color-button'}
-                         onClick={() => start_game("w")}>
-                        <img  className={'piece'} src='images/pieces/w_rook.png' alt="Torre Branca"/>
-                    </div>
-                    <h3 className={'text'}>BRANCAS</h3>
-                </div>
-                <div className={'color-option'}>
-                    <div className={'color-button'}
-                         onClick={() => start_game(random_color())}>
-                        <img  className={'piece'} src='images/dado.png' alt="Dado de Sorteio"/>
-                    </div>
-                    <h3 className={'text'}>SORTEAR</h3>
-                </div>
-            </div>
-        }
+        <div className={'color-option'}>
+          <div className={'color-button'} data-testid="test-brancas"
+               onClick={() => startGame(true)}>
+            <img  className={'menu-piece'} src='images/pieces/w_rook.png' alt="Torre Branca"/>
+          </div>
+          <h3 className={'text'}>BRANCAS</h3>
+        </div>
+        <div className={'color-option'}>
+          <div className={'color-button'} data-testid="test-sortear"
+               onClick={() => startGame(randomColor())}>
+            <img  className={'menu-piece'} src='images/dado.png' alt="Dado de Sorteio"/>
+          </div>
+          <h3 className={'text'}>SORTEAR</h3>
+        </div>
       </div>
     );
   }
-  else {
-    // UFF-046.2 - Implemntar props para que o board recebe a cor escolhida
-    return <Board/>
+
+  function renderMainMenu(){
+    return(
+      <div id ='row'>
+        <img id='main-logo' src='images/logo.png' alt="XadrUFF"/>
+        <button id='button' className={'text'}
+                onClick={() => renderColorSelection()}> JOGAR
+        </button>
+      </div>
+    );
   }
 
+  if (canRenderBoard){
+    return (<Board starter={color!}/>);
+  }
+  else{
+    return(
+      <div id='menu'>
+        { renderMainMenu() }
+        { canRenderColorMenu && renderColorMenu() }
+      </div>
+    );
+  }
 }

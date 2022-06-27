@@ -4,6 +4,10 @@ import Border from "../Border/Border";
 import React, {useEffect, useRef, useState} from "react";
 import {makeMovement, startNewGame} from "../../services/ChessService";
 
+interface Props{
+  starter: boolean;
+}
+
 interface Piece {
   color: string;
   image: string;
@@ -117,10 +121,9 @@ function renderBoard(
   return board;
 }
 
-const starter = true;
 renderPieces(initialBoardState);
 
-export default function Board() {
+export default function Board({starter}: Props) {
   const playerColor = starter ? 'w':'b';
   const [activeTile, setActiveTile] = useState<HTMLElement | null>(null)
   const [allLegalMovements, setAllLegalMovements] = useState<LegalMovements | null>(null)
@@ -329,13 +332,9 @@ export default function Board() {
 
 
   return (
-    <div>
-      <div
-        onClick={(e) => selectPiece(e)}
-
-        id="board"
-        ref={boardRef}
-      >
+    <div id='view'>
+      <div onClick={(e) => selectPiece(e)}
+           id="board" data-testid="test-board"  ref={boardRef}>
         {board}
       </div>
     </div>
