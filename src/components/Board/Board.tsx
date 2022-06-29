@@ -93,7 +93,7 @@ function renderBoardVerticalBorder(
       });
 
       const id = horizontalAxis[i].toString()+verticalAxis[j].toString();
-      board.push(<Tile key={`${id}, ${j}, ${i} ${pieceColor}`} id={id} image={image} color={number} pieceColor={pieceColor} />);
+      board.push(<Tile key={`${id}, ${pieceColor}`} id={id} image={image} color={number} pieceColor={pieceColor} />);
     }
     board.push(<Border text={verticalAxis[j]} axis="V" />);
   }
@@ -188,11 +188,12 @@ export default function Board({starter}: Props) {
     if (clicked.classList.contains("piece") && board){
       handleClickedPiece(clicked)
     }
-    else if (clicked.classList.contains("tile") && isInActiveLegalMovements(clicked.id)){
-      movePiece(clicked);
-    }
     else if (activeTile){
-      unselectAll();
+      if (clicked.classList.contains("tile") && isInActiveLegalMovements(clicked.id)){
+        movePiece(clicked);
+      } else {
+        unselectAll();
+      }
     }
   }
 
