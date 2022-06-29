@@ -229,8 +229,17 @@ export default function Board({starter}: Props) {
     })
   }
 
-  function handleCapture(futurePos: string) {
-    const enemyPiece = pieces.find(piece => piece.tilePos === futurePos)
+  function getEnemyPiece(futurePos: string, movement: string) : Piece | undefined {
+    if(movement.includes("E")){
+      const position = movement.split("E")[1].slice(0, 2)
+      return pieces.find(piece => piece.tilePos === position)
+    } else {
+      return pieces.find(piece => piece.tilePos === futurePos)
+    }
+  }
+
+  function handleCapture(futurePos: string, movement: string) {
+    const enemyPiece = getEnemyPiece(futurePos, movement)
     if (enemyPiece) {
       return pieces.map(piece => {
             if (piece.tilePos === futurePos) {
@@ -244,14 +253,29 @@ export default function Board({starter}: Props) {
   }
 
   function changePiecePosition(movement: string) {
+    console.log(movement)
     const originalPos = movement.slice(0, 2)
     const futurePos = movement.slice(2, 4)
 
-    const newPieces = handleCapture(futurePos).map(
+    let hasCastle = false
+    let castleOriginalPos = ""
+    let castleFuturePos = ""
+
+    if(movement.includes("O")) {
+      hasCastle = true
+      const castle = movement.split("O")[1]
+      castleOriginalPos = castle.slice(0, 2)
+      castleFuturePos = castle.slice(2, 4)
+    }
+
+    const newPieces = handleCapture(futurePos, movement).map(
         piece => {
-          if (piece.tilePos === originalPos) {
+          if (hasCastle && piece.tilePos === castleOriginalPos) {
+            piece.tilePos = castleFuturePos
+          } else if (piece.tilePos === originalPos) {
             piece.tilePos = futurePos
           }
+
           return piece
         }
     )
@@ -262,7 +286,9 @@ export default function Board({starter}: Props) {
     const board = boardRef.current;
     if (activeTile && board) {
       const currentTileId = currentTile.id
-      changePiecePosition(activeTile.id+currentTileId);
+      const movement = getActiveLegalMovements(activeTile).movements.find(legalMovement =>
+          legalMovement.includes(currentTileId))
+      changePiecePosition(activeTile.id + movement!);
       callMakeMovement(currentTile.id)
       unselectAll()
     }
