@@ -8,19 +8,19 @@ interface Props{
 export default function Border({text, axis}: Props){
     switch ( axis ) {
         case 'V':
-            return  <div className="border border-vertical">
+            return  <div data-testid="test-vertical" className="border border-vertical">
                         <div >
                             {text.toUpperCase()}
                         </div>
                     </div>
         case 'H':
-            return  <div className="border border-horizontal">
+            return  <div data-testid="test-horizontal" className="border border-horizontal">
                         <div >
                             {text.toUpperCase()}
                         </div>
                     </div>
         case 'C':
-            return  <div className="border border-corner">
+            return  <div data-testid="test-corner" className="border border-corner">
                         <div >
                             {text}
                         </div>
