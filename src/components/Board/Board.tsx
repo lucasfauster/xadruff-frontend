@@ -253,7 +253,6 @@ export default function Board({starter}: Props) {
   }
 
   function changePiecePosition(movement: string) {
-    console.log(movement)
     const originalPos = movement.slice(0, 2)
     const futurePos = movement.slice(2, 4)
 
