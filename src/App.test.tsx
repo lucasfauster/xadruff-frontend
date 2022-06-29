@@ -1,9 +1,14 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import {cleanup, render, screen} from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  // render(<App />);
-  // const linkElement = screen.getByText(/learn react/i);
-  // expect(linkElement).toBeInTheDocument();
+afterEach(cleanup);
+
+describe('App', ()=> {
+  it('renders application and menu', () => {
+    render(<App/>);
+
+    expect(screen.getByTestId('test-app')).toBeTruthy();
+    expect(screen.getByRole('img', {name: 'XadrUFF'})).toBeTruthy();
+  });
 });

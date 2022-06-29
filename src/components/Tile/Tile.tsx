@@ -10,7 +10,7 @@ interface Props {
 export default function Tile({ id, image, color, pieceColor }: Props) {
   if (color % 2 === 0) {
     return (
-      <div id={id} className="tile dark-tile">
+      <div id={id} className="tile dark-tile" data-testid="test-dark-tile">
         {image && (
           <div
             style={{ backgroundImage: `url(${image})` }}
@@ -21,7 +21,7 @@ export default function Tile({ id, image, color, pieceColor }: Props) {
     );
   } else {
     return (
-      <div id={id} className="tile light-tile">
+      <div id={id} className="tile light-tile" data-testid="test-light-tile">
         {image && (
           <div
             style={{ backgroundImage: `url(${image})` }}

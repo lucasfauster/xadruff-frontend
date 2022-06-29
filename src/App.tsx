@@ -9,7 +9,7 @@ function App() {
   }, [])
   return (
     <div>
-      <div className='center'><Menu/></div>
+      <div data-testid="test-app" className='center'><Menu/></div>
     </div>
   );
 }
