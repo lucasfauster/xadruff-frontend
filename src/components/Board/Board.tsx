@@ -239,6 +239,14 @@ export default function Board({starter}: Props) {
     }
   }
 
+  function handleCheck(movement: string){
+    if(movement.includes("K")){
+      const kingPosition = movement.split("K")[1]
+      const tile = document.getElementById(kingPosition)!
+      highlightKingInCheck(tile)
+    }
+  }
+
   function handleCapture(futurePos: string, movement: string) {
     const enemyPiece = getEnemyPiece(futurePos, movement)
     if (enemyPiece) {
@@ -279,6 +287,8 @@ export default function Board({starter}: Props) {
           return piece
         }
     )
+    unhighlightKingInCheck()
+    handleCheck(movement)
     setPieces(newPieces)
   }
 
@@ -326,6 +336,15 @@ export default function Board({starter}: Props) {
     unhighlightMovements();
     const activeLegalMovements: ActiveLegalMovements = getActiveLegalMovements(tile)
     highlightMovements(activeLegalMovements);
+  }
+
+  function highlightKingInCheck(tile: HTMLElement) {
+    tile.classList.add('king-in-check');
+  }
+
+  function unhighlightKingInCheck() {
+    const kingInCheck = Array.from(document.getElementsByClassName('king-in-check'));
+    kingInCheck.forEach(function (t){t.classList.remove('king-in-check');})
   }
 
   function highlightLegalMovement(tile: HTMLElement) {
