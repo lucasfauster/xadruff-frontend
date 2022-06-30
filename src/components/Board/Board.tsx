@@ -1,16 +1,16 @@
 import "./Board.css";
 import React, {useEffect, useState} from "react";
 import {makeMovement, startNewGame} from "../../services/ChessService";
-import {ActiveLegalMovements, LegalMovements, Piece, renderBoard, renderPieces} from "./BoardUtils";
+import {ActiveLegalMovements, LegalMovements, Piece, renderBoard} from "./BoardUtils"
+import {BoardRequest} from "./BoardStates";
 
 interface Props{
   starter: boolean;
+  initialPieces: Piece[];
+  boardRequest: BoardRequest;
 }
 
-const initialPieces : Piece[] = []
-renderPieces(initialPieces);
-
-export default function Board({starter}: Props) {
+export default function Board({starter, boardRequest, initialPieces}: Props) {
 
   const playerColor = starter ? 'w':'b';
   const [activeTile, setActiveTile] = useState<HTMLElement | null>(null)
@@ -25,9 +25,10 @@ export default function Board({starter}: Props) {
   const board = renderBoard(starter, pieces, lastMovement, kingInCheckPosition);
 
   useEffect(() => {
+
     let mounted = true;
     const startBy = starter ? "PLAYER": "AI"
-    startNewGame(startBy)
+    startNewGame(startBy, boardRequest)
         .then(chessResponse => {
           if(mounted) {
             setCurrentBoardID(chessResponse.board_id)

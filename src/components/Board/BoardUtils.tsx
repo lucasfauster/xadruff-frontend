@@ -1,6 +1,7 @@
 import Border from "../Border/Border";
 import Tile from "../Tile/Tile";
 import React from "react";
+import {BoardRequest} from "./BoardStates";
 
 export interface Piece {
     color: string;
@@ -44,6 +45,28 @@ function renderPawnsByType(pieces: Piece[], type: string, tilePos: number) {
     for (const index in letters) {
         pieces.push({ image: `images/pieces/${type}_pawn.png`, color:type, tilePos: letters[index] + tilePos});
     }
+}
+
+export function renderPieceByBoard(pieces: Piece[], boardRequest: BoardRequest) {
+    const letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
+    const imagePiecesName : { [piece: string]: string } = {
+        "p": "pawn", "k": "king", "q": "queen", "b": "bishop", "r": "rook", "n": "knight"
+    }
+    boardRequest.positions.forEach(function (line, lineIndex) {
+            line.forEach(function (position, positionIndex) {
+                const piece = imagePiecesName[position.toLowerCase()]
+                if(piece) {
+                    let color = "w"
+                    if(position === position.toLowerCase()) {
+                        color = "b"
+                    }
+                    pieces.push({ image: `images/pieces/${color}_${piece}.png`, color:color, tilePos: letters[positionIndex]
+                            + (8-lineIndex).toString()});
+                }
+            })
+        }
+    )
+
 }
 
 export function renderPieces(pieces: Piece[]){
