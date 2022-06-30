@@ -30,6 +30,9 @@
 .attack-movements-light-tile {
     background-color: #8c0814;
 }
+.king-in-check {
+    background-color: #eb8f8f;
+}
 
 .piece {
     width: 60px;
