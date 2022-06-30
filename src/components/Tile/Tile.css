@@ -13,6 +13,10 @@
     background-color: #FFFFFF;
 }
 
+.movement-tile {
+    background-color: #e4dd84;
+}
+
 .selected-tile {
     background-color: #2b572d;
 }
