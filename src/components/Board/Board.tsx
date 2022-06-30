@@ -1,7 +1,8 @@
 import "./Board.css";
 import React, {useEffect, useState} from "react";
 import {makeMovement, startNewGame} from "../../services/ChessService";
-import {ActiveLegalMovements, LegalMovements, Piece, renderBoard} from "./BoardUtils"
+import {ActiveLegalMovements, LegalMovements, Piece,
+        renderBoard, renderPromotionMenu} from "./BoardUtils"
 import {BoardRequest} from "./BoardStates";
 
 interface Props{
@@ -19,6 +20,7 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   const [pieces, setPieces] = useState<Piece[]>(initialPieces);
   const [lastMovement, setLastMovement] = useState<string>("")
   const [kingInCheckPosition, setKingInCheckPosition] = useState<string>("")
+  const [promotionPosition, setPromotionPosition] = useState<string>("")
   const [deadPieces, setdeadPieces] = useState<Piece[]>([]);
   const [deadPiecesOpponent, setdeadPiecesOpponent] = useState<Piece[]>([]);
 
@@ -145,6 +147,10 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
     return pieces
   }
 
+  function handlePromotion(position: string){
+    // filtrar a posição escolhida
+  }
+
   function changePiecePosition(movement: string) {
     setLastMovement(movement.slice(0,4))
     const originalPos = movement.slice(0, 2)
@@ -161,6 +167,12 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
       castleFuturePos = castle.slice(2, 4)
     }
 
+    if(movement.includes("P")){
+      renderPromotionMenu(starter,setPromotionPosition)
+      if (promotionPosition){
+        handlePromotion(promotionPosition)
+      }
+    }
     const newPieces = handleCapture(futurePos, movement).map(
         piece => {
           if (hasCastle && piece.tilePos === castleOriginalPos) {
