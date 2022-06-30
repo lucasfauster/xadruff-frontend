@@ -230,15 +230,6 @@ export default function Board({starter}: Props) {
     })
   }
 
-  function getEnemyPiece(futurePos: string, movement: string) : Piece | undefined {
-    if(movement.includes("E")){
-      const position = movement.split("E")[1].slice(0, 2)
-      return pieces.find(piece => piece.tilePos === position)
-    } else {
-      return pieces.find(piece => piece.tilePos === futurePos)
-    }
-  }
-
   function handleCheck(movement: string){
     if(movement.includes("K")){
       const kingPosition = movement.split("K")[1]
@@ -248,10 +239,14 @@ export default function Board({starter}: Props) {
   }
 
   function handleCapture(futurePos: string, movement: string) {
-    const enemyPiece = getEnemyPiece(futurePos, movement)
+    let enemyPos = futurePos
+    if(movement.includes("E")) {
+      enemyPos = movement.split("E")[1].slice(0, 2)
+    }
+    const enemyPiece = pieces.find(piece => piece.tilePos === enemyPos)
     if (enemyPiece) {
       return pieces.map(piece => {
-            if (piece.tilePos === futurePos) {
+            if (piece.tilePos === enemyPos) {
               piece.tilePos = "death"
             }
             return piece
