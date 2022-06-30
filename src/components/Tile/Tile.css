@@ -14,24 +14,35 @@
 }
 
 .selected-tile {
-    background-color: #2b572d;
+    background-color: #2b572d !important;
 }
 
 .legal-movements-dark-tile {
-    background-color: #66A78A;
+    background-color: #66A78A !important;
 }
+
 .legal-movements-light-tile {
-    background-color: #578d75;
+    background-color: #578d75 !important;
 }
 
 .attack-movements-dark-tile {
-    background-color: #9b202c;
+    background-color: #9b202c !important;
 }
+
 .attack-movements-light-tile {
-    background-color: #8c0814;
+    background-color: #8c0814 !important;
 }
+
 .king-in-check {
     background-color: #eb8f8f;
+}
+
+.movement-light-tile {
+    background-color: #e4dd84;
+}
+
+.movement-dark-tile {
+    background-color: #bdb70d;
 }
 
 .piece {

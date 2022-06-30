@@ -1,4 +1,5 @@
-import {ChessResponse} from "../components/Board/Board";
+import {ChessResponse} from "../components/Board/BoardUtils";
+
 
 export function startNewGame(start_by: string): Promise<ChessResponse> {
     return fetch(`https://xadruff-backend.herokuapp.com/chess/new-game?start-by=${start_by}&level=INTERMEDIATE`,
