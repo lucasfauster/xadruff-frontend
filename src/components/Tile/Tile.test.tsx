@@ -6,7 +6,7 @@ afterEach(cleanup);
 
 describe('Tile', ()=>{
   it('renders empty dark tile', () => {
-    render(<Tile id='a1' image={''} color={0} pieceColor={'b'} lastMovement={""} />);
+    render(<Tile id='a1' image={''} color={0} pieceColor={'b'} lastMovement={""} kingInCheckPosition={""} />);
     const tile = screen.getByTestId('test-dark-tile')
 
     expect(tile).toBeTruthy()
@@ -15,7 +15,7 @@ describe('Tile', ()=>{
   });
 
   it('renders empty light tile', () => {
-    render(<Tile id='a1' image={''} color={1} pieceColor={'w'} lastMovement={""} />);
+    render(<Tile id='a1' image={''} color={1} pieceColor={'w'} lastMovement={""} kingInCheckPosition={""} />);
     const tile = screen.getByTestId('test-light-tile')
 
     expect(tile).toBeTruthy()
@@ -24,7 +24,7 @@ describe('Tile', ()=>{
   });
 
   it('render dark tile with piece', () => {
-    render(<Tile id='a1' image={'images/pieces/b_pawn.png'} color={0} pieceColor={'b'} lastMovement={""} />);
+    render(<Tile id='a1' image={'images/pieces/b_pawn.png'} color={0} pieceColor={'b'} lastMovement={""} kingInCheckPosition={""} />);
     const tile = screen.getByTestId('test-dark-tile')
 
     expect(tile).toBeTruthy()
@@ -35,7 +35,7 @@ describe('Tile', ()=>{
   });
 
   it('renders light tile with piece', () => {
-    render(<Tile id='a1' image={'images/pieces/w_pawn.png'} color={1} pieceColor={'w'} lastMovement={""} />);
+    render(<Tile id='a1' image={'images/pieces/w_pawn.png'} color={1} pieceColor={'w'} lastMovement={""} kingInCheckPosition={""} />);
     const tile = screen.getByTestId('test-light-tile')
 
     expect(tile).toBeTruthy()

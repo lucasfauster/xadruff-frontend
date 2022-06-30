@@ -18,10 +18,11 @@ export default function Board({starter}: Props) {
   const [currentBoardID, setCurrentBoardID] = useState<string | null>(null)
   const [pieces, setPieces] = useState<Piece[]>(initialPieces);
   const [lastMovement, setLastMovement] = useState<string>("")
+  const [kingInCheckPosition, setKingInCheckPosition] = useState<string>("")
   const [deadPieces, setdeadPieces] = useState<Piece[]>([]);
   const [deadPiecesOpponent, setdeadPiecesOpponent] = useState<Piece[]>([]);
 
-  const board = renderBoard(starter, pieces, lastMovement);
+  const board = renderBoard(starter, pieces, lastMovement, kingInCheckPosition);
 
   useEffect(() => {
     let mounted = true;
@@ -115,11 +116,13 @@ export default function Board({starter}: Props) {
     })
   }
 
-  function handleCheck(movement: string){
+  function handleCheckHighlight(movement: string){
     if(movement.includes("K")){
       const kingPosition = movement.split("K")[1]
-      const tile = document.getElementById(kingPosition)!
-      highlightKingInCheck(tile)
+      setKingInCheckPosition(kingPosition)
+      document.getElementById(kingPosition)!.classList.add('king-in-check')
+    } else {
+      setKingInCheckPosition("")
     }
   }
 
@@ -169,7 +172,7 @@ export default function Board({starter}: Props) {
         }
     )
     unhighlightKingInCheck()
-    handleCheck(movement)
+    handleCheckHighlight(movement)
     setPieces(newPieces)
   }
 
@@ -190,7 +193,7 @@ export default function Board({starter}: Props) {
 
   function unselectAll(){
     activeTile!.classList.remove('selected-tile');
-    unhighlightMovements();
+    unhighlightLegalMovements();
     setActiveTile(null);
   }
 
@@ -199,7 +202,7 @@ export default function Board({starter}: Props) {
     return {piece: tile.id, movements: entry ? entry : []}
   }
 
-  function highlightMovements(activeLegalMovements: ActiveLegalMovements) {
+  function highlightLegalMovements(activeLegalMovements: ActiveLegalMovements) {
     if (allLegalMovements) {
       activeLegalMovements.movements.forEach(function (movement) {
         let tile = document.getElementById(movement.slice(0, 2))!;
@@ -212,19 +215,10 @@ export default function Board({starter}: Props) {
     }
   }
 
-  function updatesActiveLegalMovements(tile: HTMLElement){
-    unhighlightMovements();
+  function updatesActiveLegalMovements(tile: HTMLElement) {
+    unhighlightLegalMovements();
     const activeLegalMovements: ActiveLegalMovements = getActiveLegalMovements(tile)
-    highlightMovements(activeLegalMovements);
-  }
-
-  function highlightKingInCheck(tile: HTMLElement) {
-    tile.classList.add('king-in-check');
-  }
-
-  function unhighlightKingInCheck() {
-    const kingInCheck = Array.from(document.getElementsByClassName('king-in-check'));
-    kingInCheck.forEach(function (t){t.classList.remove('king-in-check');})
+    highlightLegalMovements(activeLegalMovements);
   }
 
   function highlightLegalMovement(tile: HTMLElement) {
@@ -235,6 +229,7 @@ export default function Board({starter}: Props) {
       tile.classList.add('legal-movements-light-tile');
     }
   }
+
   function highlightAttackMovement(tile: HTMLElement) {
     if (tile && tile.classList.contains('dark-tile')){
       tile.classList.add('attack-movements-dark-tile');
@@ -244,7 +239,12 @@ export default function Board({starter}: Props) {
     }
   }
 
-  function unhighlightMovements(){
+  function unhighlightKingInCheck() {
+    const kingInCheck = Array.from(document.getElementsByClassName('king-in-check'));
+    kingInCheck.forEach(function (t){t.classList.remove('king-in-check');})
+  }
+
+  function unhighlightLegalMovements(){
     const darkTiles = Array.from(document.getElementsByClassName('legal-movements-dark-tile'));
     const lightTiles = Array.from(document.getElementsByClassName('legal-movements-light-tile'));
     const darkAttackTiles = Array.from(document.getElementsByClassName('attack-movements-dark-tile'));

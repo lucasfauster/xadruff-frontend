@@ -69,7 +69,8 @@ function renderBoardVerticalBorder(
     horizontalAxis: string[],
     verticalAxis: string[],
     board: JSX.Element[],
-    lastMovement: string
+    lastMovement: string,
+    kingInCheckPosition: string
 ) {
     for (let j = verticalAxis.length - 1; j >= 0; j--) {
         board.push(<Border text={verticalAxis[j]} axis="V" />);
@@ -86,7 +87,12 @@ function renderBoardVerticalBorder(
             });
 
             const id = horizontalAxis[i].toString()+verticalAxis[j].toString();
-            board.push(<Tile key={`${id}, ${pieceColor}`} id={id} image={image} color={number} pieceColor={pieceColor} lastMovement={lastMovement}/>);
+            board.push(<Tile key={`${id}, ${pieceColor}`}
+                             id={id} image={image}
+                             color={number}
+                             pieceColor={pieceColor}
+                             lastMovement={lastMovement}
+                             kingInCheckPosition={kingInCheckPosition}/>);
         }
         board.push(<Border text={verticalAxis[j]} axis="V" />);
     }
@@ -95,7 +101,8 @@ function renderBoardVerticalBorder(
 export function renderBoard(
     starter: boolean,
     pieces: Piece[],
-    lastMovement: string
+    lastMovement: string,
+    kingInCheckPosition: string
 ) {
     let board: JSX.Element[] = [];
     let verticalAxis;
@@ -110,7 +117,7 @@ export function renderBoard(
     }
 
     renderHorizontalBorder(horizontalAxis, board);
-    renderBoardVerticalBorder(pieces, horizontalAxis, verticalAxis, board, lastMovement);
+    renderBoardVerticalBorder(pieces, horizontalAxis, verticalAxis, board, lastMovement, kingInCheckPosition);
     renderHorizontalBorder(horizontalAxis, board);
     return board;
 }
