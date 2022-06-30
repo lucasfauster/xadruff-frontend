@@ -18,8 +18,8 @@
 }
 
 #menu {
-    width: 750px;
-    height: 450px;
+    width: 800px;
+    height: 600px;
     background-color: #585858;
     margin: 0;
     position: absolute;
@@ -47,6 +47,35 @@
     background-color: #4B147D;
     transition: 0.3s;
 }
+
+#state-menu {
+    position: absolute;
+    margin: 0 90px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: large;
+}
+
+.state-option {
+    margin: 55px;
+    place-content: center;
+    float: left;
+}
+
+.state-button{
+    padding: 10px;
+    margin: 10px;
+    width: 150px;
+    height: 150px;
+    background-color: #A283FF;
+    transition: 0.3s;
+}
+
+.state-button:hover{
+    background-color: #4B147D;
+    transition: 0.3s;
+}
+
 
 #color-menu {
     position: absolute;

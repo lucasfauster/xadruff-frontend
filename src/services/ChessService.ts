@@ -1,14 +1,16 @@
 import {ChessResponse} from "../components/Board/BoardUtils";
+import {BoardRequest} from "../components/Board/BoardStates";
 
 
-export function startNewGame(start_by: string): Promise<ChessResponse> {
+export function startNewGame(start_by: string, boardRequest: BoardRequest): Promise<ChessResponse> {
     return fetch(`https://xadruff-backend.herokuapp.com/chess/new-game?start-by=${start_by}&level=INTERMEDIATE`,
         {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify(boardRequest)
         },
     ).then(data => data.json())
 }
