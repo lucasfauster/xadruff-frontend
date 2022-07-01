@@ -1,9 +1,11 @@
 #view{
-  margin: 30px;
+  margin-top: 10px;
 }
 
 
 #board {
+  margin-left: 100px;
+  float: left;
   display: grid;
   grid-template-columns: repeat(
     auto-fit,
@@ -15,4 +17,23 @@
   );
   width: 600px;
   height: 600px;
+}
+
+#promotion {
+  background-color: #7f7f7f;
+  width: 250px;
+  height: 180px;
+  float: right;
+  margin: 10px;
+}
+#grid{
+  background-color: #5c19b0;
+  display: grid;
+  grid-template-columns: 50px 50px 50px 50px;
+  margin: 10px;
+
+}
+.piece-button{
+  margin: 10px;
+
 }

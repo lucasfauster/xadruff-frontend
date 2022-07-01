@@ -20,7 +20,8 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   const [pieces, setPieces] = useState<Piece[]>(initialPieces);
   const [lastMovement, setLastMovement] = useState<string>("")
   const [kingInCheckPosition, setKingInCheckPosition] = useState<string>("")
-  const [promotionPosition, setPromotionPosition] = useState<string>("")
+  const [promotionOption, setPromotionOption] = useState<string>("")
+  const [isPromotion, setIsPromotion] = useState<boolean>(false)
   const [deadPieces, setdeadPieces] = useState<Piece[]>([]);
   const [deadPiecesOpponent, setdeadPiecesOpponent] = useState<Piece[]>([]);
 
@@ -29,6 +30,8 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   useEffect(() => {
 
     let mounted = true;
+
+
     const startBy = starter ? "PLAYER": "AI"
     startNewGame(startBy, boardRequest)
         .then(chessResponse => {
@@ -167,12 +170,6 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
       castleFuturePos = castle.slice(2, 4)
     }
 
-    if(movement.includes("P")){
-      renderPromotionMenu(starter,setPromotionPosition)
-      if (promotionPosition){
-        handlePromotion(promotionPosition)
-      }
-    }
     const newPieces = handleCapture(futurePos, movement).map(
         piece => {
           if (hasCastle && piece.tilePos === castleOriginalPos) {
@@ -190,6 +187,9 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   }
 
   function movePiece(currentTile: HTMLElement) {
+    if (isPromotion){
+      console.log(promotionOption)
+    }
     if (activeTile && board) {
       const currentTileId = currentTile.id
       const movement = getActiveLegalMovements(activeTile).movements.find(legalMovement =>
@@ -221,6 +221,8 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
         let tile = document.getElementById(movement.slice(0, 2))!;
         if (movement.includes('C')) {
           highlightAttackMovement(tile);
+        } else if (movement.includes('P')){
+          setIsPromotion(true);
         } else {
           highlightLegalMovement(tile);
         }
@@ -258,6 +260,7 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   }
 
   function unhighlightLegalMovements(){
+    setIsPromotion(false);
     const darkTiles = Array.from(document.getElementsByClassName('legal-movements-dark-tile'));
     const lightTiles = Array.from(document.getElementsByClassName('legal-movements-light-tile'));
     const darkAttackTiles = Array.from(document.getElementsByClassName('attack-movements-dark-tile'));
@@ -274,6 +277,7 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
            id="board" data-testid="test-board">
         {board}
       </div>
+      { isPromotion && renderPromotionMenu(starter,setPromotionOption)}
     </div>
   );
 }
