@@ -19,6 +19,7 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   const [pieces, setPieces] = useState<Piece[]>(initialPieces);
   const [lastMovement, setLastMovement] = useState<string>("")
   const [kingInCheckPosition, setKingInCheckPosition] = useState<string>("")
+  const [isPlayerTurn, setIsPlayerTurn] = useState<boolean>(starter)
   const [deadPieces, setdeadPieces] = useState<Piece[]>([]);
   const [deadPiecesOpponent, setdeadPiecesOpponent] = useState<Piece[]>([]);
 
@@ -35,6 +36,7 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
             setAllLegalMovements(chessResponse.legal_movements)
             if(!starter) {
               changePiecePosition(chessResponse.ai_movement)
+              setIsPlayerTurn(true)
             }
           }
         })
@@ -48,38 +50,40 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
     }
   }
 
-  function handleActiveTile(tile: HTMLElement) {
+  function handleActiveTile(clickedPiece: HTMLElement, tile: HTMLElement) {
     if (activeTile === tile){
       unselectAll();
     }
     else if (isInActiveLegalMovements(tile.id)){
       movePiece(tile);
     }
-    else{
+    else if (!isOpponentsPiece(clickedPiece)){
       changeSelectedPiece(tile);
     }
   }
 
-  function handleClickedPiece(clicked: HTMLElement) {
-    const tile = clicked.parentElement!;
+  function handleClickedPiece(clickedPiece: HTMLElement) {
+    const tile = clickedPiece.parentElement!;
     if (!activeTile) {
-      handleNoActiveTile(clicked, tile);
+      handleNoActiveTile(clickedPiece, tile);
     }
     else if (activeTile){
-      handleActiveTile(tile)
+      handleActiveTile(clickedPiece, tile)
     }
   }
 
   function selectPiece(e: React.MouseEvent) {
-    const clicked = e.target as HTMLElement;
-    if (clicked.classList.contains("piece") && board){
-      handleClickedPiece(clicked)
-    }
-    else if (activeTile){
-      if (clicked.classList.contains("tile") && isInActiveLegalMovements(clicked.id)){
-        movePiece(clicked);
-      } else {
-        unselectAll();
+    if(isPlayerTurn) {
+      const clicked = e.target as HTMLElement;
+      if (clicked.classList.contains("piece") && board){
+        handleClickedPiece(clicked)
+      }
+      else if (activeTile){
+        if (clicked.classList.contains("tile") && isInActiveLegalMovements(clicked.id)){
+          movePiece(clicked);
+        } else {
+          unselectAll();
+        }
       }
     }
   }
@@ -109,11 +113,12 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   function callMakeMovement(currentTileId: string) {
     const futurePositionAndAction = allLegalMovements![activeTile!.id].find(position =>
         position.includes(currentTileId))!
-
+    setIsPlayerTurn(false)
     const move = activeTile?.id + futurePositionAndAction
     makeMovement(currentBoardID!, move).then(chessResponse => {
         setAllLegalMovements(chessResponse.legal_movements)
         changePiecePosition(chessResponse.ai_movement)
+        setIsPlayerTurn(true)
     })
   }
 
