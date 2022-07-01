@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {makeMovement, startNewGame} from "../../services/ChessService";
 import {ActiveLegalMovements, LegalMovements, Piece, renderBoard} from "./BoardUtils"
 import {BoardRequest} from "./BoardStates";
+import {renderCaptureAreaBoard} from "../CaptureAreaBoard/CaptureAreaBoard";
 
 interface Props{
   starter: boolean;
@@ -20,10 +21,12 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   const [lastMovement, setLastMovement] = useState<string>("")
   const [kingInCheckPosition, setKingInCheckPosition] = useState<string>("")
   const [isPlayerTurn, setIsPlayerTurn] = useState<boolean>(starter)
-  const [deadPieces, setdeadPieces] = useState<Piece[]>([]);
-  const [deadPiecesOpponent, setdeadPiecesOpponent] = useState<Piece[]>([]);
+  const [whiteDeadPiecesCount, setWhiteDeadPiecesCount] = useState<number>(0);
+  const [blackDeadPiecesCount, setBlackDeadPiecesCount] = useState<number>(0);
 
   const board = renderBoard(starter, pieces, lastMovement, kingInCheckPosition);
+  const whiteCaptureArea = renderCaptureAreaBoard(pieces, 'w');
+  const blackCaptureArea = renderCaptureAreaBoard(pieces, 'b');
 
   useEffect(() => {
 
@@ -132,6 +135,27 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
     }
   }
 
+  function changeToCaptureBoard(piece: Piece) {
+    const defaultTotalPieces = 16
+    if (piece.color === 'b') {
+      piece.tilePos = `b-death-${blackDeadPiecesCount}`
+      const blackDeadCount = blackDeadPiecesCount + 1
+      if (blackDeadCount === defaultTotalPieces-1) {
+        setBlackDeadPiecesCount(0)
+      } else {
+        setBlackDeadPiecesCount(blackDeadCount)
+      }
+    } else {
+      piece.tilePos = `w-death-${whiteDeadPiecesCount}`
+      const whiteDeadCount = whiteDeadPiecesCount + 1
+      if (whiteDeadCount === defaultTotalPieces-1) {
+        setWhiteDeadPiecesCount(0)
+      } else {
+        setWhiteDeadPiecesCount(whiteDeadCount)
+      }
+    }
+  }
+
   function handleCapture(futurePos: string, movement: string) {
     let enemyPos = futurePos
     if(movement.includes("E")) {
@@ -141,7 +165,7 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
     if (enemyPiece) {
       return pieces.map(piece => {
             if (piece.tilePos === enemyPos) {
-              piece.tilePos = "death"
+              changeToCaptureBoard(piece);
             }
             return piece
           }
@@ -263,10 +287,12 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
 
   return (
     <div id='view'>
+      {whiteCaptureArea}
       <div onClick={(e) => selectPiece(e)}
            id="board" data-testid="test-board">
         {board}
       </div>
+      {blackCaptureArea}
     </div>
   );
 }

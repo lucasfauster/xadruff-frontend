@@ -1,7 +1,8 @@
 #view{
-  margin: 30px;
+  display: flex;
+  justify-content: space-between;
+  width: 60%
 }
-
 
 #board {
   display: grid;
