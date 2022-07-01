@@ -147,10 +147,10 @@ export function renderBoard(
 
 export function renderPromotionMenu(stater: boolean, setPromotionOption: Function){
     const type = stater ? 'w': 'b';
-    const queen = stater ? 'q': 'Q';
-    const bishop = stater ? 'b': 'B';
-    const rook = stater ? 'r': 'R';
-    const knight = stater ? 'k': 'K';
+    const queen = stater ?  'Q':'q';
+    const bishop = stater ? 'B': 'b';
+    const rook = stater ? 'R': 'r';
+    const knight = stater ? 'K': 'k';
     return (
       <div id="promotion">
           <h3 className={'text'}>POR QUAL PEÇA VOCÊ QUER TROCAR SEU PEÃO?</h3>

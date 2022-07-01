@@ -76,7 +76,14 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   }
 
   function selectPiece(e: React.MouseEvent) {
-    const clicked = e.target as HTMLElement;
+    let clicked;
+    if (promotionOption) {
+      clicked = getPromotionTile(activeTile!)
+    }
+    else{
+     clicked = e.target as HTMLElement;
+
+    }
     if (clicked.classList.contains("piece") && board){
       handleClickedPiece(clicked)
     }
@@ -87,6 +94,12 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
         unselectAll();
       }
     }
+  }
+
+  function getPromotionTile(tile: HTMLElement) : HTMLElement {
+    const activeLegalMovements = getActiveLegalMovements(activeTile!)
+    const currentTile = activeLegalMovements.movements.find(movement => movement.includes('P'))!.slice(0,2)
+    return document.getElementById(currentTile)!;
   }
 
   function isInActiveLegalMovements(tileId: string): boolean {
@@ -150,9 +163,6 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
     return pieces
   }
 
-  function handlePromotion(position: string){
-    // filtrar a posição escolhida
-  }
 
   function changePiecePosition(movement: string) {
     setLastMovement(movement.slice(0,4))
@@ -187,13 +197,16 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   }
 
   function movePiece(currentTile: HTMLElement) {
+    const currentTileId = currentTile.id
+    let movement;
     if (isPromotion){
-      console.log(promotionOption)
+      movement = currentTileId + 'P' +  promotionOption;
+    }
+    else{
+      movement = getActiveLegalMovements(activeTile!).movements.find(legalMovement =>
+        legalMovement.includes(currentTileId))
     }
     if (activeTile && board) {
-      const currentTileId = currentTile.id
-      const movement = getActiveLegalMovements(activeTile).movements.find(legalMovement =>
-          legalMovement.includes(currentTileId))
       changePiecePosition(activeTile.id + movement!);
       callMakeMovement(currentTile.id)
       unselectAll()
