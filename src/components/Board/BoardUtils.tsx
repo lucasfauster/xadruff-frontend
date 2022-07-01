@@ -29,24 +29,6 @@ export interface ChessResponse {
     ai_movement: string;
 }
 
-function renderPiecesByType(pieces: Piece[], type: string, tilePos: number) {
-    pieces.push({ image: `images/pieces/${type}_rook.png`, color:type, tilePos: "a" + tilePos });
-    pieces.push({ image: `images/pieces/${type}_rook.png`, color:type, tilePos: "h" + tilePos });
-    pieces.push({ image: `images/pieces/${type}_knight.png`, color:type, tilePos: "b" + tilePos });
-    pieces.push({ image: `images/pieces/${type}_knight.png`, color:type, tilePos: "g" + tilePos });
-    pieces.push({ image: `images/pieces/${type}_bishop.png`, color:type, tilePos: "c" + tilePos });
-    pieces.push({ image: `images/pieces/${type}_bishop.png`, color:type, tilePos: "f" + tilePos });
-    pieces.push({ image: `images/pieces/${type}_queen.png`, color:type, tilePos: "d" + tilePos });
-    pieces.push({ image: `images/pieces/${type}_king.png`, color:type, tilePos: "e" + tilePos });
-}
-
-function renderPawnsByType(pieces: Piece[], type: string, tilePos: number) {
-    const letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
-    for (const index in letters) {
-        pieces.push({ image: `images/pieces/${type}_pawn.png`, color:type, tilePos: letters[index] + tilePos});
-    }
-}
-
 export function renderPieceByBoard(pieces: Piece[], boardRequest: BoardRequest) {
     const letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
     const imagePiecesName : { [piece: string]: string } = {
@@ -67,13 +49,6 @@ export function renderPieceByBoard(pieces: Piece[], boardRequest: BoardRequest) 
         }
     )
 
-}
-
-export function renderPieces(pieces: Piece[]){
-    renderPiecesByType(pieces, 'b', 8)
-    renderPiecesByType(pieces, 'w', 1)
-    renderPawnsByType(pieces, 'b', 7)
-    renderPawnsByType(pieces, 'w', 2)
 }
 
 function renderHorizontalBorder(

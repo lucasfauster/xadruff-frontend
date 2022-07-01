@@ -1,0 +1,8 @@
+#capture-area{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 5px solid white;
+    background-color: #5c19b0;
+}
