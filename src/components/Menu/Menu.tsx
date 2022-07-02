@@ -1,7 +1,7 @@
 import "./Menu.css";
 import React, {useState} from "react";
 import Board from "../Board/Board";
-import {Piece, renderPieceByBoard} from "../Board/BoardUtils"
+import {Piece, renderPieceByBoard} from "../Board/BoardRenderer"
 import {handleBoardState} from "../Board/BoardStates";
 
 export default function Menu() {

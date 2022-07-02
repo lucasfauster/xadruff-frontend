@@ -22,18 +22,26 @@ export interface Board {
     positions: string[][];
 }
 
+export interface EndgameResponse {
+    winner: string;
+    endgame_message: string;
+}
+
 export interface ChessResponse {
     board_id: string;
     board: Board;
     legal_movements: LegalMovements;
     ai_movement: string;
+    endgame: EndgameResponse;
+}
+
+export const imagePiecesName : { [piece: string]: string } = {
+    "p": "pawn", "k": "king", "q": "queen", "b": "bishop", "r": "rook", "n": "knight"
 }
 
 export function renderPieceByBoard(pieces: Piece[], boardRequest: BoardRequest) {
     const letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
-    const imagePiecesName : { [piece: string]: string } = {
-        "p": "pawn", "k": "king", "q": "queen", "b": "bishop", "r": "rook", "n": "knight"
-    }
+
     boardRequest.positions.forEach(function (line, lineIndex) {
             line.forEach(function (position, positionIndex) {
                 const piece = imagePiecesName[position.toLowerCase()]
@@ -118,31 +126,4 @@ export function renderBoard(
     renderBoardVerticalBorder(pieces, horizontalAxis, verticalAxis, board, lastMovement, kingInCheckPosition);
     renderHorizontalBorder(horizontalAxis, board);
     return board;
-}
-
-export function renderPromotionMenu(stater: boolean, setPromotionOption: Function){
-    const type = stater ? 'w': 'b';
-    const queen = stater ?  'Q':'q';
-    const bishop = stater ? 'B': 'b';
-    const rook = stater ? 'R': 'r';
-    const knight = stater ? 'K': 'k';
-    return (
-      <div id="promotion">
-          <h3 className={'text'}>POR QUAL PEÇA VOCÊ QUER TROCAR SEU PEÃO?</h3>
-          <div id="grid">
-              <div className={'piece-button'}>
-                  <img onClick= {()=> setPromotionOption(queen)} src={`images/pieces/${type}_queen.png`} alt="Rainha"/>
-              </div>
-              <div className={'piece-button'}>
-                  <img onClick={()=> setPromotionOption(bishop)} src={`images/pieces/${type}_bishop.png`} alt="Bispo"/>
-              </div>
-              <div className={'piece-button'}>
-                  <img onClick={()=> setPromotionOption(rook)} src={`images/pieces/${type}_rook.png`} alt="Torre"/>
-              </div >
-              <div className={'piece-button'}>
-                  <img onClick={()=> setPromotionOption(knight)} src={`images/pieces/${type}_knight.png`} alt="Cavalo"/>
-              </div>
-          </div>
-      </div>
-    );
 }

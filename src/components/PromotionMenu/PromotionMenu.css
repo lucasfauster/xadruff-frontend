@@ -1,0 +1,30 @@
+#promotion {
+    z-index: 100;
+    background-color: #b9b9b9;
+    min-width: 250px;
+    margin-top: min(180px, 35%);
+    width: 10%;
+    height: 5%;
+}
+
+#grid{
+    background-color: #5c19b0;
+    display: flex;
+    margin: 5%;
+}
+
+.piece-button{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+    min-width: 50px;
+}
+
+.piece-image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 300%;
+    height: auto;
+}

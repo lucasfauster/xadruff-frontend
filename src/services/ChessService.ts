@@ -1,4 +1,4 @@
-import {ChessResponse} from "../components/Board/BoardUtils";
+import {ChessResponse} from "../components/Board/BoardRenderer";
 import {BoardRequest} from "../components/Board/BoardStates";
 
 
