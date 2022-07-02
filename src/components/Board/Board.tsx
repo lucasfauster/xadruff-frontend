@@ -1,19 +1,24 @@
 import "./Board.css";
 import React, {useEffect, useState} from "react";
 import {makeMovement, startNewGame} from "../../services/ChessService";
-import {ActiveLegalMovements, LegalMovements, Piece, renderBoard} from "./BoardUtils"
+import {ActiveLegalMovements, ChessResponse, LegalMovements, Piece, renderBoard} from "./BoardRenderer"
+
+import {handlePromotion, renderPromotionMenu} from "../PromotionMenu/PromotionMenu"
 import {BoardRequest} from "./BoardStates";
-import {renderCaptureAreaBoard} from "../CaptureAreaBoard/CaptureAreaBoard";
+import {changeToCaptureBoard, renderCaptureAreaBoard} from "../CaptureAreaBoard/CaptureAreaBoard";
+import {
+  handleCheckHighlight,
+  highlightLegalMovements,
+  unHighlightKingInCheck,
+  unHighlightLegalMovements
+} from "./HighlightHandler";
+import {adversaryTurn, setWinner, setWinnerMotive, yourTurn} from "./EndgameHandler";
 
 interface Props{
   starter: boolean;
   initialPieces: Piece[];
   boardRequest: BoardRequest;
 }
-
-const yourTurn = "Sua vez"
-const adversaryTurn = "Vez do adversário"
-
 export default function Board({starter, boardRequest, initialPieces}: Props) {
 
   const playerColor = starter ? 'w':'b';
@@ -27,30 +32,14 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   const [whiteDeadPiecesCount, setWhiteDeadPiecesCount] = useState<number>(0);
   const [blackDeadPiecesCount, setBlackDeadPiecesCount] = useState<number>(0);
   const [feedback, setFeedback] = useState<string>("");
+  const [isPromotion, setIsPromotion] = useState<boolean>(false)
+  const [promotionOptions, setPromotionOptions] = useState<string[]>([])
 
   const board = renderBoard(starter, pieces, lastMovement, kingInCheckPosition);
-  const whiteCaptureArea = renderCaptureAreaBoard(pieces, 'w');
-  const blackCaptureArea = renderCaptureAreaBoard(pieces, 'b');
-
-  function setWinner(winner: string) {
-    switch(winner) {
-      case("WHITE"): return "Vitória das brancas"
-      case ("BLACK"): return "Vitória das pretas"
-      case ("DRAW"): return "Empate"
-    }
-  }
-
-  function setWinnerMotive(winnerMotive: string) {
-    switch(winnerMotive) {
-      case("Ended by checkmate."): return "por xeque-mate"
-      case ("Draw by stalemate."): return "por afogamento do rei"
-      case ("Draw by 50 movements rule."): return "por regra de 50 movimentos"
-      case ("Ended by surrender."): return "por desistência"
-    }
-  }
+  const whiteCaptureArea = renderCaptureAreaBoard(pieces, 'w', 'left');
+  const blackCaptureArea = renderCaptureAreaBoard(pieces, 'b', 'right');
 
   useEffect(() => {
-
     let mounted = true;
     const startBy = starter ? "PLAYER": "AI"
     if(starter){
@@ -62,23 +51,51 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
         .then(chessResponse => {
           if(mounted) {
             setCurrentBoardID(chessResponse.board_id)
-            setAllLegalMovements(chessResponse.legal_movements)
-            if(!starter) {
-              changePiecePosition(chessResponse.ai_movement)
-              setIsPlayerTurn(true)
-            }
-            if(chessResponse.endgame){
-              const winner = setWinner(chessResponse.endgame.winner)
-              const winnerMotive = setWinnerMotive(chessResponse.endgame.endgame_message)
-              setIsPlayerTurn(false)
-              setFeedback(winner + " " + winnerMotive)
-            } else {
-              setFeedback(yourTurn)
-            }
+            gameLoop(chessResponse);
           }
         })
     return () => { mounted = false; }
   }, [])
+
+  function handleAITurn(chessResponse: ChessResponse) {
+    if (chessResponse.ai_movement.includes('P')) {
+      const promotionIndex = chessResponse.ai_movement.indexOf("P")
+      handlePromotion(
+          chessResponse.ai_movement[promotionIndex+1],
+          chessResponse.ai_movement,
+          pieces
+      )
+    }
+    changePiecePosition(chessResponse.ai_movement)
+    setIsPlayerTurn(true)
+  }
+
+  function handleEndgame(chessResponse: ChessResponse) {
+    const winner = setWinner(chessResponse.endgame.winner)
+    const winnerMotive = setWinnerMotive(chessResponse.endgame.endgame_message)
+    setIsPlayerTurn(false)
+    setFeedback(winner + " " + winnerMotive)
+  }
+
+  function gameLoop(chessResponse: ChessResponse) {
+    setAllLegalMovements(chessResponse.legal_movements)
+    if (chessResponse.ai_movement) {
+      handleAITurn(chessResponse);
+    }
+    if (chessResponse.endgame) {
+      handleEndgame(chessResponse);
+    } else {
+      setFeedback(yourTurn)
+    }
+  }
+
+  function callMakeMovement(futurePositionAndAction: string) {
+    setIsPlayerTurn(false)
+    const move = activeTile?.id + futurePositionAndAction
+    makeMovement(currentBoardID!, move).then(chessResponse => {
+      gameLoop(chessResponse)
+    })
+  }
 
   function handleNoActiveTile(clicked: HTMLElement, tile: HTMLElement) {
     if (!isOpponentsPiece(clicked)) {
@@ -147,57 +164,6 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
     }
   }
 
-  function callMakeMovement(currentTileId: string) {
-    const futurePositionAndAction = allLegalMovements![activeTile!.id].find(position =>
-        position.includes(currentTileId))!
-    setIsPlayerTurn(false)
-    const move = activeTile?.id + futurePositionAndAction
-    makeMovement(currentBoardID!, move).then(chessResponse => {
-        if(chessResponse.endgame){
-          const winner = setWinner(chessResponse.endgame.winner)
-          const winnerMotive = setWinnerMotive(chessResponse.endgame.endgame_message)
-          setIsPlayerTurn(false)
-          setFeedback(winner + " " + winnerMotive)
-        } else {
-          setAllLegalMovements(chessResponse.legal_movements)
-          changePiecePosition(chessResponse.ai_movement)
-          setIsPlayerTurn(true)
-          setFeedback(yourTurn)
-        }
-    })
-  }
-
-  function handleCheckHighlight(movement: string){
-    if(movement.includes("K")){
-      const kingPosition = movement.split("K")[1]
-      setKingInCheckPosition(kingPosition)
-      document.getElementById(kingPosition)!.classList.add('king-in-check')
-    } else {
-      setKingInCheckPosition("")
-    }
-  }
-
-  function changeToCaptureBoard(piece: Piece) {
-    const defaultTotalPieces = 16
-    if (piece.color === 'b') {
-      piece.tilePos = `b-death-${blackDeadPiecesCount}`
-      const blackDeadCount = blackDeadPiecesCount + 1
-      if (blackDeadCount === defaultTotalPieces-1) {
-        setBlackDeadPiecesCount(0)
-      } else {
-        setBlackDeadPiecesCount(blackDeadCount)
-      }
-    } else {
-      piece.tilePos = `w-death-${whiteDeadPiecesCount}`
-      const whiteDeadCount = whiteDeadPiecesCount + 1
-      if (whiteDeadCount === defaultTotalPieces-1) {
-        setWhiteDeadPiecesCount(0)
-      } else {
-        setWhiteDeadPiecesCount(whiteDeadCount)
-      }
-    }
-  }
-
   function handleCapture(futurePos: string, movement: string) {
     let enemyPos = futurePos
     if(movement.includes("E")) {
@@ -207,7 +173,13 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
     if (enemyPiece) {
       return pieces.map(piece => {
             if (piece.tilePos === enemyPos) {
-              changeToCaptureBoard(piece);
+              const deadPieces = {
+                blackDeadPiecesCount,
+                setBlackDeadPiecesCount,
+                whiteDeadPiecesCount,
+                setWhiteDeadPiecesCount
+              }
+              changeToCaptureBoard(piece, deadPieces);
             }
             return piece
           }
@@ -243,8 +215,8 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
           return piece
         }
     )
-    unhighlightKingInCheck()
-    handleCheckHighlight(movement)
+    unHighlightKingInCheck()
+    handleCheckHighlight(movement, setKingInCheckPosition)
     setPieces(newPieces)
   }
 
@@ -252,11 +224,20 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
     if (activeTile && board) {
       setFeedback(adversaryTurn)
       const currentTileId = currentTile.id
-      const movement = getActiveLegalMovements(activeTile).movements.find(legalMovement =>
-          legalMovement.includes(currentTileId))
+      let movement = getActiveLegalMovements(activeTile).movements.find(legalMovement =>
+            legalMovement.includes(currentTileId))
       changePiecePosition(activeTile.id + movement!);
-      callMakeMovement(currentTile.id)
-      unselectAll()
+      if(movement && movement.includes('P') && !isPromotion) {
+        const promotionMovements = getActiveLegalMovements(activeTile).movements.filter( legalMovement =>
+            legalMovement.includes(currentTileId))
+        setPromotionOptions(promotionMovements)
+        setIsPromotion(true)
+      } else {
+        const futurePositionAndAction = allLegalMovements![activeTile!.id].find(position =>
+            position.includes(currentTileId))!
+        callMakeMovement(futurePositionAndAction)
+        unselectAll()
+      }
     }
   }
 
@@ -266,7 +247,7 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
 
   function unselectAll(){
     activeTile!.classList.remove('selected-tile');
-    unhighlightLegalMovements();
+    unHighlightLegalMovements();
     setActiveTile(null);
   }
 
@@ -275,57 +256,19 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
     return {piece: tile.id, movements: entry ? entry : []}
   }
 
-  function highlightLegalMovements(activeLegalMovements: ActiveLegalMovements) {
-    if (allLegalMovements) {
-      activeLegalMovements.movements.forEach(function (movement) {
-        let tile = document.getElementById(movement.slice(0, 2))!;
-        if (movement.includes('C')) {
-          highlightAttackMovement(tile);
-        } else {
-          highlightLegalMovement(tile);
-        }
-      });
-    }
-  }
-
   function updatesActiveLegalMovements(tile: HTMLElement) {
-    unhighlightLegalMovements();
+    unHighlightLegalMovements();
     const activeLegalMovements: ActiveLegalMovements = getActiveLegalMovements(tile)
-    highlightLegalMovements(activeLegalMovements);
+    highlightLegalMovements(activeLegalMovements, allLegalMovements);
   }
 
-  function highlightLegalMovement(tile: HTMLElement) {
-    if (tile && tile.classList.contains('dark-tile')){
-      tile.classList.add('legal-movements-dark-tile');
-    }
-    else if (tile && tile.classList.contains('light-tile')){
-      tile.classList.add('legal-movements-light-tile');
-    }
-  }
-
-  function highlightAttackMovement(tile: HTMLElement) {
-    if (tile && tile.classList.contains('dark-tile')){
-      tile.classList.add('attack-movements-dark-tile');
-    }
-    else if (tile && tile.classList.contains('light-tile')){
-      tile.classList.add('attack-movements-light-tile');
-    }
-  }
-
-  function unhighlightKingInCheck() {
-    const kingInCheck = Array.from(document.getElementsByClassName('king-in-check'));
-    kingInCheck.forEach(function (t){t.classList.remove('king-in-check');})
-  }
-
-  function unhighlightLegalMovements(){
-    const darkTiles = Array.from(document.getElementsByClassName('legal-movements-dark-tile'));
-    const lightTiles = Array.from(document.getElementsByClassName('legal-movements-light-tile'));
-    const darkAttackTiles = Array.from(document.getElementsByClassName('attack-movements-dark-tile'));
-    const lightAttackTiles = Array.from(document.getElementsByClassName('attack-movements-light-tile'));
-    darkTiles.forEach(function (t){t.classList.remove('legal-movements-dark-tile');})
-    lightTiles.forEach(function (t){t.classList.remove('legal-movements-light-tile');})
-    darkAttackTiles.forEach(function (t){t.classList.remove('attack-movements-dark-tile');})
-    lightAttackTiles.forEach(function (t){t.classList.remove('attack-movements-light-tile');})
+  function choosePromotionPiece(piece: string){
+    setIsPromotion(false)
+    const movement = promotionOptions.find(legalMovement =>
+        legalMovement.includes(piece)
+    )
+    handlePromotion(piece, movement!, pieces);
+    callMakeMovement(movement!)
   }
 
   return (
@@ -337,9 +280,9 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
              id="board" data-testid="test-board">
           {board}
         </div>
+        {isPromotion && renderPromotionMenu(starter, choosePromotionPiece)}
         {blackCaptureArea}
       </div>
     </div>
-
   );
 }

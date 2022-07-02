@@ -12,6 +12,8 @@
 
 #board {
   display: grid;
+  position: fixed;
+  z-index: 1;
   grid-template-columns: repeat(
     auto-fit,
     20px 70px 70px 70px 70px 70px 70px 70px 70px 20px
@@ -31,3 +33,4 @@
   text-transform: uppercase;
   font-size: x-large;
 }
+

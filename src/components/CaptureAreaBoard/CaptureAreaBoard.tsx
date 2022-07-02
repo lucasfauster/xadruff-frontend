@@ -1,19 +1,20 @@
 import "./CaptureAreaBoard.css";
 
-import {Piece} from "../Board/BoardUtils";
+import {Piece} from "../Board/BoardRenderer";
 import Tile from "../Tile/Tile";
 import React from "react";
 
 export function renderCaptureAreaBoard(
     pieces: Piece[],
-    color: string
+    color: string,
+    direction: string
 ) {
     const captureAreaBoardLeft: JSX.Element[] = [];
     const captureAreaBoardRight: JSX.Element[] = [];
 
     renderBoardVerticalBorder(captureAreaBoardLeft, pieces, color, 0);
     renderBoardVerticalBorder(captureAreaBoardRight, pieces, color, 1);
-    return <div id="capture-area">
+    return <div id="capture-area" className={`capture-area-${direction}`}>
         <div>
             {captureAreaBoardLeft}
         </div>
@@ -48,5 +49,33 @@ function renderBoardVerticalBorder(
                   lastMovement={""}
                   kingInCheckPosition={""}/>
         );
+    }
+}
+
+interface DeadPiecesCount {
+    blackDeadPiecesCount: number,
+    setBlackDeadPiecesCount: Function,
+    whiteDeadPiecesCount: number,
+    setWhiteDeadPiecesCount: Function
+}
+
+export function changeToCaptureBoard(piece: Piece, deadPieces: DeadPiecesCount) {
+    const defaultTotalPieces = 16
+    if (piece.color === 'b') {
+        piece.tilePos = `b-death-${deadPieces.blackDeadPiecesCount}`
+        const blackDeadCount = deadPieces.blackDeadPiecesCount + 1
+        if (blackDeadCount === defaultTotalPieces-1) {
+            deadPieces.setBlackDeadPiecesCount(0)
+        } else {
+            deadPieces.setBlackDeadPiecesCount(blackDeadCount)
+        }
+    } else {
+        piece.tilePos = `w-death-${deadPieces.whiteDeadPiecesCount}`
+        const whiteDeadCount = deadPieces.whiteDeadPiecesCount + 1
+        if (whiteDeadCount === defaultTotalPieces-1) {
+            deadPieces.setWhiteDeadPiecesCount(0)
+        } else {
+            deadPieces.setWhiteDeadPiecesCount(whiteDeadCount)
+        }
     }
 }

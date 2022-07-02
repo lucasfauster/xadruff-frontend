@@ -35,11 +35,13 @@ export interface ChessResponse {
     endgame: EndgameResponse;
 }
 
+export const imagePiecesName : { [piece: string]: string } = {
+    "p": "pawn", "k": "king", "q": "queen", "b": "bishop", "r": "rook", "n": "knight"
+}
+
 export function renderPieceByBoard(pieces: Piece[], boardRequest: BoardRequest) {
     const letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
-    const imagePiecesName : { [piece: string]: string } = {
-        "p": "pawn", "k": "king", "q": "queen", "b": "bishop", "r": "rook", "n": "knight"
-    }
+
     boardRequest.positions.forEach(function (line, lineIndex) {
             line.forEach(function (position, positionIndex) {
                 const piece = imagePiecesName[position.toLowerCase()]
@@ -125,4 +127,3 @@ export function renderBoard(
     renderHorizontalBorder(horizontalAxis, board);
     return board;
 }
-
