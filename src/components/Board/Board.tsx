@@ -23,6 +23,7 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   const [isPlayerTurn, setIsPlayerTurn] = useState<boolean>(starter)
   const [whiteDeadPiecesCount, setWhiteDeadPiecesCount] = useState<number>(0);
   const [blackDeadPiecesCount, setBlackDeadPiecesCount] = useState<number>(0);
+  const [feedback, setFeedback] = useState<string>("");
 
   const board = renderBoard(starter, pieces, lastMovement, kingInCheckPosition);
   const whiteCaptureArea = renderCaptureAreaBoard(pieces, 'w');
@@ -286,13 +287,17 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   }
 
   return (
-    <div id='view'>
-      {whiteCaptureArea}
-      <div onClick={(e) => selectPiece(e)}
-           id="board" data-testid="test-board">
-        {board}
+    <div>
+      <div id='feedback'>{ feedback }</div>
+      <div id='view'>
+        {whiteCaptureArea}
+        <div onClick={(e) => selectPiece(e)}
+             id="board" data-testid="test-board">
+          {board}
+        </div>
+        {blackCaptureArea}
       </div>
-      {blackCaptureArea}
     </div>
+
   );
 }
