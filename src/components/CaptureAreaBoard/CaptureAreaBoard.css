@@ -5,7 +5,9 @@
     flex-wrap: wrap;
     border: 5px solid white;
     background-color: #5c19b0;
-    margin-top: 0.5%
+    margin-top: 0.5%;
+    height: auto;
+    width: auto;
 }
 
 .capture-area-left{
@@ -14,8 +16,8 @@
 }
 
 .capture-area-right{
-    margin-left: 50%;
     position: fixed;
+    margin-left: 50%;
 }
 
 @media (max-width: 1600px) {
@@ -26,6 +28,18 @@
 
     .capture-area-right{
         margin-left: 60%;
+        position: fixed;
+    }
+}
+
+@media (max-width: 1240px) {
+    .capture-area-left{
+        margin-right: 70%;
+        position: fixed;
+    }
+
+    .capture-area-right{
+        margin-left: 70%;
         position: fixed;
     }
 }
