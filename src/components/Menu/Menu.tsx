@@ -48,7 +48,7 @@ export default function Menu() {
                  onClick={() => startGame(color!, "DEFAULT")}>
               <img  className={'menu-piece'} src='images/pieces/b_king.png' alt="Rei Preto"/>
             </div>
-            <h3 className={'text'}>DEFAULT</h3>
+            <h3 className={'text'}>PADRÃO</h3>
           </div>
           <div className={'state-option'}>
             <div className={'state-button'} data-testid="test-custom"
@@ -57,7 +57,13 @@ export default function Menu() {
             </div>
             <h3 className={'text'}>PERSONALIZADO</h3>
           </div>
+          <button className={'return'} onClick={() => {
+            setCanRenderDefaultStateMenu(false);
+            setCanRenderColorMenu(true);
+          }}>Voltar
+          </button>
         </div>
+
     );
   }
 
@@ -107,6 +113,10 @@ export default function Menu() {
                   </div>
                   <h3 className={'text'}>RINHA DE RAINHA</h3>
               </div>
+            <button className={'return'} onClick={() => {
+              setCanRenderCustomStateMenu(false);
+              setCanRenderDefaultStateMenu(true);
+            }}>Voltar</button>
           </div>
       );
   }
