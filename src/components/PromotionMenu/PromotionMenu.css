@@ -1,6 +1,6 @@
 #promotion {
     z-index: 100;
-    background-color: #b9b9b9;
+    background-color: grey;
     min-width: 250px;
     margin-top: min(180px, 35%);
     width: 10%;
@@ -19,6 +19,12 @@
     margin-right: auto;
     width: 25%;
     min-width: 50px;
+    transition: 0.3s;
+}
+
+.piece-button:hover{
+    background-color: #4B147D;
+    transition: 0.3s;
 }
 
 .piece-image{
