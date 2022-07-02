@@ -109,3 +109,12 @@
     height: 90px;
     margin: 30px;
 }
+
+.return {
+    width: 50%;
+    background-color: #A283FF;
+    border: none;
+    font-size: x-large;
+    transition: 0.3s;
+    margin: 0 25% 5% 25%;
+}
