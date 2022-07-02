@@ -11,6 +11,9 @@ interface Props{
   boardRequest: BoardRequest;
 }
 
+const yourTurn = "Sua vez"
+const adversaryTurn = "Vez do adversário"
+
 export default function Board({starter, boardRequest, initialPieces}: Props) {
 
   const playerColor = starter ? 'w':'b';
@@ -29,10 +32,32 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   const whiteCaptureArea = renderCaptureAreaBoard(pieces, 'w');
   const blackCaptureArea = renderCaptureAreaBoard(pieces, 'b');
 
+  function setWinner(winner: string) {
+    switch(winner) {
+      case("WHITE"): return "Vitória das brancas"
+      case ("BLACK"): return "Vitória das pretas"
+      case ("DRAW"): return "Empate"
+    }
+  }
+
+  function setWinnerMotive(winnerMotive: string) {
+    switch(winnerMotive) {
+      case("Ended by checkmate."): return "por xeque-mate"
+      case ("Draw by stalemate."): return "por afogamento do rei"
+      case ("Draw by 50 movements rule."): return "por regra de 50 movimentos"
+      case ("Ended by surrender."): return "por desistência"
+    }
+  }
+
   useEffect(() => {
 
     let mounted = true;
     const startBy = starter ? "PLAYER": "AI"
+    if(starter){
+      setFeedback(yourTurn)
+    } else {
+      setFeedback(adversaryTurn)
+    }
     startNewGame(startBy, boardRequest)
         .then(chessResponse => {
           if(mounted) {
@@ -41,6 +66,14 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
             if(!starter) {
               changePiecePosition(chessResponse.ai_movement)
               setIsPlayerTurn(true)
+            }
+            if(chessResponse.endgame){
+              const winner = setWinner(chessResponse.endgame.winner)
+              const winnerMotive = setWinnerMotive(chessResponse.endgame.endgame_message)
+              setIsPlayerTurn(false)
+              setFeedback(winner + " " + winnerMotive)
+            } else {
+              setFeedback(yourTurn)
             }
           }
         })
@@ -120,9 +153,17 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
     setIsPlayerTurn(false)
     const move = activeTile?.id + futurePositionAndAction
     makeMovement(currentBoardID!, move).then(chessResponse => {
-        setAllLegalMovements(chessResponse.legal_movements)
-        changePiecePosition(chessResponse.ai_movement)
-        setIsPlayerTurn(true)
+        if(chessResponse.endgame){
+          const winner = setWinner(chessResponse.endgame.winner)
+          const winnerMotive = setWinnerMotive(chessResponse.endgame.endgame_message)
+          setIsPlayerTurn(false)
+          setFeedback(winner + " " + winnerMotive)
+        } else {
+          setAllLegalMovements(chessResponse.legal_movements)
+          changePiecePosition(chessResponse.ai_movement)
+          setIsPlayerTurn(true)
+          setFeedback(yourTurn)
+        }
     })
   }
 
@@ -209,6 +250,7 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
 
   function movePiece(currentTile: HTMLElement) {
     if (activeTile && board) {
+      setFeedback(adversaryTurn)
       const currentTileId = currentTile.id
       const movement = getActiveLegalMovements(activeTile).movements.find(legalMovement =>
           legalMovement.includes(currentTileId))
@@ -287,7 +329,7 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   }
 
   return (
-    <div>
+    <div id='container'>
       <div id='feedback'>{ feedback }</div>
       <div id='view'>
         {whiteCaptureArea}

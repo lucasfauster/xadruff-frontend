@@ -22,11 +22,17 @@ export interface Board {
     positions: string[][];
 }
 
+export interface EndgameResponse {
+    winner: string;
+    endgame_message: string;
+}
+
 export interface ChessResponse {
     board_id: string;
     board: Board;
     legal_movements: LegalMovements;
     ai_movement: string;
+    endgame: EndgameResponse;
 }
 
 export function renderPieceByBoard(pieces: Piece[], boardRequest: BoardRequest) {
