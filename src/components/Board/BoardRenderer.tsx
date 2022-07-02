@@ -127,3 +127,17 @@ export function renderBoard(
     renderHorizontalBorder(horizontalAxis, board);
     return board;
 }
+
+export function renderPlayAgainButton(setCurrentMenu: Function){
+    return (
+      <button className={'board-button'}
+              onClick={()=>{setCurrentMenu(1)}}>Jogar Novamente</button>
+    );
+}
+
+export function renderSurrenderButton(setCurrentMenu: Function){
+    return (
+      <button className={'board-button'}
+              onClick={()=>{setCurrentMenu(1)}}>Desistir</button>
+    );
+}
