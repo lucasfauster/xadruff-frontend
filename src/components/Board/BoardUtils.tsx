@@ -120,3 +120,29 @@ export function renderBoard(
     return board;
 }
 
+export function renderPromotionMenu(stater: boolean, setPromotionOption: Function){
+    const type = stater ? 'w': 'b';
+    const queen = stater ?  'Q':'q';
+    const bishop = stater ? 'B': 'b';
+    const rook = stater ? 'R': 'r';
+    const knight = stater ? 'K': 'k';
+    return (
+      <div id="promotion">
+          <h3 className={'text'}>POR QUAL PEÇA VOCÊ QUER TROCAR SEU PEÃO?</h3>
+          <div id="grid">
+              <div className={'piece-button'}>
+                  <img onClick= {()=> setPromotionOption(queen)} src={`images/pieces/${type}_queen.png`} alt="Rainha"/>
+              </div>
+              <div className={'piece-button'}>
+                  <img onClick={()=> setPromotionOption(bishop)} src={`images/pieces/${type}_bishop.png`} alt="Bispo"/>
+              </div>
+              <div className={'piece-button'}>
+                  <img onClick={()=> setPromotionOption(rook)} src={`images/pieces/${type}_rook.png`} alt="Torre"/>
+              </div >
+              <div className={'piece-button'}>
+                  <img onClick={()=> setPromotionOption(knight)} src={`images/pieces/${type}_knight.png`} alt="Cavalo"/>
+              </div>
+          </div>
+      </div>
+    );
+}

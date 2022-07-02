@@ -1,7 +1,8 @@
 import "./Board.css";
 import React, {useEffect, useState} from "react";
 import {makeMovement, startNewGame} from "../../services/ChessService";
-import {ActiveLegalMovements, LegalMovements, Piece, renderBoard} from "./BoardUtils"
+import {ActiveLegalMovements, LegalMovements, Piece,
+        renderBoard, renderPromotionMenu} from "./BoardUtils"
 import {BoardRequest} from "./BoardStates";
 import {renderCaptureAreaBoard} from "../CaptureAreaBoard/CaptureAreaBoard";
 
@@ -23,6 +24,8 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   const [isPlayerTurn, setIsPlayerTurn] = useState<boolean>(starter)
   const [whiteDeadPiecesCount, setWhiteDeadPiecesCount] = useState<number>(0);
   const [blackDeadPiecesCount, setBlackDeadPiecesCount] = useState<number>(0);
+  const [promotionOption, setPromotionOption] = useState<string>("")
+  const [isPromotion, setIsPromotion] = useState<boolean>(false)
 
   const board = renderBoard(starter, pieces, lastMovement, kingInCheckPosition);
   const whiteCaptureArea = renderCaptureAreaBoard(pieces, 'w');
@@ -31,6 +34,8 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   useEffect(() => {
 
     let mounted = true;
+
+
     const startBy = starter ? "PLAYER": "AI"
     startNewGame(startBy, boardRequest)
         .then(chessResponse => {
@@ -77,7 +82,13 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
 
   function selectPiece(e: React.MouseEvent) {
     if(isPlayerTurn) {
-      const clicked = e.target as HTMLElement;
+      let clicked;
+      if (promotionOption) {
+        clicked = getPromotionTile(activeTile!)
+      }
+      else{
+         clicked = e.target as HTMLElement;
+      }
       if (clicked.classList.contains("piece") && board){
         handleClickedPiece(clicked)
       }
@@ -89,6 +100,12 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
         }
       }
     }
+  }
+
+  function getPromotionTile(tile: HTMLElement) : HTMLElement {
+    const activeLegalMovements = getActiveLegalMovements(activeTile!)
+    const currentTile = activeLegalMovements.movements.find(movement => movement.includes('P'))!.slice(0,2)
+    return document.getElementById(currentTile)!;
   }
 
   function isInActiveLegalMovements(tileId: string): boolean {
@@ -174,6 +191,7 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
     return pieces
   }
 
+
   function changePiecePosition(movement: string) {
     setLastMovement(movement.slice(0,4))
     const originalPos = movement.slice(0, 2)
@@ -209,8 +227,14 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   function movePiece(currentTile: HTMLElement) {
     if (activeTile && board) {
       const currentTileId = currentTile.id
-      const movement = getActiveLegalMovements(activeTile).movements.find(legalMovement =>
-          legalMovement.includes(currentTileId))
+      let movement;
+      if (isPromotion){
+        movement = currentTileId + 'P' +  promotionOption;
+      }
+      else {
+        movement = getActiveLegalMovements(activeTile).movements.find(legalMovement =>
+            legalMovement.includes(currentTileId))
+      }
       changePiecePosition(activeTile.id + movement!);
       callMakeMovement(currentTile.id)
       unselectAll()
@@ -238,6 +262,8 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
         let tile = document.getElementById(movement.slice(0, 2))!;
         if (movement.includes('C')) {
           highlightAttackMovement(tile);
+        } else if (movement.includes('P')){
+          setIsPromotion(true);
         } else {
           highlightLegalMovement(tile);
         }
@@ -275,6 +301,7 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   }
 
   function unhighlightLegalMovements(){
+    setIsPromotion(false);
     const darkTiles = Array.from(document.getElementsByClassName('legal-movements-dark-tile'));
     const lightTiles = Array.from(document.getElementsByClassName('legal-movements-light-tile'));
     const darkAttackTiles = Array.from(document.getElementsByClassName('attack-movements-dark-tile'));
@@ -292,6 +319,7 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
            id="board" data-testid="test-board">
         {board}
       </div>
+      { isPromotion && renderPromotionMenu(starter,setPromotionOption)}
       {blackCaptureArea}
     </div>
   );
