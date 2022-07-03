@@ -32,5 +32,17 @@
   color: white;
   text-transform: uppercase;
   font-size: x-large;
+  float: left;
 }
 
+.board-button {
+  color: white;
+  background-color: #5c19b0;
+  font-size: 15px;
+  margin: 0 0 0 20px;
+  border: none;
+}
+.board-button:hover{
+  background-color: #4B147D;
+  transition: 0.3s;
+}

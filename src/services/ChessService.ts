@@ -26,3 +26,12 @@ export function makeMovement(board_id: string, move: string): Promise<ChessRespo
     }).then(data => data.json())
 }
 
+export function surrender(board_id: string): Promise<ChessResponse> {
+  return fetch(`https://xadruff-backend.herokuapp.com/chess/surrender?board-id=${board_id}`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+  }).then(data => data.json())
+}
