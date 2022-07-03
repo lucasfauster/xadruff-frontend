@@ -2,6 +2,7 @@ import Border from "../Border/Border";
 import Tile from "../Tile/Tile";
 import React from "react";
 import {BoardRequest} from "./BoardStates";
+import {surrender} from "../../services/ChessService";
 
 export interface Piece {
     color: string;
@@ -135,9 +136,11 @@ export function renderPlayAgainButton(setCurrentMenu: Function){
     );
 }
 
-export function renderSurrenderButton(setCurrentMenu: Function){
+export function renderSurrenderButton(boardId : string){
     return (
       <button className={'board-button'}
-              onClick={()=>{setCurrentMenu(1)}}>Desistir</button>
+              onClick={()=>{
+                  surrender(boardId).then(r => console.log(r))
+              }}>Desistir</button>
     );
 }
