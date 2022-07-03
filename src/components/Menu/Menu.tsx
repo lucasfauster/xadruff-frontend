@@ -57,7 +57,7 @@ export default function Menu() {
       const initialPieces : Piece[] = []
       const boardRequest = handleBoardState(gameState)
       renderPieceByBoard(initialPieces, boardRequest)
-      return (<Board starter={currentColor!} boardRequest={boardRequest} initialPieces={initialPieces}/>);
+      return (<Board starter={currentColor!} boardRequest={boardRequest} initialPieces={initialPieces} setCurrentMenu={setCurrentMenu}/>);
 
     default:
       return (<div id='menu'>{ renderMainMenu() }</div>);

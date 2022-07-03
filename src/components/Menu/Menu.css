@@ -112,9 +112,17 @@
 
 .return {
     width: 50%;
+    color: white;
     background-color: #A283FF;
     border: none;
     font-size: x-large;
+    font-weight: bold;
+    text-transform: uppercase;
     transition: 0.3s;
     margin: 0 25% 5% 25%;
+}
+
+.return:hover{
+    background-color: #4B147D;
+    transition: 0.3s;
 }

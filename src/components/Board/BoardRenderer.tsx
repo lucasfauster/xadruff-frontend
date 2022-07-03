@@ -2,6 +2,7 @@ import Border from "../Border/Border";
 import Tile from "../Tile/Tile";
 import React from "react";
 import {BoardRequest} from "./BoardStates";
+import {surrender} from "../../services/ChessService";
 
 export interface Piece {
     color: string;
@@ -126,4 +127,20 @@ export function renderBoard(
     renderBoardVerticalBorder(pieces, horizontalAxis, verticalAxis, board, lastMovement, kingInCheckPosition);
     renderHorizontalBorder(horizontalAxis, board);
     return board;
+}
+
+export function renderPlayAgainButton(setCurrentMenu: Function){
+    return (
+      <button className={'board-button'}
+              onClick={()=>{setCurrentMenu(1)}}>JOGAR NOVAMENTE</button>
+    );
+}
+
+export function renderSurrenderButton(boardId : string, handleEngame: Function){
+    return (
+      <button className={'board-button'}
+              onClick={()=>{
+                  surrender(boardId).then(chessResponse => handleEngame(chessResponse))
+              }}>DESISTIR</button>
+    );
 }

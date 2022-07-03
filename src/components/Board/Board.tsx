@@ -1,25 +1,25 @@
 import "./Board.css";
 import React, {useEffect, useState} from "react";
 import {makeMovement, startNewGame} from "../../services/ChessService";
-import {ActiveLegalMovements, ChessResponse, LegalMovements, Piece, renderBoard} from "./BoardRenderer"
-
 import {handlePromotion, renderPromotionMenu} from "../PromotionMenu/PromotionMenu"
 import {BoardRequest} from "./BoardStates";
 import {changeToCaptureBoard, renderCaptureAreaBoard} from "../CaptureAreaBoard/CaptureAreaBoard";
-import {
-  handleCheckHighlight,
-  highlightLegalMovements,
-  unHighlightKingInCheck,
-  unHighlightLegalMovements
-} from "./HighlightHandler";
 import {adversaryTurn, setWinner, setWinnerMotive, yourTurn} from "./EndgameHandler";
+import {
+  handleCheckHighlight,highlightLegalMovements, unHighlightKingInCheck,unHighlightLegalMovements
+} from "./HighlightHandler";
+import {
+  ActiveLegalMovements, ChessResponse, LegalMovements, Piece,
+  renderBoard, renderPlayAgainButton, renderSurrenderButton
+} from "./BoardRenderer"
 
 interface Props{
   starter: boolean;
   initialPieces: Piece[];
   boardRequest: BoardRequest;
+  setCurrentMenu: Function;
 }
-export default function Board({starter, boardRequest, initialPieces}: Props) {
+export default function Board({starter, boardRequest, initialPieces, setCurrentMenu}: Props) {
 
   const playerColor = starter ? 'w':'b';
   const [activeTile, setActiveTile] = useState<HTMLElement | null>(null)
@@ -34,6 +34,8 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
   const [feedback, setFeedback] = useState<string>("");
   const [isPromotion, setIsPromotion] = useState<boolean>(false)
   const [promotionOptions, setPromotionOptions] = useState<string[]>([])
+  const [isGameOver, setIsGameOver] = useState<boolean>(false)
+
 
   const board = renderBoard(starter, pieces, lastMovement, kingInCheckPosition);
   const whiteCaptureArea = renderCaptureAreaBoard(pieces, 'w', 'left');
@@ -66,6 +68,8 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
           pieces
       )
     }
+    unHighlightKingInCheck()
+    handleCheckHighlight(chessResponse.ai_movement, setKingInCheckPosition)
     changePiecePosition(chessResponse.ai_movement)
     setIsPlayerTurn(true)
   }
@@ -75,6 +79,7 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
     const winnerMotive = setWinnerMotive(chessResponse.endgame.endgame_message)
     setIsPlayerTurn(false)
     setFeedback(winner + " " + winnerMotive)
+    setIsGameOver(true);
   }
 
   function gameLoop(chessResponse: ChessResponse) {
@@ -215,28 +220,37 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
           return piece
         }
     )
-    unHighlightKingInCheck()
-    handleCheckHighlight(movement, setKingInCheckPosition)
     setPieces(newPieces)
+  }
+
+  function initializePromotion(currentTileId: string) {
+    const promotionMovements = getActiveLegalMovements(activeTile!).movements.filter(legalMovement =>
+        legalMovement.includes(currentTileId))
+    setPromotionOptions(promotionMovements)
+    setIsPromotion(true)
+    setIsPlayerTurn(false)
+  }
+
+  function handleMovePiece(movement: string, currentTileId: string) {
+    unHighlightKingInCheck()
+    handleCheckHighlight(movement!, setKingInCheckPosition)
+    const futurePositionAndAction = allLegalMovements![activeTile!.id].find(position =>
+        position.includes(currentTileId))!
+    callMakeMovement(futurePositionAndAction)
+    unselectAll()
   }
 
   function movePiece(currentTile: HTMLElement) {
     if (activeTile && board) {
-      setFeedback(adversaryTurn)
       const currentTileId = currentTile.id
       let movement = getActiveLegalMovements(activeTile).movements.find(legalMovement =>
             legalMovement.includes(currentTileId))
       changePiecePosition(activeTile.id + movement!);
-      if(movement && movement.includes('P') && !isPromotion) {
-        const promotionMovements = getActiveLegalMovements(activeTile).movements.filter( legalMovement =>
-            legalMovement.includes(currentTileId))
-        setPromotionOptions(promotionMovements)
-        setIsPromotion(true)
+      if(movement!.includes('P') && !isPromotion) {
+        initializePromotion(currentTileId);
       } else {
-        const futurePositionAndAction = allLegalMovements![activeTile!.id].find(position =>
-            position.includes(currentTileId))!
-        callMakeMovement(futurePositionAndAction)
-        unselectAll()
+        setFeedback(adversaryTurn)
+        handleMovePiece(movement!, currentTileId);
       }
     }
   }
@@ -268,12 +282,17 @@ export default function Board({starter, boardRequest, initialPieces}: Props) {
         legalMovement.includes(piece)
     )
     handlePromotion(piece, movement!, pieces);
+    unHighlightKingInCheck()
+    handleCheckHighlight(movement!, setKingInCheckPosition)
     callMakeMovement(movement!)
   }
 
   return (
     <div id='container'>
-      <div id='feedback'>{ feedback }</div>
+      <div id='feedback'>
+        { feedback }
+        {isGameOver ? renderPlayAgainButton(setCurrentMenu) : renderSurrenderButton(currentBoardID!, handleEndgame)}
+      </div>
       <div id='view'>
         {whiteCaptureArea}
         <div onClick={(e) => selectPiece(e)}
