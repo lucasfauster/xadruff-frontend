@@ -284,7 +284,7 @@ export default function Board({starter, boardRequest, initialPieces, setCurrentM
 
   return (
     <div id='container'>
-      <div id='feedback'>
+      <div id='feedback' data-testid="test-feedback">
         { feedback }
         {isGameOver ? renderPlayAgainButton(setCurrentMenu) : renderSurrenderButton(currentBoardID!, handleEndgame)}
       </div>

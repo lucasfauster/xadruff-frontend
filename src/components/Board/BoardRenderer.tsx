@@ -138,7 +138,7 @@ export function renderPlayAgainButton(setCurrentMenu: Function){
 
 export function renderSurrenderButton(boardId : string, handleEngame: Function){
     return (
-      <button className={'board-button'}
+      <button data-testid = {'surrender-button'} className={'board-button'}
               onClick={()=>{
                   surrender(boardId).then(chessResponse => handleEngame(chessResponse))
               }}>DESISTIR</button>

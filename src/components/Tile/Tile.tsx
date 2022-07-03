@@ -20,9 +20,10 @@ export default function Tile({ id, image, color, pieceColor, lastMovement, kingI
       extraClassName += " movement-dark-tile"
     }
     return (
-      <div id={id} className={`tile dark-tile ${extraClassName}`} data-testid="test-dark-tile">
+      <div id={id} className={`tile dark-tile ${extraClassName}`} data-testid={`test-dark-tile-${id}`}>
         {image && (
           <div
+            data-testid = {id}
             style={{ backgroundImage: `url(${image})` }}
             className={`${pieceColor} piece`}
           ></div>
@@ -34,9 +35,10 @@ export default function Tile({ id, image, color, pieceColor, lastMovement, kingI
       extraClassName += " movement-light-tile"
     }
     return (
-      <div id={id} className={`tile light-tile ${extraClassName}`} data-testid="test-light-tile">
+      <div id={id} className={`tile light-tile ${extraClassName}`} data-testid={`test-light-tile-${id}`}>
         {image && (
           <div
+            data-testid = {id}
             style={{ backgroundImage: `url(${image})` }}
             className={`${pieceColor} piece`}
           ></div>

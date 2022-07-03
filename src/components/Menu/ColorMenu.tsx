@@ -9,7 +9,7 @@ export function renderColorMenu(
    setCurrentMenu: Function, gameOptionMenu: number,
 ){
   return (
-    <div id='submenu'>
+    <div id='submenu' data-testid='test-color-menu'>
       <h2 className={'text'}>COM QUAIS PEÇAS VOCÊ QUER JOGAR?</h2>
         <div className='submenu-options'>
             <div className={'submenu-option'}>
@@ -34,7 +34,7 @@ export function renderColorMenu(
                 <h3 className={'text'}>SORTEAR</h3>
             </div>
         </div>
-      <button className={'return'} onClick={() => {
+      <button className={'return text'} onClick={() => {
         setCurrentMenu(currentMenu-1);
       }}>Voltar
       </button>

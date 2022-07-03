@@ -6,7 +6,7 @@ export function renderGameOptionMenu(
   setGameState: Function, startGameMenu: number, customStatesMenu: number)
 {
   return (
-    <div id='submenu'>
+    <div id='submenu' data-testid="test-option-menu">
       <h2 className={'text'}>QUAL OPÇÃO DE JOGO?</h2>
         <div className='submenu-options'>
             <div className={'submenu-option'}>
@@ -28,7 +28,7 @@ export function renderGameOptionMenu(
                 <h3 className={'text'}>PERSONALIZADO</h3>
             </div>
         </div>
-      <button className={'return'} onClick={() => {
+      <button className={'return text'} onClick={() => {
         setCurrentMenu(currentMenu-1);
       }}>Voltar
       </button>
