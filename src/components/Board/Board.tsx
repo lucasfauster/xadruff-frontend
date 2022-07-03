@@ -1,20 +1,17 @@
 import "./Board.css";
 import React, {useEffect, useState} from "react";
 import {makeMovement, startNewGame} from "../../services/ChessService";
-import {
-  ActiveLegalMovements, ChessResponse,
-  LegalMovements, Piece, renderBoard, renderPlayAgainButton, renderSurrenderButton
-} from "./BoardRenderer"
 import {handlePromotion, renderPromotionMenu} from "../PromotionMenu/PromotionMenu"
 import {BoardRequest} from "./BoardStates";
 import {changeToCaptureBoard, renderCaptureAreaBoard} from "../CaptureAreaBoard/CaptureAreaBoard";
-import {
-  handleCheckHighlight,
-  highlightLegalMovements,
-  unHighlightKingInCheck,
-  unHighlightLegalMovements
-} from "./HighlightHandler";
 import {adversaryTurn, setWinner, setWinnerMotive, yourTurn} from "./EndgameHandler";
+import {
+  handleCheckHighlight,highlightLegalMovements, unHighlightKingInCheck,unHighlightLegalMovements
+} from "./HighlightHandler";
+import {
+  ActiveLegalMovements, ChessResponse, LegalMovements, Piece,
+  renderBoard, renderPlayAgainButton, renderSurrenderButton
+} from "./BoardRenderer"
 
 interface Props{
   starter: boolean;
@@ -281,7 +278,7 @@ export default function Board({starter, boardRequest, initialPieces, setCurrentM
     <div id='container'>
       <div id='feedback'>
         { feedback }
-        {isGameOver ? renderPlayAgainButton(setCurrentMenu) : renderSurrenderButton(currentBoardID!)}
+        {isGameOver ? renderPlayAgainButton(setCurrentMenu) : renderSurrenderButton(currentBoardID!, handleEndgame)}
       </div>
       <div id='view'>
         {whiteCaptureArea}

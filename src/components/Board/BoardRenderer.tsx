@@ -136,11 +136,11 @@ export function renderPlayAgainButton(setCurrentMenu: Function){
     );
 }
 
-export function renderSurrenderButton(boardId : string){
+export function renderSurrenderButton(boardId : string, handleEngame: Function){
     return (
       <button className={'board-button'}
               onClick={()=>{
-                  surrender(boardId).then(r => console.log(r))
+                  surrender(boardId).then(chessResponse => handleEngame(chessResponse))
               }}>Desistir</button>
     );
 }
