@@ -45,4 +45,27 @@ describe('Tile', ()=>{
     expect(tile.childNodes[0]).toHaveClass('w piece')
   });
 
+  it('renders king in check', () => {
+    render(<Tile id='a1' image={'images/pieces/w_pawn.png'} color={1} pieceColor={'w'} lastMovement={""} kingInCheckPosition={"a1"} />);
+    const tile = screen.getByTestId('test-light-tile')
+
+    expect(tile).toBeTruthy()
+    expect(tile).toHaveClass('king-in-check');
+  });
+
+  it('renders light last movement', () => {
+    render(<Tile id='a1' image={'images/pieces/w_pawn.png'} color={1} pieceColor={'w'} lastMovement={"a1"} kingInCheckPosition={""} />);
+    const tile = screen.getByTestId('test-light-tile')
+
+    expect(tile).toBeTruthy()
+    expect(tile).toHaveClass('movement-light-tile');
+  });
+
+  it('renders dark last movement', () => {
+    render(<Tile id='a1' image={'images/pieces/w_pawn.png'} color={0} pieceColor={'w'} lastMovement={"a1"} kingInCheckPosition={""} />);
+    const tile = screen.getByTestId('test-dark-tile')
+
+    expect(tile).toBeTruthy()
+    expect(tile).toHaveClass('movement-dark-tile');
+  });
 });
