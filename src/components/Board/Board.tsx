@@ -68,6 +68,8 @@ export default function Board({starter, boardRequest, initialPieces, setCurrentM
           pieces
       )
     }
+    unHighlightKingInCheck()
+    handleCheckHighlight(chessResponse.ai_movement, setKingInCheckPosition)
     changePiecePosition(chessResponse.ai_movement)
     setIsPlayerTurn(true)
   }
@@ -218,28 +220,37 @@ export default function Board({starter, boardRequest, initialPieces, setCurrentM
           return piece
         }
     )
-    unHighlightKingInCheck()
-    handleCheckHighlight(movement, setKingInCheckPosition)
     setPieces(newPieces)
+  }
+
+  function initializePromotion(currentTileId: string) {
+    const promotionMovements = getActiveLegalMovements(activeTile!).movements.filter(legalMovement =>
+        legalMovement.includes(currentTileId))
+    setPromotionOptions(promotionMovements)
+    setIsPromotion(true)
+    setIsPlayerTurn(false)
+  }
+
+  function handleMovePiece(movement: string, currentTileId: string) {
+    unHighlightKingInCheck()
+    handleCheckHighlight(movement!, setKingInCheckPosition)
+    const futurePositionAndAction = allLegalMovements![activeTile!.id].find(position =>
+        position.includes(currentTileId))!
+    callMakeMovement(futurePositionAndAction)
+    unselectAll()
   }
 
   function movePiece(currentTile: HTMLElement) {
     if (activeTile && board) {
-      setFeedback(adversaryTurn)
       const currentTileId = currentTile.id
       let movement = getActiveLegalMovements(activeTile).movements.find(legalMovement =>
             legalMovement.includes(currentTileId))
       changePiecePosition(activeTile.id + movement!);
-      if(movement && movement.includes('P') && !isPromotion) {
-        const promotionMovements = getActiveLegalMovements(activeTile).movements.filter( legalMovement =>
-            legalMovement.includes(currentTileId))
-        setPromotionOptions(promotionMovements)
-        setIsPromotion(true)
+      if(movement!.includes('P') && !isPromotion) {
+        initializePromotion(currentTileId);
       } else {
-        const futurePositionAndAction = allLegalMovements![activeTile!.id].find(position =>
-            position.includes(currentTileId))!
-        callMakeMovement(futurePositionAndAction)
-        unselectAll()
+        setFeedback(adversaryTurn)
+        handleMovePiece(movement!, currentTileId);
       }
     }
   }
@@ -271,6 +282,8 @@ export default function Board({starter, boardRequest, initialPieces, setCurrentM
         legalMovement.includes(piece)
     )
     handlePromotion(piece, movement!, pieces);
+    unHighlightKingInCheck()
+    handleCheckHighlight(movement!, setKingInCheckPosition)
     callMakeMovement(movement!)
   }
 
