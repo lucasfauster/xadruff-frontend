@@ -31,7 +31,7 @@ export default function Board({starter, boardRequest, initialPieces, setCurrentM
   const [isPlayerTurn, setIsPlayerTurn] = useState<boolean>(starter)
   const [whiteDeadPiecesCount, setWhiteDeadPiecesCount] = useState<number>(0);
   const [blackDeadPiecesCount, setBlackDeadPiecesCount] = useState<number>(0);
-  const [feedback, setFeedback] = useState<string>("");
+  const [feedback, setFeedback] = useState<string>("Iniciando...");
   const [isPromotion, setIsPromotion] = useState<boolean>(false)
   const [promotionOptions, setPromotionOptions] = useState<string[]>([])
   const [isGameOver, setIsGameOver] = useState<boolean>(false)
@@ -44,11 +44,6 @@ export default function Board({starter, boardRequest, initialPieces, setCurrentM
   useEffect(() => {
     let mounted = true;
     const startBy = starter ? "PLAYER": "AI"
-    if(starter){
-      setFeedback(yourTurn)
-    } else {
-      setFeedback(adversaryTurn)
-    }
     startNewGame(startBy, boardRequest)
         .then(chessResponse => {
           if(mounted) {
