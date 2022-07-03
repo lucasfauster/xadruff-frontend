@@ -6,11 +6,11 @@ export function renderGameOptionMenu(
   setGameState: Function, startGameMenu: number, customStatesMenu: number)
 {
   return (
-    <div id='color-menu'>
+    <div id='submenu'>
       <h2 className={'text'}>QUAL OPÇÃO DE JOGO?</h2>
-        <div className='color-options'>
-            <div className={'color-option'}>
-                <div className={'color-button'} data-testid="test-default"
+        <div className='submenu-options'>
+            <div className={'submenu-option'}>
+                <div className={'submenu-button'} data-testid="test-default"
                      onClick={() => {
                          setGameState("DEFAULT");
                          setCurrentColor(currentColor);
@@ -20,8 +20,8 @@ export function renderGameOptionMenu(
                 </div>
                 <h3 className={'text'}>PADRÃO</h3>
             </div>
-            <div className={'color-option'}>
-                <div className={'color-button'} data-testid="test-custom"
+            <div className={'submenu-option'}>
+                <div className={'submenu-button'} data-testid="test-custom"
                      onClick={() => setCurrentMenu(customStatesMenu)}>
                     <img  className={'menu-piece'} src='images/pieces/w_queen.png' alt="Rainha Branca"/>
                 </div>

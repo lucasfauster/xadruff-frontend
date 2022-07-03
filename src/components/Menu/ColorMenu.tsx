@@ -9,25 +9,25 @@ export function renderColorMenu(
    setCurrentMenu: Function, gameOptionMenu: number,
 ){
   return (
-    <div id='color-menu'>
+    <div id='submenu'>
       <h2 className={'text'}>COM QUAIS PEÇAS VOCÊ QUER JOGAR?</h2>
-        <div className='color-options'>
-            <div className={'color-option'}>
-                <div className={'color-button'} data-testid="test-pretas"
+        <div className='submenu-options'>
+            <div className={'submenu-option'}>
+                <div className={'submenu-button'} data-testid="test-pretas"
                      onClick={() => {setColor(false); setCurrentMenu(gameOptionMenu);}}>
                     <img  className={'menu-piece'} src='images/pieces/b_knight.png' alt="Cavalo Preto"/>
                 </div>
                 <h3 className={'text'}>PRETAS</h3>
             </div>
-            <div className={'color-option'}>
-                <div className={'color-button'} data-testid="test-brancas"
+            <div className={'submenu-option'}>
+                <div className={'submenu-button'} data-testid="test-brancas"
                      onClick={() => {setColor(true); setCurrentMenu(gameOptionMenu);}}>
                     <img  className={'menu-piece'} src='images/pieces/w_rook.png' alt="Torre Branca"/>
                 </div>
                 <h3 className={'text'}>BRANCAS</h3>
             </div>
-            <div className={'color-option'}>
-                <div className={'color-button'} data-testid="test-sortear"
+            <div className={'submenu-option'}>
+                <div className={'submenu-button'} data-testid="test-sortear"
                      onClick={() => { setColor(randomColor()); setCurrentMenu(gameOptionMenu) ;}}>
                     <img  className={'menu-piece'} src='images/dado.png' alt="Dado de Sorteio"/>
                 </div>

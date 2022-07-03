@@ -44,7 +44,7 @@
     transition: 0.3s;
 }
 
-#color-menu {
+#submenu {
     display: flex;
     align-items: center;
     justify-items: center;
@@ -52,13 +52,13 @@
     font-size: large;
 }
 
-.color-options{
+.submenu-options{
     display: flex;
     flex-direction: row;
     width: 520px;
 }
 
-.color-option {
+.submenu-option {
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -68,7 +68,7 @@
     margin-right: 2%;
 }
 
-.color-button{
+.submenu-button{
     width: 150px;
     height: 150px;
     background-color: #A283FF;
@@ -76,7 +76,7 @@
     border-radius: 25px;
 }
 
-.color-button:hover{
+.submenu-button:hover{
     background-color: #4B147D;
     transition: 0.3s;
 }
