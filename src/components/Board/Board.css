@@ -39,8 +39,10 @@
   color: white;
   background-color: #5c19b0;
   font-size: 15px;
+  font-weight: bold;
   margin: 0 0 0 20px;
   border: none;
+  text-transform: uppercase;
 }
 .board-button:hover{
   background-color: #4B147D;

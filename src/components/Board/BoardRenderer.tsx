@@ -132,7 +132,7 @@ export function renderBoard(
 export function renderPlayAgainButton(setCurrentMenu: Function){
     return (
       <button className={'board-button'}
-              onClick={()=>{setCurrentMenu(1)}}>Jogar Novamente</button>
+              onClick={()=>{setCurrentMenu(1)}}>JOGAR NOVAMENTE</button>
     );
 }
 
@@ -141,6 +141,6 @@ export function renderSurrenderButton(boardId : string, handleEngame: Function){
       <button className={'board-button'}
               onClick={()=>{
                   surrender(boardId).then(chessResponse => handleEngame(chessResponse))
-              }}>Desistir</button>
+              }}>DESISTIR</button>
     );
 }

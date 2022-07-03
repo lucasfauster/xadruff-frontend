@@ -1,5 +1,5 @@
-export const yourTurn = "Sua vez"
-export const adversaryTurn = "Vez do adversário"
+export const yourTurn = "Seu turno"
+export const adversaryTurn = "Turno do adversário"
 
 export function setWinner(winner: string) {
     switch(winner) {
