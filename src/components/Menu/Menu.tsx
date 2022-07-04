@@ -15,9 +15,9 @@ const startGameMenu : number = 4;
 
 
 export default function Menu() {
-  const [currentMenu, setCurrentMenu] = React.useState<number>(0);
-  const [currentColor, setCurrentColor] = React.useState<boolean | null>(null);
-  const [gameState, setGameState] = React.useState<string>("DEFAULT");
+  const [currentMenu, setCurrentMenu] = useState<number>(0);
+  const [currentColor, setCurrentColor] = useState<boolean | null>(null);
+  const [gameState, setGameState] = useState<string>("DEFAULT");
 
   function renderMainMenu(){
     return(
