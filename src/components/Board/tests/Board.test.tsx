@@ -320,3 +320,36 @@ describe('Endgames', () => {
     })
     }
 )
+
+describe('movements', ()=>{
+  it('moves piece',  async () => {
+    global.fetch = getCreateGameFetchMock()
+    const initialPieces: Piece[] = []
+    const boardRequest = handleBoardState('DEFAULT')
+    renderPieceByBoard(initialPieces, boardRequest);
+    await act(async () => {
+      render(<Board
+        starter={true}
+        boardRequest={boardRequest}
+        initialPieces={initialPieces}
+        setCurrentMenu={ () => {console.log("ignore") }
+        }/>)
+    })
+
+    let pawn = await screen.findByTestId('a2')
+    let futureTile = await screen.findByTestId('test-light-tile-a4')
+    expect((futureTile).childNodes.length).toEqual(0);
+
+    fireEvent.click(pawn);
+
+    await act(async () => {
+      fireEvent.click(futureTile);
+    });
+
+    pawn = await screen.findByTestId('a4')
+    futureTile = await screen.findByTestId('test-light-tile-a4')
+    expect((futureTile).childNodes.length).toEqual(1);
+    expect(await (futureTile).childNodes[0]).toEqual(pawn);
+  });
+
+})
