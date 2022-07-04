@@ -32,6 +32,7 @@ export default function Board({starter, boardRequest, initialPieces, setCurrentM
   const [whiteDeadPiecesCount, setWhiteDeadPiecesCount] = useState<number>(0);
   const [blackDeadPiecesCount, setBlackDeadPiecesCount] = useState<number>(0);
   const [feedback, setFeedback] = useState<string>("Iniciando...");
+  const [endgameFeedback, setEndgameFeedback] = useState<string>("");
   const [isPromotion, setIsPromotion] = useState<boolean>(false)
   const [promotionOptions, setPromotionOptions] = useState<string[]>([])
   const [isGameOver, setIsGameOver] = useState<boolean>(false)
@@ -73,19 +74,21 @@ export default function Board({starter, boardRequest, initialPieces, setCurrentM
     const winner = setWinner(chessResponse.endgame.winner)
     const winnerMotive = setWinnerMotive(chessResponse.endgame.endgame_message)
     setIsPlayerTurn(false)
-    setFeedback(winner + " " + winnerMotive)
+    setEndgameFeedback(winner + " " + winnerMotive)
     setIsGameOver(true);
   }
 
   function gameLoop(chessResponse: ChessResponse) {
-    setAllLegalMovements(chessResponse.legal_movements)
-    if (chessResponse.ai_movement) {
-      handleAITurn(chessResponse);
-    }
-    if (chessResponse.endgame) {
-      handleEndgame(chessResponse);
-    } else {
-      setFeedback(yourTurn)
+    if(!isGameOver) {
+      setAllLegalMovements(chessResponse.legal_movements)
+      if (chessResponse.ai_movement) {
+        handleAITurn(chessResponse);
+      }
+      if (chessResponse.endgame) {
+        handleEndgame(chessResponse);
+      } else {
+        setFeedback(yourTurn)
+      }
     }
   }
 
@@ -127,7 +130,7 @@ export default function Board({starter, boardRequest, initialPieces, setCurrentM
   }
 
   function selectPiece(e: React.MouseEvent) {
-    if(isPlayerTurn) {
+    if(isPlayerTurn && !isGameOver) {
       const clicked = e.target as HTMLElement;
       if (clicked.classList.contains("piece") && board){
         handleClickedPiece(clicked)
@@ -285,7 +288,7 @@ export default function Board({starter, boardRequest, initialPieces, setCurrentM
   return (
     <div id='container'>
       <div id='feedback' data-testid="test-feedback">
-        { feedback }
+        {isGameOver ? endgameFeedback : feedback}
         {isGameOver ? renderPlayAgainButton(setCurrentMenu) : renderSurrenderButton(currentBoardID!, handleEndgame)}
       </div>
       <div id='view'>
