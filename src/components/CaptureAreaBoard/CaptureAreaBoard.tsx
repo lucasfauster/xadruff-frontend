@@ -64,6 +64,7 @@ export function changeToCaptureBoard(piece: Piece, deadPieces: DeadPiecesCount) 
     if (piece.color === 'b') {
         piece.tilePos = `b-death-${deadPieces.blackDeadPiecesCount}`
         const blackDeadCount = deadPieces.blackDeadPiecesCount + 1
+        /* istanbul ignore next */
         if (blackDeadCount === defaultTotalPieces-1) {
             deadPieces.setBlackDeadPiecesCount(0)
         } else {
@@ -72,6 +73,7 @@ export function changeToCaptureBoard(piece: Piece, deadPieces: DeadPiecesCount) 
     } else {
         piece.tilePos = `w-death-${deadPieces.whiteDeadPiecesCount}`
         const whiteDeadCount = deadPieces.whiteDeadPiecesCount + 1
+        /* istanbul ignore next */
         if (whiteDeadCount === defaultTotalPieces-1) {
             deadPieces.setWhiteDeadPiecesCount(0)
         } else {

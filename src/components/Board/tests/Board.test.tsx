@@ -405,4 +405,106 @@ describe('movements', ()=>{
 
   });
 
+
+  it('castle',  async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(
+          {
+            board_id: "49270B66-713D-4C39-8401-6574E244A802",
+            legal_movements: {"e1": ["c1Oa1d1'"]},
+            ai_movement: "b7b8Ke1"
+          }),
+      }),
+    ) as jest.Mock;
+    const initialPieces: Piece[] = []
+    const boardRequest = handleBoardState('CASTLE')
+    renderPieceByBoard(initialPieces, boardRequest);
+    await act(async () => {
+      render(<Board
+        starter={true}
+        boardRequest={boardRequest}
+        initialPieces={initialPieces}
+        setCurrentMenu={ () => {console.log("ignore") }
+        }/>)
+    })
+
+    let king = await screen.findByTestId('e1')
+    let rook = await screen.findByTestId('a1')
+
+    fireEvent.click(king);
+    fireEvent.click(rook);
+    await act(async () => {
+      expect(await screen.findByTestId("c1")).toHaveStyle(`background-image: url(images/pieces/w_king.png)`)
+      expect(await screen.findByTestId("d1")).toHaveStyle(`background-image: url(images/pieces/w_rook.png)`)
+    })
+  });
+
+  it('selects piece clicks outside',  async () => {
+    global.fetch = getCreateGameFetchMock()
+    const initialPieces: Piece[] = []
+    const boardRequest = handleBoardState('DEFAULT')
+    renderPieceByBoard(initialPieces, boardRequest);
+    await act(async () => {
+      render(<Board
+        starter={true}
+        boardRequest={boardRequest}
+        initialPieces={initialPieces}
+        setCurrentMenu={ () => {console.log("ignore") }
+        }/>)
+    })
+
+    const currentTile = await screen.findByTestId('test-light-tile-a2')
+    const nextTile = await screen.findByTestId('test-light-tile-b3')
+    const piece = await screen.findByTestId('a2')
+
+    fireEvent.click(piece);
+    expect(currentTile).toHaveClass('selected-tile');
+    expect(nextTile).not.toHaveClass('selected-tile');
+    await act(async () => {
+      fireEvent.click(nextTile);
+    })
+    expect(currentTile).not.toHaveClass('selected-tile');
+    expect(nextTile).not.toHaveClass('selected-tile');
+
+  });
+
+  it('en passant',  async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(
+          {
+            board_id: "49270B66-713D-4C39-8401-6574E244A802",
+            legal_movements: {"d4": ["e3CEe4Kb1"]},
+            ai_movement: "e2e4"
+          }),
+      }),
+    ) as jest.Mock;
+    const initialPieces: Piece[] = []
+    const boardRequest = handleBoardState('EN_PASSANT')
+    renderPieceByBoard(initialPieces, boardRequest);
+    await act(async () => {
+      render(<Board
+        starter={false}
+        boardRequest={boardRequest}
+        initialPieces={initialPieces}
+        setCurrentMenu={ () => {console.log("ignore") }
+        }/>)
+    })
+
+    let pawn= await screen.findByTestId('d4')
+    let tile = await screen.findByTestId('test-dark-tile-e3')
+    fireEvent.click(pawn);
+
+    await act(async () => {
+      fireEvent.click(tile);
+    });
+
+    await act(async () => {
+      expect(await screen.findByTestId("e3")).toHaveStyle(`background-image: url(images/pieces/b_pawn.png)`)
+      expect(await screen.findByTestId("e3")).not.toHaveStyle(`background-image: url(images/pieces/w_pawn.png)`)
+    })
+  });
+
+
 })
