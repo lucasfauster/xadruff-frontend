@@ -69,11 +69,11 @@ describe('Highlights', ()=> {
           }/>)
     })
     const currentTile = await screen.findByTestId('test-light-tile-a2')
-    const pawn = await screen.findByTestId('a2')
+    const piece = await screen.findByTestId('a2')
     expect(currentTile).not.toHaveClass('selected-tile');
-    expect(pawn).toHaveClass('piece');
-    expect((currentTile).childNodes[0]).toEqual(pawn);
-    fireEvent.click(pawn);
+    expect(piece).toHaveClass('piece');
+    expect((currentTile).childNodes[0]).toEqual(piece);
+    fireEvent.click(piece);
     expect(currentTile).toHaveClass('selected-tile');
 
     const highlightDarkTile = await screen.findByTestId('test-dark-tile-a3')
@@ -322,6 +322,30 @@ describe('Endgames', () => {
 )
 
 describe('movements', ()=>{
+  it('selects piece then unselects',  async () => {
+    global.fetch = getCreateGameFetchMock()
+    const initialPieces: Piece[] = []
+    const boardRequest = handleBoardState('DEFAULT')
+    renderPieceByBoard(initialPieces, boardRequest);
+    await act(async () => {
+      render(<Board
+        starter={true}
+        boardRequest={boardRequest}
+        initialPieces={initialPieces}
+        setCurrentMenu={ () => {console.log("ignore") }
+        }/>)
+    })
+
+    const currentTile = await screen.findByTestId('test-light-tile-a2')
+    const piece = await screen.findByTestId('a2')
+    expect(currentTile).not.toHaveClass('selected-tile');
+    fireEvent.click(piece);
+    expect(currentTile).toHaveClass('selected-tile');
+    fireEvent.click(piece);
+    expect(currentTile).not.toHaveClass('selected-tile');
+
+  });
+
   it('moves piece',  async () => {
     global.fetch = getCreateGameFetchMock()
     const initialPieces: Piece[] = []
@@ -336,20 +360,49 @@ describe('movements', ()=>{
         }/>)
     })
 
-    let pawn = await screen.findByTestId('a2')
+    let piece = await screen.findByTestId('a2')
     let futureTile = await screen.findByTestId('test-light-tile-a4')
     expect((futureTile).childNodes.length).toEqual(0);
 
-    fireEvent.click(pawn);
+    fireEvent.click(piece);
 
     await act(async () => {
       fireEvent.click(futureTile);
     });
 
-    pawn = await screen.findByTestId('a4')
+    piece = await screen.findByTestId('a4')
     futureTile = await screen.findByTestId('test-light-tile-a4')
     expect((futureTile).childNodes.length).toEqual(1);
-    expect(await (futureTile).childNodes[0]).toEqual(pawn);
+    expect(await (futureTile).childNodes[0]).toEqual(piece);
+  });
+
+  it('changes piece',  async () => {
+    global.fetch = getCreateGameFetchMock()
+    const initialPieces: Piece[] = []
+    const boardRequest = handleBoardState('DEFAULT')
+    renderPieceByBoard(initialPieces, boardRequest);
+    await act(async () => {
+      render(<Board
+        starter={true}
+        boardRequest={boardRequest}
+        initialPieces={initialPieces}
+        setCurrentMenu={ () => {console.log("ignore") }
+        }/>)
+    })
+
+    const currentTile = await screen.findByTestId('test-light-tile-a2')
+    const nextTile = await screen.findByTestId('test-dark-tile-b2')
+    const piece = await screen.findByTestId('a2')
+    const nextPiece = await screen.findByTestId('b2')
+
+    fireEvent.click(piece);
+    expect(currentTile).toHaveClass('selected-tile');
+    expect(nextTile).not.toHaveClass('selected-tile');
+
+    fireEvent.click(nextPiece);
+    expect(currentTile).not.toHaveClass('selected-tile');
+    expect(nextTile).toHaveClass('selected-tile');
+
   });
 
 })
