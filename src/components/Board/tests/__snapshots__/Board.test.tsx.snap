@@ -1,0 +1,4107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Board renders black board initial state 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        id="container"
+      >
+        <div
+          data-testid="test-feedback"
+          id="feedback"
+        >
+          Iniciando...
+          <button
+            class="board-button"
+            data-testid="surrender-button"
+          >
+            DESISTIR
+          </button>
+        </div>
+        <div
+          id="view"
+        >
+          <div
+            class="capture-area-left"
+            id="capture-area"
+          >
+            <div>
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-0"
+                id="w-death-0"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-2"
+                id="w-death-2"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-4"
+                id="w-death-4"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-6"
+                id="w-death-6"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-8"
+                id="w-death-8"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-10"
+                id="w-death-10"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-12"
+                id="w-death-12"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-14"
+                id="w-death-14"
+              />
+            </div>
+            <div>
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-1"
+                id="w-death-1"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-3"
+                id="w-death-3"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-5"
+                id="w-death-5"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-7"
+                id="w-death-7"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-9"
+                id="w-death-9"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-11"
+                id="w-death-11"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-13"
+                id="w-death-13"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-15"
+                id="w-death-15"
+              />
+            </div>
+          </div>
+          <div
+            data-testid="test-board"
+            id="board"
+          >
+            <div
+              class="border border-corner"
+              data-testid="test-corner"
+            >
+              <div />
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                H
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                G
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                F
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                E
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                D
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                C
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                B
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                A
+              </div>
+            </div>
+            <div
+              class="border border-corner"
+              data-testid="test-corner"
+            >
+              <div />
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                1
+              </div>
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-h1"
+              id="h1"
+            >
+              <div
+                class="w piece"
+                data-testid="h1"
+                style="background-image: url(images/pieces/w_rook.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-g1"
+              id="g1"
+            >
+              <div
+                class="w piece"
+                data-testid="g1"
+                style="background-image: url(images/pieces/w_knight.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-f1"
+              id="f1"
+            >
+              <div
+                class="w piece"
+                data-testid="f1"
+                style="background-image: url(images/pieces/w_bishop.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-e1"
+              id="e1"
+            >
+              <div
+                class="w piece"
+                data-testid="e1"
+                style="background-image: url(images/pieces/w_king.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-d1"
+              id="d1"
+            >
+              <div
+                class="w piece"
+                data-testid="d1"
+                style="background-image: url(images/pieces/w_queen.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-c1"
+              id="c1"
+            >
+              <div
+                class="w piece"
+                data-testid="c1"
+                style="background-image: url(images/pieces/w_bishop.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-b1"
+              id="b1"
+            >
+              <div
+                class="w piece"
+                data-testid="b1"
+                style="background-image: url(images/pieces/w_knight.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-a1"
+              id="a1"
+            >
+              <div
+                class="w piece"
+                data-testid="a1"
+                style="background-image: url(images/pieces/w_rook.png);"
+              />
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                1
+              </div>
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                2
+              </div>
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-h2"
+              id="h2"
+            >
+              <div
+                class="w piece"
+                data-testid="h2"
+                style="background-image: url(images/pieces/w_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-g2"
+              id="g2"
+            >
+              <div
+                class="w piece"
+                data-testid="g2"
+                style="background-image: url(images/pieces/w_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-f2"
+              id="f2"
+            >
+              <div
+                class="w piece"
+                data-testid="f2"
+                style="background-image: url(images/pieces/w_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-e2"
+              id="e2"
+            >
+              <div
+                class="w piece"
+                data-testid="e2"
+                style="background-image: url(images/pieces/w_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-d2"
+              id="d2"
+            >
+              <div
+                class="w piece"
+                data-testid="d2"
+                style="background-image: url(images/pieces/w_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-c2"
+              id="c2"
+            >
+              <div
+                class="w piece"
+                data-testid="c2"
+                style="background-image: url(images/pieces/w_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b2"
+              id="b2"
+            >
+              <div
+                class="w piece"
+                data-testid="b2"
+                style="background-image: url(images/pieces/w_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-a2"
+              id="a2"
+            >
+              <div
+                class="w piece"
+                data-testid="a2"
+                style="background-image: url(images/pieces/w_pawn.png);"
+              />
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                2
+              </div>
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                3
+              </div>
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-h3"
+              id="h3"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-g3"
+              id="g3"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-f3"
+              id="f3"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-e3"
+              id="e3"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-d3"
+              id="d3"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-c3"
+              id="c3"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-b3"
+              id="b3"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-a3"
+              id="a3"
+            />
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                3
+              </div>
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                4
+              </div>
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-h4"
+              id="h4"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-g4"
+              id="g4"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-f4"
+              id="f4"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-e4"
+              id="e4"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-d4"
+              id="d4"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-c4"
+              id="c4"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b4"
+              id="b4"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-a4"
+              id="a4"
+            />
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                4
+              </div>
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                5
+              </div>
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-h5"
+              id="h5"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-g5"
+              id="g5"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-f5"
+              id="f5"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-e5"
+              id="e5"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-d5"
+              id="d5"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-c5"
+              id="c5"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-b5"
+              id="b5"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-a5"
+              id="a5"
+            />
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                5
+              </div>
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                6
+              </div>
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-h6"
+              id="h6"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-g6"
+              id="g6"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-f6"
+              id="f6"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-e6"
+              id="e6"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-d6"
+              id="d6"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-c6"
+              id="c6"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b6"
+              id="b6"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-a6"
+              id="a6"
+            />
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                6
+              </div>
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                7
+              </div>
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-h7"
+              id="h7"
+            >
+              <div
+                class="b piece"
+                data-testid="h7"
+                style="background-image: url(images/pieces/b_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-g7"
+              id="g7"
+            >
+              <div
+                class="b piece"
+                data-testid="g7"
+                style="background-image: url(images/pieces/b_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-f7"
+              id="f7"
+            >
+              <div
+                class="b piece"
+                data-testid="f7"
+                style="background-image: url(images/pieces/b_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-e7"
+              id="e7"
+            >
+              <div
+                class="b piece"
+                data-testid="e7"
+                style="background-image: url(images/pieces/b_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-d7"
+              id="d7"
+            >
+              <div
+                class="b piece"
+                data-testid="d7"
+                style="background-image: url(images/pieces/b_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-c7"
+              id="c7"
+            >
+              <div
+                class="b piece"
+                data-testid="c7"
+                style="background-image: url(images/pieces/b_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-b7"
+              id="b7"
+            >
+              <div
+                class="b piece"
+                data-testid="b7"
+                style="background-image: url(images/pieces/b_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-a7"
+              id="a7"
+            >
+              <div
+                class="b piece"
+                data-testid="a7"
+                style="background-image: url(images/pieces/b_pawn.png);"
+              />
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                7
+              </div>
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                8
+              </div>
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-h8"
+              id="h8"
+            >
+              <div
+                class="b piece"
+                data-testid="h8"
+                style="background-image: url(images/pieces/b_rook.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-g8"
+              id="g8"
+            >
+              <div
+                class="b piece"
+                data-testid="g8"
+                style="background-image: url(images/pieces/b_knight.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-f8"
+              id="f8"
+            >
+              <div
+                class="b piece"
+                data-testid="f8"
+                style="background-image: url(images/pieces/b_bishop.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-e8"
+              id="e8"
+            >
+              <div
+                class="b piece"
+                data-testid="e8"
+                style="background-image: url(images/pieces/b_king.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-d8"
+              id="d8"
+            >
+              <div
+                class="b piece"
+                data-testid="d8"
+                style="background-image: url(images/pieces/b_queen.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-c8"
+              id="c8"
+            >
+              <div
+                class="b piece"
+                data-testid="c8"
+                style="background-image: url(images/pieces/b_bishop.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b8"
+              id="b8"
+            >
+              <div
+                class="b piece"
+                data-testid="b8"
+                style="background-image: url(images/pieces/b_knight.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-a8"
+              id="a8"
+            >
+              <div
+                class="b piece"
+                data-testid="a8"
+                style="background-image: url(images/pieces/b_rook.png);"
+              />
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                8
+              </div>
+            </div>
+            <div
+              class="border border-corner"
+              data-testid="test-corner"
+            >
+              <div />
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                H
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                G
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                F
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                E
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                D
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                C
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                B
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                A
+              </div>
+            </div>
+            <div
+              class="border border-corner"
+              data-testid="test-corner"
+            >
+              <div />
+            </div>
+          </div>
+          <div
+            class="capture-area-right"
+            id="capture-area"
+          >
+            <div>
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-0"
+                id="b-death-0"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-2"
+                id="b-death-2"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-4"
+                id="b-death-4"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-6"
+                id="b-death-6"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-8"
+                id="b-death-8"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-10"
+                id="b-death-10"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-12"
+                id="b-death-12"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-14"
+                id="b-death-14"
+              />
+            </div>
+            <div>
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-1"
+                id="b-death-1"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-3"
+                id="b-death-3"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-5"
+                id="b-death-5"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-7"
+                id="b-death-7"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-9"
+                id="b-death-9"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-11"
+                id="b-death-11"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-13"
+                id="b-death-13"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-15"
+                id="b-death-15"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      id="container"
+    >
+      <div
+        data-testid="test-feedback"
+        id="feedback"
+      >
+        Iniciando...
+        <button
+          class="board-button"
+          data-testid="surrender-button"
+        >
+          DESISTIR
+        </button>
+      </div>
+      <div
+        id="view"
+      >
+        <div
+          class="capture-area-left"
+          id="capture-area"
+        >
+          <div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-0"
+              id="w-death-0"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-2"
+              id="w-death-2"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-4"
+              id="w-death-4"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-6"
+              id="w-death-6"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-8"
+              id="w-death-8"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-10"
+              id="w-death-10"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-12"
+              id="w-death-12"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-14"
+              id="w-death-14"
+            />
+          </div>
+          <div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-1"
+              id="w-death-1"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-3"
+              id="w-death-3"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-5"
+              id="w-death-5"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-7"
+              id="w-death-7"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-9"
+              id="w-death-9"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-11"
+              id="w-death-11"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-13"
+              id="w-death-13"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-15"
+              id="w-death-15"
+            />
+          </div>
+        </div>
+        <div
+          data-testid="test-board"
+          id="board"
+        >
+          <div
+            class="border border-corner"
+            data-testid="test-corner"
+          >
+            <div />
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              H
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              G
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              F
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              E
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              D
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              C
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              B
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              A
+            </div>
+          </div>
+          <div
+            class="border border-corner"
+            data-testid="test-corner"
+          >
+            <div />
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              1
+            </div>
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-h1"
+            id="h1"
+          >
+            <div
+              class="w piece"
+              data-testid="h1"
+              style="background-image: url(images/pieces/w_rook.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-g1"
+            id="g1"
+          >
+            <div
+              class="w piece"
+              data-testid="g1"
+              style="background-image: url(images/pieces/w_knight.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-f1"
+            id="f1"
+          >
+            <div
+              class="w piece"
+              data-testid="f1"
+              style="background-image: url(images/pieces/w_bishop.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-e1"
+            id="e1"
+          >
+            <div
+              class="w piece"
+              data-testid="e1"
+              style="background-image: url(images/pieces/w_king.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-d1"
+            id="d1"
+          >
+            <div
+              class="w piece"
+              data-testid="d1"
+              style="background-image: url(images/pieces/w_queen.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-c1"
+            id="c1"
+          >
+            <div
+              class="w piece"
+              data-testid="c1"
+              style="background-image: url(images/pieces/w_bishop.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-b1"
+            id="b1"
+          >
+            <div
+              class="w piece"
+              data-testid="b1"
+              style="background-image: url(images/pieces/w_knight.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-a1"
+            id="a1"
+          >
+            <div
+              class="w piece"
+              data-testid="a1"
+              style="background-image: url(images/pieces/w_rook.png);"
+            />
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              1
+            </div>
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              2
+            </div>
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-h2"
+            id="h2"
+          >
+            <div
+              class="w piece"
+              data-testid="h2"
+              style="background-image: url(images/pieces/w_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-g2"
+            id="g2"
+          >
+            <div
+              class="w piece"
+              data-testid="g2"
+              style="background-image: url(images/pieces/w_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-f2"
+            id="f2"
+          >
+            <div
+              class="w piece"
+              data-testid="f2"
+              style="background-image: url(images/pieces/w_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-e2"
+            id="e2"
+          >
+            <div
+              class="w piece"
+              data-testid="e2"
+              style="background-image: url(images/pieces/w_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-d2"
+            id="d2"
+          >
+            <div
+              class="w piece"
+              data-testid="d2"
+              style="background-image: url(images/pieces/w_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-c2"
+            id="c2"
+          >
+            <div
+              class="w piece"
+              data-testid="c2"
+              style="background-image: url(images/pieces/w_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-b2"
+            id="b2"
+          >
+            <div
+              class="w piece"
+              data-testid="b2"
+              style="background-image: url(images/pieces/w_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-a2"
+            id="a2"
+          >
+            <div
+              class="w piece"
+              data-testid="a2"
+              style="background-image: url(images/pieces/w_pawn.png);"
+            />
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              2
+            </div>
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              3
+            </div>
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-h3"
+            id="h3"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-g3"
+            id="g3"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-f3"
+            id="f3"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-e3"
+            id="e3"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-d3"
+            id="d3"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-c3"
+            id="c3"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-b3"
+            id="b3"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-a3"
+            id="a3"
+          />
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              3
+            </div>
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              4
+            </div>
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-h4"
+            id="h4"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-g4"
+            id="g4"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-f4"
+            id="f4"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-e4"
+            id="e4"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-d4"
+            id="d4"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-c4"
+            id="c4"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-b4"
+            id="b4"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-a4"
+            id="a4"
+          />
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              4
+            </div>
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              5
+            </div>
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-h5"
+            id="h5"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-g5"
+            id="g5"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-f5"
+            id="f5"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-e5"
+            id="e5"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-d5"
+            id="d5"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-c5"
+            id="c5"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-b5"
+            id="b5"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-a5"
+            id="a5"
+          />
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              5
+            </div>
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              6
+            </div>
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-h6"
+            id="h6"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-g6"
+            id="g6"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-f6"
+            id="f6"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-e6"
+            id="e6"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-d6"
+            id="d6"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-c6"
+            id="c6"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-b6"
+            id="b6"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-a6"
+            id="a6"
+          />
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              6
+            </div>
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              7
+            </div>
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-h7"
+            id="h7"
+          >
+            <div
+              class="b piece"
+              data-testid="h7"
+              style="background-image: url(images/pieces/b_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-g7"
+            id="g7"
+          >
+            <div
+              class="b piece"
+              data-testid="g7"
+              style="background-image: url(images/pieces/b_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-f7"
+            id="f7"
+          >
+            <div
+              class="b piece"
+              data-testid="f7"
+              style="background-image: url(images/pieces/b_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-e7"
+            id="e7"
+          >
+            <div
+              class="b piece"
+              data-testid="e7"
+              style="background-image: url(images/pieces/b_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-d7"
+            id="d7"
+          >
+            <div
+              class="b piece"
+              data-testid="d7"
+              style="background-image: url(images/pieces/b_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-c7"
+            id="c7"
+          >
+            <div
+              class="b piece"
+              data-testid="c7"
+              style="background-image: url(images/pieces/b_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-b7"
+            id="b7"
+          >
+            <div
+              class="b piece"
+              data-testid="b7"
+              style="background-image: url(images/pieces/b_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-a7"
+            id="a7"
+          >
+            <div
+              class="b piece"
+              data-testid="a7"
+              style="background-image: url(images/pieces/b_pawn.png);"
+            />
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              7
+            </div>
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              8
+            </div>
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-h8"
+            id="h8"
+          >
+            <div
+              class="b piece"
+              data-testid="h8"
+              style="background-image: url(images/pieces/b_rook.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-g8"
+            id="g8"
+          >
+            <div
+              class="b piece"
+              data-testid="g8"
+              style="background-image: url(images/pieces/b_knight.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-f8"
+            id="f8"
+          >
+            <div
+              class="b piece"
+              data-testid="f8"
+              style="background-image: url(images/pieces/b_bishop.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-e8"
+            id="e8"
+          >
+            <div
+              class="b piece"
+              data-testid="e8"
+              style="background-image: url(images/pieces/b_king.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-d8"
+            id="d8"
+          >
+            <div
+              class="b piece"
+              data-testid="d8"
+              style="background-image: url(images/pieces/b_queen.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-c8"
+            id="c8"
+          >
+            <div
+              class="b piece"
+              data-testid="c8"
+              style="background-image: url(images/pieces/b_bishop.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-b8"
+            id="b8"
+          >
+            <div
+              class="b piece"
+              data-testid="b8"
+              style="background-image: url(images/pieces/b_knight.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-a8"
+            id="a8"
+          >
+            <div
+              class="b piece"
+              data-testid="a8"
+              style="background-image: url(images/pieces/b_rook.png);"
+            />
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              8
+            </div>
+          </div>
+          <div
+            class="border border-corner"
+            data-testid="test-corner"
+          >
+            <div />
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              H
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              G
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              F
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              E
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              D
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              C
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              B
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              A
+            </div>
+          </div>
+          <div
+            class="border border-corner"
+            data-testid="test-corner"
+          >
+            <div />
+          </div>
+        </div>
+        <div
+          class="capture-area-right"
+          id="capture-area"
+        >
+          <div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-0"
+              id="b-death-0"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-2"
+              id="b-death-2"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-4"
+              id="b-death-4"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-6"
+              id="b-death-6"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-8"
+              id="b-death-8"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-10"
+              id="b-death-10"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-12"
+              id="b-death-12"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-14"
+              id="b-death-14"
+            />
+          </div>
+          <div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-1"
+              id="b-death-1"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-3"
+              id="b-death-3"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-5"
+              id="b-death-5"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-7"
+              id="b-death-7"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-9"
+              id="b-death-9"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-11"
+              id="b-death-11"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-13"
+              id="b-death-13"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-15"
+              id="b-death-15"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Board renders white board initial state 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        id="container"
+      >
+        <div
+          data-testid="test-feedback"
+          id="feedback"
+        >
+          Iniciando...
+          <button
+            class="board-button"
+            data-testid="surrender-button"
+          >
+            DESISTIR
+          </button>
+        </div>
+        <div
+          id="view"
+        >
+          <div
+            class="capture-area-left"
+            id="capture-area"
+          >
+            <div>
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-0"
+                id="w-death-0"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-2"
+                id="w-death-2"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-4"
+                id="w-death-4"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-6"
+                id="w-death-6"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-8"
+                id="w-death-8"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-10"
+                id="w-death-10"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-12"
+                id="w-death-12"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-14"
+                id="w-death-14"
+              />
+            </div>
+            <div>
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-1"
+                id="w-death-1"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-3"
+                id="w-death-3"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-5"
+                id="w-death-5"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-7"
+                id="w-death-7"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-9"
+                id="w-death-9"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-11"
+                id="w-death-11"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-13"
+                id="w-death-13"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-w-death-15"
+                id="w-death-15"
+              />
+            </div>
+          </div>
+          <div
+            data-testid="test-board"
+            id="board"
+          >
+            <div
+              class="border border-corner"
+              data-testid="test-corner"
+            >
+              <div />
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                A
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                B
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                C
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                D
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                E
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                F
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                G
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                H
+              </div>
+            </div>
+            <div
+              class="border border-corner"
+              data-testid="test-corner"
+            >
+              <div />
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                8
+              </div>
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-a8"
+              id="a8"
+            >
+              <div
+                class="b piece"
+                data-testid="a8"
+                style="background-image: url(images/pieces/b_rook.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b8"
+              id="b8"
+            >
+              <div
+                class="b piece"
+                data-testid="b8"
+                style="background-image: url(images/pieces/b_knight.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-c8"
+              id="c8"
+            >
+              <div
+                class="b piece"
+                data-testid="c8"
+                style="background-image: url(images/pieces/b_bishop.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-d8"
+              id="d8"
+            >
+              <div
+                class="b piece"
+                data-testid="d8"
+                style="background-image: url(images/pieces/b_queen.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-e8"
+              id="e8"
+            >
+              <div
+                class="b piece"
+                data-testid="e8"
+                style="background-image: url(images/pieces/b_king.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-f8"
+              id="f8"
+            >
+              <div
+                class="b piece"
+                data-testid="f8"
+                style="background-image: url(images/pieces/b_bishop.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-g8"
+              id="g8"
+            >
+              <div
+                class="b piece"
+                data-testid="g8"
+                style="background-image: url(images/pieces/b_knight.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-h8"
+              id="h8"
+            >
+              <div
+                class="b piece"
+                data-testid="h8"
+                style="background-image: url(images/pieces/b_rook.png);"
+              />
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                8
+              </div>
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                7
+              </div>
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-a7"
+              id="a7"
+            >
+              <div
+                class="b piece"
+                data-testid="a7"
+                style="background-image: url(images/pieces/b_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-b7"
+              id="b7"
+            >
+              <div
+                class="b piece"
+                data-testid="b7"
+                style="background-image: url(images/pieces/b_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-c7"
+              id="c7"
+            >
+              <div
+                class="b piece"
+                data-testid="c7"
+                style="background-image: url(images/pieces/b_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-d7"
+              id="d7"
+            >
+              <div
+                class="b piece"
+                data-testid="d7"
+                style="background-image: url(images/pieces/b_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-e7"
+              id="e7"
+            >
+              <div
+                class="b piece"
+                data-testid="e7"
+                style="background-image: url(images/pieces/b_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-f7"
+              id="f7"
+            >
+              <div
+                class="b piece"
+                data-testid="f7"
+                style="background-image: url(images/pieces/b_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-g7"
+              id="g7"
+            >
+              <div
+                class="b piece"
+                data-testid="g7"
+                style="background-image: url(images/pieces/b_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-h7"
+              id="h7"
+            >
+              <div
+                class="b piece"
+                data-testid="h7"
+                style="background-image: url(images/pieces/b_pawn.png);"
+              />
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                7
+              </div>
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                6
+              </div>
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-a6"
+              id="a6"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b6"
+              id="b6"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-c6"
+              id="c6"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-d6"
+              id="d6"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-e6"
+              id="e6"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-f6"
+              id="f6"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-g6"
+              id="g6"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-h6"
+              id="h6"
+            />
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                6
+              </div>
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                5
+              </div>
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-a5"
+              id="a5"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-b5"
+              id="b5"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-c5"
+              id="c5"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-d5"
+              id="d5"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-e5"
+              id="e5"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-f5"
+              id="f5"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-g5"
+              id="g5"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-h5"
+              id="h5"
+            />
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                5
+              </div>
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                4
+              </div>
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-a4"
+              id="a4"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b4"
+              id="b4"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-c4"
+              id="c4"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-d4"
+              id="d4"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-e4"
+              id="e4"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-f4"
+              id="f4"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-g4"
+              id="g4"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-h4"
+              id="h4"
+            />
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                4
+              </div>
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                3
+              </div>
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-a3"
+              id="a3"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-b3"
+              id="b3"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-c3"
+              id="c3"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-d3"
+              id="d3"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-e3"
+              id="e3"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-f3"
+              id="f3"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-g3"
+              id="g3"
+            />
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-h3"
+              id="h3"
+            />
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                3
+              </div>
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                2
+              </div>
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-a2"
+              id="a2"
+            >
+              <div
+                class="w piece"
+                data-testid="a2"
+                style="background-image: url(images/pieces/w_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b2"
+              id="b2"
+            >
+              <div
+                class="w piece"
+                data-testid="b2"
+                style="background-image: url(images/pieces/w_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-c2"
+              id="c2"
+            >
+              <div
+                class="w piece"
+                data-testid="c2"
+                style="background-image: url(images/pieces/w_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-d2"
+              id="d2"
+            >
+              <div
+                class="w piece"
+                data-testid="d2"
+                style="background-image: url(images/pieces/w_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-e2"
+              id="e2"
+            >
+              <div
+                class="w piece"
+                data-testid="e2"
+                style="background-image: url(images/pieces/w_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-f2"
+              id="f2"
+            >
+              <div
+                class="w piece"
+                data-testid="f2"
+                style="background-image: url(images/pieces/w_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-g2"
+              id="g2"
+            >
+              <div
+                class="w piece"
+                data-testid="g2"
+                style="background-image: url(images/pieces/w_pawn.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-h2"
+              id="h2"
+            >
+              <div
+                class="w piece"
+                data-testid="h2"
+                style="background-image: url(images/pieces/w_pawn.png);"
+              />
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                2
+              </div>
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                1
+              </div>
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-a1"
+              id="a1"
+            >
+              <div
+                class="w piece"
+                data-testid="a1"
+                style="background-image: url(images/pieces/w_rook.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-b1"
+              id="b1"
+            >
+              <div
+                class="w piece"
+                data-testid="b1"
+                style="background-image: url(images/pieces/w_knight.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-c1"
+              id="c1"
+            >
+              <div
+                class="w piece"
+                data-testid="c1"
+                style="background-image: url(images/pieces/w_bishop.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-d1"
+              id="d1"
+            >
+              <div
+                class="w piece"
+                data-testid="d1"
+                style="background-image: url(images/pieces/w_queen.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-e1"
+              id="e1"
+            >
+              <div
+                class="w piece"
+                data-testid="e1"
+                style="background-image: url(images/pieces/w_king.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-f1"
+              id="f1"
+            >
+              <div
+                class="w piece"
+                data-testid="f1"
+                style="background-image: url(images/pieces/w_bishop.png);"
+              />
+            </div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-g1"
+              id="g1"
+            >
+              <div
+                class="w piece"
+                data-testid="g1"
+                style="background-image: url(images/pieces/w_knight.png);"
+              />
+            </div>
+            <div
+              class="tile light-tile "
+              data-testid="test-light-tile-h1"
+              id="h1"
+            >
+              <div
+                class="w piece"
+                data-testid="h1"
+                style="background-image: url(images/pieces/w_rook.png);"
+              />
+            </div>
+            <div
+              class="border border-vertical"
+              data-testid="test-vertical"
+            >
+              <div>
+                1
+              </div>
+            </div>
+            <div
+              class="border border-corner"
+              data-testid="test-corner"
+            >
+              <div />
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                A
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                B
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                C
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                D
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                E
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                F
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                G
+              </div>
+            </div>
+            <div
+              class="border border-horizontal"
+              data-testid="test-horizontal"
+            >
+              <div>
+                H
+              </div>
+            </div>
+            <div
+              class="border border-corner"
+              data-testid="test-corner"
+            >
+              <div />
+            </div>
+          </div>
+          <div
+            class="capture-area-right"
+            id="capture-area"
+          >
+            <div>
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-0"
+                id="b-death-0"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-2"
+                id="b-death-2"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-4"
+                id="b-death-4"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-6"
+                id="b-death-6"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-8"
+                id="b-death-8"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-10"
+                id="b-death-10"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-12"
+                id="b-death-12"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-14"
+                id="b-death-14"
+              />
+            </div>
+            <div>
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-1"
+                id="b-death-1"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-3"
+                id="b-death-3"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-5"
+                id="b-death-5"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-7"
+                id="b-death-7"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-9"
+                id="b-death-9"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-11"
+                id="b-death-11"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-13"
+                id="b-death-13"
+              />
+              <div
+                class="tile dark-tile "
+                data-testid="test-dark-tile-b-death-15"
+                id="b-death-15"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      id="container"
+    >
+      <div
+        data-testid="test-feedback"
+        id="feedback"
+      >
+        Iniciando...
+        <button
+          class="board-button"
+          data-testid="surrender-button"
+        >
+          DESISTIR
+        </button>
+      </div>
+      <div
+        id="view"
+      >
+        <div
+          class="capture-area-left"
+          id="capture-area"
+        >
+          <div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-0"
+              id="w-death-0"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-2"
+              id="w-death-2"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-4"
+              id="w-death-4"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-6"
+              id="w-death-6"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-8"
+              id="w-death-8"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-10"
+              id="w-death-10"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-12"
+              id="w-death-12"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-14"
+              id="w-death-14"
+            />
+          </div>
+          <div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-1"
+              id="w-death-1"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-3"
+              id="w-death-3"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-5"
+              id="w-death-5"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-7"
+              id="w-death-7"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-9"
+              id="w-death-9"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-11"
+              id="w-death-11"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-13"
+              id="w-death-13"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-w-death-15"
+              id="w-death-15"
+            />
+          </div>
+        </div>
+        <div
+          data-testid="test-board"
+          id="board"
+        >
+          <div
+            class="border border-corner"
+            data-testid="test-corner"
+          >
+            <div />
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              A
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              B
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              C
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              D
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              E
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              F
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              G
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              H
+            </div>
+          </div>
+          <div
+            class="border border-corner"
+            data-testid="test-corner"
+          >
+            <div />
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              8
+            </div>
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-a8"
+            id="a8"
+          >
+            <div
+              class="b piece"
+              data-testid="a8"
+              style="background-image: url(images/pieces/b_rook.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-b8"
+            id="b8"
+          >
+            <div
+              class="b piece"
+              data-testid="b8"
+              style="background-image: url(images/pieces/b_knight.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-c8"
+            id="c8"
+          >
+            <div
+              class="b piece"
+              data-testid="c8"
+              style="background-image: url(images/pieces/b_bishop.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-d8"
+            id="d8"
+          >
+            <div
+              class="b piece"
+              data-testid="d8"
+              style="background-image: url(images/pieces/b_queen.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-e8"
+            id="e8"
+          >
+            <div
+              class="b piece"
+              data-testid="e8"
+              style="background-image: url(images/pieces/b_king.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-f8"
+            id="f8"
+          >
+            <div
+              class="b piece"
+              data-testid="f8"
+              style="background-image: url(images/pieces/b_bishop.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-g8"
+            id="g8"
+          >
+            <div
+              class="b piece"
+              data-testid="g8"
+              style="background-image: url(images/pieces/b_knight.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-h8"
+            id="h8"
+          >
+            <div
+              class="b piece"
+              data-testid="h8"
+              style="background-image: url(images/pieces/b_rook.png);"
+            />
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              8
+            </div>
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              7
+            </div>
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-a7"
+            id="a7"
+          >
+            <div
+              class="b piece"
+              data-testid="a7"
+              style="background-image: url(images/pieces/b_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-b7"
+            id="b7"
+          >
+            <div
+              class="b piece"
+              data-testid="b7"
+              style="background-image: url(images/pieces/b_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-c7"
+            id="c7"
+          >
+            <div
+              class="b piece"
+              data-testid="c7"
+              style="background-image: url(images/pieces/b_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-d7"
+            id="d7"
+          >
+            <div
+              class="b piece"
+              data-testid="d7"
+              style="background-image: url(images/pieces/b_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-e7"
+            id="e7"
+          >
+            <div
+              class="b piece"
+              data-testid="e7"
+              style="background-image: url(images/pieces/b_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-f7"
+            id="f7"
+          >
+            <div
+              class="b piece"
+              data-testid="f7"
+              style="background-image: url(images/pieces/b_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-g7"
+            id="g7"
+          >
+            <div
+              class="b piece"
+              data-testid="g7"
+              style="background-image: url(images/pieces/b_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-h7"
+            id="h7"
+          >
+            <div
+              class="b piece"
+              data-testid="h7"
+              style="background-image: url(images/pieces/b_pawn.png);"
+            />
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              7
+            </div>
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              6
+            </div>
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-a6"
+            id="a6"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-b6"
+            id="b6"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-c6"
+            id="c6"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-d6"
+            id="d6"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-e6"
+            id="e6"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-f6"
+            id="f6"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-g6"
+            id="g6"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-h6"
+            id="h6"
+          />
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              6
+            </div>
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              5
+            </div>
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-a5"
+            id="a5"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-b5"
+            id="b5"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-c5"
+            id="c5"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-d5"
+            id="d5"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-e5"
+            id="e5"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-f5"
+            id="f5"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-g5"
+            id="g5"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-h5"
+            id="h5"
+          />
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              5
+            </div>
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              4
+            </div>
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-a4"
+            id="a4"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-b4"
+            id="b4"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-c4"
+            id="c4"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-d4"
+            id="d4"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-e4"
+            id="e4"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-f4"
+            id="f4"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-g4"
+            id="g4"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-h4"
+            id="h4"
+          />
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              4
+            </div>
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              3
+            </div>
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-a3"
+            id="a3"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-b3"
+            id="b3"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-c3"
+            id="c3"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-d3"
+            id="d3"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-e3"
+            id="e3"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-f3"
+            id="f3"
+          />
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-g3"
+            id="g3"
+          />
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-h3"
+            id="h3"
+          />
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              3
+            </div>
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              2
+            </div>
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-a2"
+            id="a2"
+          >
+            <div
+              class="w piece"
+              data-testid="a2"
+              style="background-image: url(images/pieces/w_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-b2"
+            id="b2"
+          >
+            <div
+              class="w piece"
+              data-testid="b2"
+              style="background-image: url(images/pieces/w_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-c2"
+            id="c2"
+          >
+            <div
+              class="w piece"
+              data-testid="c2"
+              style="background-image: url(images/pieces/w_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-d2"
+            id="d2"
+          >
+            <div
+              class="w piece"
+              data-testid="d2"
+              style="background-image: url(images/pieces/w_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-e2"
+            id="e2"
+          >
+            <div
+              class="w piece"
+              data-testid="e2"
+              style="background-image: url(images/pieces/w_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-f2"
+            id="f2"
+          >
+            <div
+              class="w piece"
+              data-testid="f2"
+              style="background-image: url(images/pieces/w_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-g2"
+            id="g2"
+          >
+            <div
+              class="w piece"
+              data-testid="g2"
+              style="background-image: url(images/pieces/w_pawn.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-h2"
+            id="h2"
+          >
+            <div
+              class="w piece"
+              data-testid="h2"
+              style="background-image: url(images/pieces/w_pawn.png);"
+            />
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              2
+            </div>
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              1
+            </div>
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-a1"
+            id="a1"
+          >
+            <div
+              class="w piece"
+              data-testid="a1"
+              style="background-image: url(images/pieces/w_rook.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-b1"
+            id="b1"
+          >
+            <div
+              class="w piece"
+              data-testid="b1"
+              style="background-image: url(images/pieces/w_knight.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-c1"
+            id="c1"
+          >
+            <div
+              class="w piece"
+              data-testid="c1"
+              style="background-image: url(images/pieces/w_bishop.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-d1"
+            id="d1"
+          >
+            <div
+              class="w piece"
+              data-testid="d1"
+              style="background-image: url(images/pieces/w_queen.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-e1"
+            id="e1"
+          >
+            <div
+              class="w piece"
+              data-testid="e1"
+              style="background-image: url(images/pieces/w_king.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-f1"
+            id="f1"
+          >
+            <div
+              class="w piece"
+              data-testid="f1"
+              style="background-image: url(images/pieces/w_bishop.png);"
+            />
+          </div>
+          <div
+            class="tile dark-tile "
+            data-testid="test-dark-tile-g1"
+            id="g1"
+          >
+            <div
+              class="w piece"
+              data-testid="g1"
+              style="background-image: url(images/pieces/w_knight.png);"
+            />
+          </div>
+          <div
+            class="tile light-tile "
+            data-testid="test-light-tile-h1"
+            id="h1"
+          >
+            <div
+              class="w piece"
+              data-testid="h1"
+              style="background-image: url(images/pieces/w_rook.png);"
+            />
+          </div>
+          <div
+            class="border border-vertical"
+            data-testid="test-vertical"
+          >
+            <div>
+              1
+            </div>
+          </div>
+          <div
+            class="border border-corner"
+            data-testid="test-corner"
+          >
+            <div />
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              A
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              B
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              C
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              D
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              E
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              F
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              G
+            </div>
+          </div>
+          <div
+            class="border border-horizontal"
+            data-testid="test-horizontal"
+          >
+            <div>
+              H
+            </div>
+          </div>
+          <div
+            class="border border-corner"
+            data-testid="test-corner"
+          >
+            <div />
+          </div>
+        </div>
+        <div
+          class="capture-area-right"
+          id="capture-area"
+        >
+          <div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-0"
+              id="b-death-0"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-2"
+              id="b-death-2"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-4"
+              id="b-death-4"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-6"
+              id="b-death-6"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-8"
+              id="b-death-8"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-10"
+              id="b-death-10"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-12"
+              id="b-death-12"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-14"
+              id="b-death-14"
+            />
+          </div>
+          <div>
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-1"
+              id="b-death-1"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-3"
+              id="b-death-3"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-5"
+              id="b-death-5"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-7"
+              id="b-death-7"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-9"
+              id="b-death-9"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-11"
+              id="b-death-11"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-13"
+              id="b-death-13"
+            />
+            <div
+              class="tile dark-tile "
+              data-testid="test-dark-tile-b-death-15"
+              id="b-death-15"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

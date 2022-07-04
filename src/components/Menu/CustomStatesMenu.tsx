@@ -16,11 +16,11 @@ export function renderCustomStatesMenu(
   setGameState: Function, startGameMenu: number)
 {
   return (
-    <div id='submenu'>
+    <div id='submenu' data-testid="test-custom-states" >
       <h2 className={'text'}>QUAL OPÇÃO DE JOGO?</h2>
         <div className='submenu-options'>
             <div className={'submenu-option'}>
-                <div className={'submenu-button'} data-testid="test-pretas"
+                <div className={'submenu-button'} data-testid="test-en-passant"
                      onClick={() =>
                          startGame(currentColor!, setCurrentColor,
                              "EN_PASSANT", setGameState,
@@ -31,7 +31,7 @@ export function renderCustomStatesMenu(
                 <h3 className={'text'}>EN PASSANT</h3>
             </div>
             <div className={'submenu-option'}>
-                <div className={'submenu-button'} data-testid="test-brancas"
+                <div className={'submenu-button'} data-testid="test-castle"
                      onClick={() =>  startGame(currentColor!, setCurrentColor,
                          "CASTLE", setGameState,
                          setCurrentMenu, startGameMenu
@@ -41,7 +41,7 @@ export function renderCustomStatesMenu(
                 <h3 className={'text'}>ROQUE</h3>
             </div>
             <div className={'submenu-option'}>
-                <div className={'submenu-button'} data-testid="test-brancas"
+                <div className={'submenu-button'} data-testid="test-check-mate"
                      onClick={() =>  startGame(currentColor!, setCurrentColor,
                          "CHECK_MATE", setGameState,
                          setCurrentMenu, startGameMenu
@@ -53,7 +53,7 @@ export function renderCustomStatesMenu(
         </div>
         <div className='submenu-options'>
             <div className={'submenu-option'}>
-                <div className={'submenu-button'} data-testid="test-brancas"
+                <div className={'submenu-button'} data-testid="test-stale-mate"
                      onClick={() =>  startGame(currentColor!, setCurrentColor,
                          "STALE_MATE", setGameState,
                          setCurrentMenu, startGameMenu
@@ -63,7 +63,7 @@ export function renderCustomStatesMenu(
                 <h3 className={'text'}>STALEMATE</h3>
             </div>
             <div className={'submenu-option'}>
-                <div className={'submenu-button'} data-testid="test-brancas"
+                <div className={'submenu-button'} data-testid="test-promotion"
                      onClick={() =>  startGame(currentColor!, setCurrentColor,
                          "PROMOTION", setGameState,
                          setCurrentMenu, startGameMenu
@@ -73,7 +73,7 @@ export function renderCustomStatesMenu(
                 <h3 className={'text'}>PROMOÇÃO</h3>
             </div>
             <div className={'submenu-option'}>
-                <div className={'submenu-button'} data-testid="test-brancas"
+                <div className={'submenu-button'} data-testid="test-queen-madness"
                      onClick={() =>  startGame(currentColor!, setCurrentColor,
                          "QUEEN_MADNESS", setGameState,
                          setCurrentMenu, startGameMenu
@@ -83,7 +83,7 @@ export function renderCustomStatesMenu(
                 <h3 className={'text'}>RINHA DE RAINHA</h3>
             </div>
         </div>
-      <button className={'return'} onClick={() => {
+      <button className={'return text'} onClick={() => {
         setCurrentMenu(currentMenu-1)
       }}>Voltar</button>
     </div>
