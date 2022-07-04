@@ -48,7 +48,7 @@ export function renderCustomStatesMenu(
                      )}>
                     <img  className={'menu-piece'} src='images/pieces/w_king.png' alt="Rei Branco"/>
                 </div>
-                <h3 className={'text'}>CHEQUE MATE</h3>
+                <h3 className={'text'}>XEQUE-MATE</h3>
             </div>
         </div>
         <div className='submenu-options'>
