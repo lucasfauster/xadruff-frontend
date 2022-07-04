@@ -148,11 +148,16 @@ export default function Board({level, starter, boardRequest, initialPieces, setC
 
   function isInActiveLegalMovements(tileId: string): boolean {
     const activeLegalMovements = getActiveLegalMovements(activeTile!)
-    const movements = activeLegalMovements.movements.find(movement => movement.includes(tileId))
-    if (!movements) {
+    const movement = activeLegalMovements.movements.find(movement => movement.includes(tileId))
+    if (!movement || isInKAction(movement, tileId)) {
       return false
     }
-    return movements.length >= 1
+    return movement.length >= 1
+  }
+
+  function isInKAction(movement: string, tileId: string) {
+    return movement.includes('K') && movement.slice(movement.indexOf('K')).slice(1, 3).includes(tileId);
+
   }
 
   function selectsPiece(tile: HTMLElement){
