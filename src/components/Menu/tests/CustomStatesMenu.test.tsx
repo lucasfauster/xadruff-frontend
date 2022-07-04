@@ -9,6 +9,7 @@ describe('Custom States Menu', ()=> {
     render(<Menu/>);
     fireEvent.click(screen.getByText('JOGAR'))
     fireEvent.click(screen.getByTestId('test-sortear'))
+    fireEvent.click(screen.getByTestId('test-easy'))
     fireEvent.click(screen.getByTestId('test-custom'))
     fireEvent.click(screen.getByTestId('test-en-passant'))
     expect(screen.getByTestId('test-board')).toBeTruthy();
@@ -18,6 +19,7 @@ describe('Custom States Menu', ()=> {
     render(<Menu/>);
     fireEvent.click(screen.getByText('JOGAR'))
     fireEvent.click(screen.getByTestId('test-sortear'))
+    fireEvent.click(screen.getByTestId('test-intermediate'))
     fireEvent.click(screen.getByTestId('test-custom'))
     fireEvent.click(screen.getByTestId('test-castle'))
     expect(screen.getByTestId('test-board')).toBeTruthy();
@@ -27,6 +29,7 @@ describe('Custom States Menu', ()=> {
     render(<Menu/>);
     fireEvent.click(screen.getByText('JOGAR'))
     fireEvent.click(screen.getByTestId('test-sortear'))
+    fireEvent.click(screen.getByTestId('test-intermediate'))
     fireEvent.click(screen.getByTestId('test-custom'))
     fireEvent.click(screen.getByTestId('test-check-mate'))
     expect(screen.getByTestId('test-board')).toBeTruthy();
@@ -35,6 +38,7 @@ describe('Custom States Menu', ()=> {
     render(<Menu/>);
     fireEvent.click(screen.getByText('JOGAR'))
     fireEvent.click(screen.getByTestId('test-sortear'))
+    fireEvent.click(screen.getByTestId('test-intermediate'))
     fireEvent.click(screen.getByTestId('test-custom'))
     fireEvent.click(screen.getByTestId('test-stale-mate'))
     expect(screen.getByTestId('test-board')).toBeTruthy();
@@ -44,6 +48,7 @@ describe('Custom States Menu', ()=> {
     render(<Menu/>);
     fireEvent.click(screen.getByText('JOGAR'))
     fireEvent.click(screen.getByTestId('test-sortear'))
+    fireEvent.click(screen.getByTestId('test-intermediate'))
     fireEvent.click(screen.getByTestId('test-custom'))
     fireEvent.click(screen.getByTestId('test-promotion'))
     expect(screen.getByTestId('test-board')).toBeTruthy();
@@ -53,6 +58,7 @@ describe('Custom States Menu', ()=> {
     render(<Menu/>);
     fireEvent.click(screen.getByText('JOGAR'))
     fireEvent.click(screen.getByTestId('test-sortear'))
+    fireEvent.click(screen.getByTestId('test-intermediate'))
     fireEvent.click(screen.getByTestId('test-custom'))
     fireEvent.click(screen.getByTestId('test-queen-madness'))
     expect(screen.getByTestId('test-board')).toBeTruthy();
@@ -62,6 +68,7 @@ describe('Custom States Menu', ()=> {
     render(<Menu/>);
     fireEvent.click(screen.getByText('JOGAR'))
     fireEvent.click(screen.getByTestId('test-sortear'))
+    fireEvent.click(screen.getByTestId('test-intermediate'))
     fireEvent.click(screen.getByTestId('test-custom'))
     fireEvent.click(screen.getByText('Voltar'))
     expect(screen.getByTestId('test-option-menu')).toBeTruthy();

@@ -2,8 +2,8 @@ import {ChessResponse} from "../components/Board/BoardRenderer";
 import {BoardRequest} from "../components/Board/BoardStates";
 
 
-export function startNewGame(start_by: string, boardRequest: BoardRequest): Promise<ChessResponse> {
-    return fetch(`https://xadruff-backend.herokuapp.com/chess/new-game?start-by=${start_by}&level=INTERMEDIATE`,
+export function startNewGame(start_by: string, boardRequest: BoardRequest, level: string): Promise<ChessResponse> {
+    return fetch(`https://xadruff-backend.herokuapp.com/chess/new-game?start-by=${start_by}&level=${level}`,
         {
             method: 'POST',
             headers: {

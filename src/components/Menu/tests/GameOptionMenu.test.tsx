@@ -9,6 +9,7 @@ describe('Game Option Menu', ()=> {
     render(<Menu/>);
     fireEvent.click(screen.getByText('JOGAR'))
     fireEvent.click(screen.getByTestId('test-sortear'))
+    fireEvent.click(screen.getByTestId('test-intermediate'))
     expect(screen.getByTestId('test-option-menu')).toBeTruthy();
   })
 
@@ -16,6 +17,7 @@ describe('Game Option Menu', ()=> {
     render(<Menu/>);
     fireEvent.click(screen.getByText('JOGAR'))
     fireEvent.click(screen.getByTestId('test-sortear'))
+    fireEvent.click(screen.getByTestId('test-intermediate'))
     fireEvent.click(screen.getByTestId('test-default'))
     expect(screen.getByTestId('test-board')).toBeTruthy();
   })
@@ -24,15 +26,17 @@ describe('Game Option Menu', ()=> {
     render(<Menu/>);
     fireEvent.click(screen.getByText('JOGAR'))
     fireEvent.click(screen.getByTestId('test-sortear'))
+    fireEvent.click(screen.getByTestId('test-intermediate'))
     fireEvent.click(screen.getByTestId('test-custom'))
     expect(screen.getByTestId('test-custom-states')).toBeTruthy();
   })
 
-  it('returns to color menu',() => {
+  it('returns to level menu',() => {
     render(<Menu/>);
     fireEvent.click(screen.getByText('JOGAR'))
     fireEvent.click(screen.getByTestId('test-sortear'))
+    fireEvent.click(screen.getByTestId('test-intermediate'))
     fireEvent.click(screen.getByText('Voltar'))
-    expect(screen.getByTestId('test-color-menu')).toBeTruthy();
+    expect(screen.getByTestId('test-level-menu')).toBeTruthy();
   });
 });

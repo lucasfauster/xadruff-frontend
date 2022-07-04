@@ -6,17 +6,20 @@ import {handleBoardState} from "../Board/BoardStates";
 import {renderColorMenu} from "./ColorMenu";
 import {renderGameOptionMenu} from "./GameOptionMenu";
 import {renderCustomStatesMenu} from "./CustomStatesMenu";
+import {renderLevelMenu} from "./LevelMenu";
 
 const mainMenu : number = 0;
 const colorMenu : number = 1;
-const gameOptionMenu : number = 2;
-const customStatesMenu : number = 3;
-const startGameMenu : number = 4;
+const levelMenu : number = 2;
+const gameOptionMenu : number = 3;
+const customStatesMenu : number = 4;
+const startGameMenu : number = 5;
 
 
 export default function Menu() {
   const [currentMenu, setCurrentMenu] = useState<number>(0);
   const [currentColor, setCurrentColor] = useState<boolean | null>(null);
+  const [currentLevel, setCurrentLevel] = useState<string | null>(null);
   const [gameState, setGameState] = useState<string>("DEFAULT");
 
   function renderMainMenu(){
@@ -37,9 +40,13 @@ export default function Menu() {
     case colorMenu:
       return (<div id='menu'>
                 { renderColorMenu(setCurrentColor, currentMenu,
-                  setCurrentMenu, gameOptionMenu) }
+                  setCurrentMenu, levelMenu) }
               </div>);
-
+    case levelMenu:
+      return (<div id='menu'>
+        { renderLevelMenu(currentMenu, setCurrentMenu,
+            setCurrentLevel,gameOptionMenu) }
+      </div>);
     case gameOptionMenu:
       return (<div id='menu'>
                 { renderGameOptionMenu(currentMenu,setCurrentMenu,
@@ -57,7 +64,8 @@ export default function Menu() {
       const initialPieces : Piece[] = []
       const boardRequest = handleBoardState(gameState)
       renderPieceByBoard(initialPieces, boardRequest)
-      return (<Board starter={currentColor!} boardRequest={boardRequest} initialPieces={initialPieces} setCurrentMenu={setCurrentMenu}/>);
+      return (<Board level={currentLevel!} starter={currentColor!} boardRequest={boardRequest}
+                     initialPieces={initialPieces} setCurrentMenu={setCurrentMenu}/>);
 
     default:
       return (<div id='menu'>{ renderMainMenu() }</div>);

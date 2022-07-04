@@ -14,12 +14,13 @@ import {
 } from "./BoardRenderer"
 
 interface Props{
+  level: string;
   starter: boolean;
   initialPieces: Piece[];
   boardRequest: BoardRequest;
   setCurrentMenu: Function;
 }
-export default function Board({starter, boardRequest, initialPieces, setCurrentMenu}: Props) {
+export default function Board({level, starter, boardRequest, initialPieces, setCurrentMenu}: Props) {
 
   const playerColor = starter ? 'w':'b';
   const [activeTile, setActiveTile] = useState<HTMLElement | null>(null)
@@ -45,7 +46,7 @@ export default function Board({starter, boardRequest, initialPieces, setCurrentM
   useEffect(() => {
     let mounted = true;
     const startBy = starter ? "PLAYER": "AI"
-    startNewGame(startBy, boardRequest)
+    startNewGame(startBy, boardRequest, level)
         .then(chessResponse => {
           if(mounted) {
             setCurrentBoardID(chessResponse.board_id)

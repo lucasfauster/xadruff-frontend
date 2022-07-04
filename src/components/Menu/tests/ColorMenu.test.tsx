@@ -19,6 +19,7 @@ describe('Color Menu', ()=>{
     render(<Menu/>);
     fireEvent.click(screen.getByText('JOGAR'))
     fireEvent.click(screen.getByTestId('test-pretas'))
+    fireEvent.click(screen.getByTestId('test-intermediate'))
     expect(screen.getByTestId('test-option-menu')).toBeTruthy();
 
 
@@ -28,6 +29,7 @@ describe('Color Menu', ()=>{
     render(<Menu/>);
     fireEvent.click(screen.getByText('JOGAR'))
     fireEvent.click(screen.getByTestId('test-brancas'))
+    fireEvent.click(screen.getByTestId('test-intermediate'))
     expect(screen.getByTestId('test-option-menu')).toBeTruthy();
   });
 
@@ -35,6 +37,7 @@ describe('Color Menu', ()=>{
     render(<Menu/>);
     fireEvent.click(screen.getByText('JOGAR'))
     fireEvent.click(screen.getByTestId('test-sortear'))
+    fireEvent.click(screen.getByTestId('test-intermediate'))
     expect(screen.getByTestId('test-option-menu')).toBeTruthy();
   });
 
@@ -43,5 +46,13 @@ describe('Color Menu', ()=>{
     fireEvent.click(screen.getByText('JOGAR'))
     fireEvent.click(screen.getByText('Voltar'))
     expect(screen.getByRole('button',{name:'JOGAR'})).toBeTruthy();
+  });
+
+  it('returns to color menu',() => {
+    render(<Menu/>);
+    fireEvent.click(screen.getByText('JOGAR'))
+    fireEvent.click(screen.getByTestId('test-sortear'))
+    fireEvent.click(screen.getByText('Voltar'))
+    expect(screen.getByTestId('test-color-menu')).toBeTruthy();
   });
 });
