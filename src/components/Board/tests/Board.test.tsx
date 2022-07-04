@@ -1,3 +1,8 @@
+/* eslint no-use-before-define: 0 */
+/* eslint-disable testing-library/no-unnecessary-act */
+/* eslint-disable testing-library/no-render-in-setup */
+/* eslint-disable testing-library/no-await-sync-query */
+
 import {act, cleanup, fireEvent, render, screen} from "@testing-library/react";
 import Board from "../Board"
 import React from "react";
@@ -59,7 +64,7 @@ describe('Highlights', ()=> {
           initialPieces={initialPieces}
           setCurrentMenu={
             function a() {
-              console.log("ignora essa merda")
+              console.log("ignore")
             }
           }/>)
     })
@@ -102,7 +107,7 @@ describe('Endgames', () => {
               initialPieces={initialPieces}
               setCurrentMenu={
                 function a() {
-                  console.log("ignora essa merda")
+                  console.log("ignore")
                 }
               }/>)
         })
@@ -142,7 +147,7 @@ describe('Endgames', () => {
                 initialPieces={initialPieces}
                 setCurrentMenu={
                     function a() {
-                        console.log("ignora essa merda")
+                        console.log("ignore")
                     }
                 }/>)
         })
@@ -194,7 +199,7 @@ describe('Endgames', () => {
                 initialPieces={initialPieces}
                 setCurrentMenu={
                     function a() {
-                        console.log("ignora essa merda")
+                        console.log("ignore")
                     }
                 }/>)
         })
@@ -231,7 +236,7 @@ describe('Endgames', () => {
                 initialPieces={initialPieces}
                 setCurrentMenu={
                     function a() {
-                        console.log("ignora essa merda")
+                        console.log("ignore")
                     }
                 }/>)
         })
@@ -268,7 +273,7 @@ describe('Endgames', () => {
                 initialPieces={initialPieces}
                 setCurrentMenu={
                     function a() {
-                        console.log("ignora essa merda")
+                        console.log("ignore")
                     }
                 }/>)
         })
@@ -303,7 +308,7 @@ describe('Endgames', () => {
                 initialPieces={initialPieces}
                 setCurrentMenu={
                     function a() {
-                        console.log("ignora essa merda")
+                        console.log("ignore")
                     }
                 }/>)
         })

@@ -21,20 +21,24 @@ export function renderPromotionMenu(starter: boolean, choosePromotionPiece: Func
     const rook = starter ? 'R': 'r';
     const knight = starter ? 'N': 'n';
     return (
-        <div id="promotion">
+        <div id="promotion" data-testid="test-promotion">
             <h3 className={'text'}>POR QUAL PEÇA VOCÊ QUER TROCAR SEU PEÃO?</h3>
             <div id="grid">
                 <div className={'piece-button'}>
-                    <img className={'piece-image'} onClick= {()=> choosePromotionPiece(queen)} src={`images/pieces/${type}_queen.png`} alt="Rainha"/>
+                    <img className={'piece-image'}  data-testid="test-promotion-queen"
+                         onClick= {()=> choosePromotionPiece(queen)} src={`images/pieces/${type}_queen.png`} alt="Rainha"/>
                 </div>
-                <div className={'piece-button'}>
-                    <img className={'piece-image'} onClick={()=> choosePromotionPiece(bishop)} src={`images/pieces/${type}_bishop.png`} alt="Bispo"/>
+                <div className={'piece-button'} >
+                    <img className={'piece-image'} data-testid="test-promotion-bishop"
+                         onClick={()=> choosePromotionPiece(bishop)} src={`images/pieces/${type}_bishop.png`} alt="Bispo"/>
                 </div>
-                <div className={'piece-button'}>
-                    <img className={'piece-image'} onClick={()=> choosePromotionPiece(rook)} src={`images/pieces/${type}_rook.png`} alt="Torre"/>
+                <div className={'piece-button'} >
+                    <img className={'piece-image'} data-testid="test-promotion-rook"
+                         onClick={()=> choosePromotionPiece(rook)} src={`images/pieces/${type}_rook.png`} alt="Torre"/>
                 </div >
-                <div className={'piece-button'}>
-                    <img className={'piece-image'} onClick={()=> choosePromotionPiece(knight)} src={`images/pieces/${type}_knight.png`} alt="Cavalo"/>
+                <div className={'piece-button'} >
+                    <img className={'piece-image'} data-testid="test-promotion-knight"
+                         onClick={()=> choosePromotionPiece(knight)} src={`images/pieces/${type}_knight.png`} alt="Cavalo"/>
                 </div>
             </div>
         </div>

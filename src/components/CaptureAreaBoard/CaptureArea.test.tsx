@@ -36,7 +36,7 @@ describe('Move to Capture Area', ()=> {
                 initialPieces={initialPieces}
                 setCurrentMenu={
                     function a() {
-                        console.log("ignora essa merda")
+                        console.log("ignore")
                     }
                 }/>)
         })
@@ -72,7 +72,7 @@ describe('Move to Capture Area', ()=> {
                 initialPieces={initialPieces}
                 setCurrentMenu={
                     function a() {
-                        console.log("ignora essa merda")
+                        console.log("ignore")
                     }
                 }/>)
         })
