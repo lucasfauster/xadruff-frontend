@@ -47,7 +47,7 @@ describe('Promotion Menu', ()=> {
     const boardRequest = handleBoardState('PROMOTION')
     renderPieceByBoard(initialPieces, boardRequest);
     await act(async () => {
-      render(<Board
+      render(<Board level={"INTERMEDIATE"}
         starter={true}
         boardRequest={boardRequest}
         initialPieces={initialPieces}
@@ -68,7 +68,7 @@ describe('Promotion Menu', ()=> {
       const boardRequest = handleBoardState('PROMOTION')
       renderPieceByBoard(initialPieces, boardRequest);
       await act(async () => {
-        render(<Board
+        render(<Board level={"INTERMEDIATE"}
           starter={true}
           boardRequest={boardRequest}
           initialPieces={initialPieces}
@@ -94,7 +94,7 @@ describe('Promotion Menu', ()=> {
       const boardRequest = handleBoardState('PROMOTION')
       renderPieceByBoard(initialPieces, boardRequest);
       await act(async () => {
-        render(<Board
+        render(<Board level={"INTERMEDIATE"}
           starter={true}
           boardRequest={boardRequest}
           initialPieces={initialPieces}
@@ -120,7 +120,7 @@ describe('Promotion Menu', ()=> {
       const boardRequest = handleBoardState('PROMOTION')
       renderPieceByBoard(initialPieces, boardRequest);
       await act(async () => {
-        render(<Board
+        render(<Board level={"INTERMEDIATE"}
           starter={true}
           boardRequest={boardRequest}
           initialPieces={initialPieces}
@@ -146,7 +146,7 @@ describe('Promotion Menu', ()=> {
       const boardRequest = handleBoardState('PROMOTION')
       renderPieceByBoard(initialPieces, boardRequest);
       await act(async () => {
-        render(<Board
+        render(<Board level={"INTERMEDIATE"}
           starter={true}
           boardRequest={boardRequest}
           initialPieces={initialPieces}
@@ -175,7 +175,7 @@ describe('Promotion Menu', ()=> {
       const boardRequest = handleBoardState('PROMOTION')
       renderPieceByBoard(initialPieces, boardRequest);
       await act(async () => {
-        render(<Board
+        render(<Board level={"INTERMEDIATE"}
           starter={false}
           boardRequest={boardRequest}
           initialPieces={initialPieces}
@@ -213,7 +213,7 @@ describe('Promotion Menu', ()=> {
       const boardRequest = handleBoardState('PROMOTION')
       renderPieceByBoard(initialPieces, boardRequest);
       await act(async () => {
-        render(<Board
+        render(<Board level={"INTERMEDIATE"}
           starter={false}
           boardRequest={boardRequest}
           initialPieces={initialPieces}

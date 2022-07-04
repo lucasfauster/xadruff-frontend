@@ -38,13 +38,13 @@ function getCreateGameFetchMock() {
 
 describe('Board', ()=> {
   it('renders white board initial state', () => {
-    const view = render(<Board starter={true} boardRequest={boardRequest} initialPieces={initialPieces} setCurrentMenu={function a() {
+    const view = render(<Board level={"INTERMEDIATE"} starter={true} boardRequest={boardRequest} initialPieces={initialPieces} setCurrentMenu={function a() {
     console.log("Ok")}
     }/>);
     expect(view).toMatchSnapshot();
   });
   it('renders black board initial state', () => {
-    const view = render(<Board starter={false} boardRequest={boardRequest} initialPieces={initialPieces} setCurrentMenu={function a() {
+    const view = render(<Board level={"INTERMEDIATE"} starter={false} boardRequest={boardRequest} initialPieces={initialPieces} setCurrentMenu={function a() {
       console.log("Ok")}
     }/>);
     expect(view).toMatchSnapshot();
@@ -58,7 +58,7 @@ describe('Highlights', ()=> {
     const boardRequest = handleBoardState('DEFAULT')
     renderPieceByBoard(initialPieces, boardRequest);
     await act(async () => {
-      render(<Board
+      render(<Board level={"INTERMEDIATE"}
           starter={true}
           boardRequest={boardRequest}
           initialPieces={initialPieces}
@@ -101,7 +101,7 @@ describe('Endgames', () => {
         const boardRequest = handleBoardState('DEFAULT')
         renderPieceByBoard(initialPieces, boardRequest);
         await act(async () => {
-          render(<Board
+          render(<Board level={"INTERMEDIATE"}
               starter={true}
               boardRequest={boardRequest}
               initialPieces={initialPieces}
@@ -141,7 +141,7 @@ describe('Endgames', () => {
         const boardRequest = handleBoardState('DEFAULT')
         renderPieceByBoard(initialPieces, boardRequest);
         await act(async () => {
-            render(<Board
+            render(<Board level={"INTERMEDIATE"}
                 starter={false}
                 boardRequest={boardRequest}
                 initialPieces={initialPieces}
@@ -193,7 +193,7 @@ describe('Endgames', () => {
         const boardRequest = handleBoardState('DEFAULT')
         renderPieceByBoard(initialPieces, boardRequest);
         await act(async () => {
-            render(<Board
+            render(<Board level={"INTERMEDIATE"}
                 starter={true}
                 boardRequest={boardRequest}
                 initialPieces={initialPieces}
@@ -230,7 +230,7 @@ describe('Endgames', () => {
         const boardRequest = handleBoardState('DEFAULT')
         renderPieceByBoard(initialPieces, boardRequest);
         await act(async () => {
-            render(<Board
+            render(<Board level={"INTERMEDIATE"}
                 starter={false}
                 boardRequest={boardRequest}
                 initialPieces={initialPieces}
@@ -267,7 +267,7 @@ describe('Endgames', () => {
         const boardRequest = handleBoardState('DEFAULT')
         renderPieceByBoard(initialPieces, boardRequest);
         await act(async () => {
-            render(<Board
+            render(<Board level={"INTERMEDIATE"}
                 starter={true}
                 boardRequest={boardRequest}
                 initialPieces={initialPieces}
@@ -302,7 +302,7 @@ describe('Endgames', () => {
         const boardRequest = handleBoardState('DEFAULT')
         renderPieceByBoard(initialPieces, boardRequest);
         await act(async () => {
-            render(<Board
+            render(<Board level={"INTERMEDIATE"}
                 starter={false}
                 boardRequest={boardRequest}
                 initialPieces={initialPieces}
@@ -328,7 +328,7 @@ describe('movements', ()=>{
     const boardRequest = handleBoardState('DEFAULT')
     renderPieceByBoard(initialPieces, boardRequest);
     await act(async () => {
-      render(<Board
+      render(<Board level={"INTERMEDIATE"}
         starter={true}
         boardRequest={boardRequest}
         initialPieces={initialPieces}
@@ -352,7 +352,7 @@ describe('movements', ()=>{
     const boardRequest = handleBoardState('DEFAULT')
     renderPieceByBoard(initialPieces, boardRequest);
     await act(async () => {
-      render(<Board
+      render(<Board level={"INTERMEDIATE"}
         starter={true}
         boardRequest={boardRequest}
         initialPieces={initialPieces}
@@ -382,7 +382,7 @@ describe('movements', ()=>{
     const boardRequest = handleBoardState('DEFAULT')
     renderPieceByBoard(initialPieces, boardRequest);
     await act(async () => {
-      render(<Board
+      render(<Board level={"INTERMEDIATE"}
         starter={true}
         boardRequest={boardRequest}
         initialPieces={initialPieces}
@@ -421,7 +421,7 @@ describe('movements', ()=>{
     const boardRequest = handleBoardState('CASTLE')
     renderPieceByBoard(initialPieces, boardRequest);
     await act(async () => {
-      render(<Board
+      render(<Board level={"INTERMEDIATE"}
         starter={true}
         boardRequest={boardRequest}
         initialPieces={initialPieces}
@@ -446,7 +446,7 @@ describe('movements', ()=>{
     const boardRequest = handleBoardState('DEFAULT')
     renderPieceByBoard(initialPieces, boardRequest);
     await act(async () => {
-      render(<Board
+      render(<Board level={"INTERMEDIATE"}
         starter={true}
         boardRequest={boardRequest}
         initialPieces={initialPieces}
@@ -484,7 +484,7 @@ describe('movements', ()=>{
     const boardRequest = handleBoardState('EN_PASSANT')
     renderPieceByBoard(initialPieces, boardRequest);
     await act(async () => {
-      render(<Board
+      render(<Board level={"INTERMEDIATE"}
         starter={false}
         boardRequest={boardRequest}
         initialPieces={initialPieces}

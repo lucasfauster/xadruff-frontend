@@ -30,7 +30,7 @@ describe('Move to Capture Area', ()=> {
         const boardRequest = handleBoardState('DEFAULT')
         renderPieceByBoard(initialPieces, boardRequest);
         await act(async () => {
-            render(<Board
+            render(<Board level={"INTERMEDIATE"}
                 starter={true}
                 boardRequest={boardRequest}
                 initialPieces={initialPieces}
@@ -66,7 +66,7 @@ describe('Move to Capture Area', ()=> {
         const boardRequest = handleBoardState('DEFAULT')
         renderPieceByBoard(initialPieces, boardRequest);
         await act(async () => {
-            render(<Board
+            render(<Board level={"INTERMEDIATE"}
                 starter={true}
                 boardRequest={boardRequest}
                 initialPieces={initialPieces}
