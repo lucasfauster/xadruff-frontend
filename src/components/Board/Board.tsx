@@ -40,8 +40,10 @@ export default function Board({level, starter, boardRequest, initialPieces, setC
 
 
   const board = renderBoard(starter, pieces, lastMovement, kingInCheckPosition);
-  const whiteCaptureArea = renderCaptureAreaBoard(pieces, 'w', 'left');
-  const blackCaptureArea = renderCaptureAreaBoard(pieces, 'b', 'right');
+  let whiteCaptureArea: JSX.Element
+  let blackCaptureArea: JSX.Element
+  whiteCaptureArea = starter? renderCaptureAreaBoard(pieces, 'w', 'left') : renderCaptureAreaBoard(pieces, 'b', 'left');
+  blackCaptureArea = starter? renderCaptureAreaBoard(pieces, 'b', 'right') : renderCaptureAreaBoard(pieces, 'w', 'right');
 
   useEffect(() => {
     let mounted = true;
