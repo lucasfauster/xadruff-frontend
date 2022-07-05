@@ -9,106 +9,110 @@ Object {
         id="container"
       >
         <div
-          data-testid="test-feedback"
-          id="feedback"
-        >
-          Iniciando...
-          <button
-            class="board-button"
-            data-testid="surrender-button"
-          >
-            DESISTIR
-          </button>
-        </div>
-        <div
           id="view"
         >
+          <div
+            data-testid="test-feedback"
+            id="feedback"
+          >
+            Iniciando...
+            <button
+              class="board-button"
+              data-testid="surrender-button"
+            >
+              DESISTIR
+            </button>
+          </div>
           <div
             class="capture-area-left"
             id="capture-area"
           >
-            <div>
+            <div
+              class="capture-area-line"
+            >
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-w-death-0"
-                id="w-death-0"
+                data-testid="test-dark-tile-b-death-0"
+                id="b-death-0"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-w-death-2"
-                id="w-death-2"
+                data-testid="test-dark-tile-b-death-2"
+                id="b-death-2"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-w-death-4"
-                id="w-death-4"
+                data-testid="test-dark-tile-b-death-4"
+                id="b-death-4"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-w-death-6"
-                id="w-death-6"
+                data-testid="test-dark-tile-b-death-6"
+                id="b-death-6"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-w-death-8"
-                id="w-death-8"
+                data-testid="test-dark-tile-b-death-8"
+                id="b-death-8"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-w-death-10"
-                id="w-death-10"
+                data-testid="test-dark-tile-b-death-10"
+                id="b-death-10"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-w-death-12"
-                id="w-death-12"
+                data-testid="test-dark-tile-b-death-12"
+                id="b-death-12"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-w-death-14"
-                id="w-death-14"
+                data-testid="test-dark-tile-b-death-14"
+                id="b-death-14"
               />
             </div>
-            <div>
+            <div
+              class="capture-area-line"
+            >
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-w-death-1"
-                id="w-death-1"
+                data-testid="test-dark-tile-b-death-1"
+                id="b-death-1"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-w-death-3"
-                id="w-death-3"
+                data-testid="test-dark-tile-b-death-3"
+                id="b-death-3"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-w-death-5"
-                id="w-death-5"
+                data-testid="test-dark-tile-b-death-5"
+                id="b-death-5"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-w-death-7"
-                id="w-death-7"
+                data-testid="test-dark-tile-b-death-7"
+                id="b-death-7"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-w-death-9"
-                id="w-death-9"
+                data-testid="test-dark-tile-b-death-9"
+                id="b-death-9"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-w-death-11"
-                id="w-death-11"
+                data-testid="test-dark-tile-b-death-11"
+                id="b-death-11"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-w-death-13"
-                id="w-death-13"
+                data-testid="test-dark-tile-b-death-13"
+                id="b-death-13"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-w-death-15"
-                id="w-death-15"
+                data-testid="test-dark-tile-b-death-15"
+                id="b-death-15"
               />
             </div>
           </div>
@@ -913,88 +917,92 @@ Object {
             class="capture-area-right"
             id="capture-area"
           >
-            <div>
+            <div
+              class="capture-area-line"
+            >
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-b-death-0"
-                id="b-death-0"
+                data-testid="test-dark-tile-w-death-0"
+                id="w-death-0"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-b-death-2"
-                id="b-death-2"
+                data-testid="test-dark-tile-w-death-2"
+                id="w-death-2"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-b-death-4"
-                id="b-death-4"
+                data-testid="test-dark-tile-w-death-4"
+                id="w-death-4"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-b-death-6"
-                id="b-death-6"
+                data-testid="test-dark-tile-w-death-6"
+                id="w-death-6"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-b-death-8"
-                id="b-death-8"
+                data-testid="test-dark-tile-w-death-8"
+                id="w-death-8"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-b-death-10"
-                id="b-death-10"
+                data-testid="test-dark-tile-w-death-10"
+                id="w-death-10"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-b-death-12"
-                id="b-death-12"
+                data-testid="test-dark-tile-w-death-12"
+                id="w-death-12"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-b-death-14"
-                id="b-death-14"
+                data-testid="test-dark-tile-w-death-14"
+                id="w-death-14"
               />
             </div>
-            <div>
+            <div
+              class="capture-area-line"
+            >
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-b-death-1"
-                id="b-death-1"
+                data-testid="test-dark-tile-w-death-1"
+                id="w-death-1"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-b-death-3"
-                id="b-death-3"
+                data-testid="test-dark-tile-w-death-3"
+                id="w-death-3"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-b-death-5"
-                id="b-death-5"
+                data-testid="test-dark-tile-w-death-5"
+                id="w-death-5"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-b-death-7"
-                id="b-death-7"
+                data-testid="test-dark-tile-w-death-7"
+                id="w-death-7"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-b-death-9"
-                id="b-death-9"
+                data-testid="test-dark-tile-w-death-9"
+                id="w-death-9"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-b-death-11"
-                id="b-death-11"
+                data-testid="test-dark-tile-w-death-11"
+                id="w-death-11"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-b-death-13"
-                id="b-death-13"
+                data-testid="test-dark-tile-w-death-13"
+                id="w-death-13"
               />
               <div
                 class="tile dark-tile "
-                data-testid="test-dark-tile-b-death-15"
-                id="b-death-15"
+                data-testid="test-dark-tile-w-death-15"
+                id="w-death-15"
               />
             </div>
           </div>
@@ -1007,106 +1015,110 @@ Object {
       id="container"
     >
       <div
-        data-testid="test-feedback"
-        id="feedback"
-      >
-        Iniciando...
-        <button
-          class="board-button"
-          data-testid="surrender-button"
-        >
-          DESISTIR
-        </button>
-      </div>
-      <div
         id="view"
       >
+        <div
+          data-testid="test-feedback"
+          id="feedback"
+        >
+          Iniciando...
+          <button
+            class="board-button"
+            data-testid="surrender-button"
+          >
+            DESISTIR
+          </button>
+        </div>
         <div
           class="capture-area-left"
           id="capture-area"
         >
-          <div>
+          <div
+            class="capture-area-line"
+          >
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-w-death-0"
-              id="w-death-0"
+              data-testid="test-dark-tile-b-death-0"
+              id="b-death-0"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-w-death-2"
-              id="w-death-2"
+              data-testid="test-dark-tile-b-death-2"
+              id="b-death-2"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-w-death-4"
-              id="w-death-4"
+              data-testid="test-dark-tile-b-death-4"
+              id="b-death-4"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-w-death-6"
-              id="w-death-6"
+              data-testid="test-dark-tile-b-death-6"
+              id="b-death-6"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-w-death-8"
-              id="w-death-8"
+              data-testid="test-dark-tile-b-death-8"
+              id="b-death-8"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-w-death-10"
-              id="w-death-10"
+              data-testid="test-dark-tile-b-death-10"
+              id="b-death-10"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-w-death-12"
-              id="w-death-12"
+              data-testid="test-dark-tile-b-death-12"
+              id="b-death-12"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-w-death-14"
-              id="w-death-14"
+              data-testid="test-dark-tile-b-death-14"
+              id="b-death-14"
             />
           </div>
-          <div>
+          <div
+            class="capture-area-line"
+          >
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-w-death-1"
-              id="w-death-1"
+              data-testid="test-dark-tile-b-death-1"
+              id="b-death-1"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-w-death-3"
-              id="w-death-3"
+              data-testid="test-dark-tile-b-death-3"
+              id="b-death-3"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-w-death-5"
-              id="w-death-5"
+              data-testid="test-dark-tile-b-death-5"
+              id="b-death-5"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-w-death-7"
-              id="w-death-7"
+              data-testid="test-dark-tile-b-death-7"
+              id="b-death-7"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-w-death-9"
-              id="w-death-9"
+              data-testid="test-dark-tile-b-death-9"
+              id="b-death-9"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-w-death-11"
-              id="w-death-11"
+              data-testid="test-dark-tile-b-death-11"
+              id="b-death-11"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-w-death-13"
-              id="w-death-13"
+              data-testid="test-dark-tile-b-death-13"
+              id="b-death-13"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-w-death-15"
-              id="w-death-15"
+              data-testid="test-dark-tile-b-death-15"
+              id="b-death-15"
             />
           </div>
         </div>
@@ -1911,88 +1923,92 @@ Object {
           class="capture-area-right"
           id="capture-area"
         >
-          <div>
+          <div
+            class="capture-area-line"
+          >
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-b-death-0"
-              id="b-death-0"
+              data-testid="test-dark-tile-w-death-0"
+              id="w-death-0"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-b-death-2"
-              id="b-death-2"
+              data-testid="test-dark-tile-w-death-2"
+              id="w-death-2"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-b-death-4"
-              id="b-death-4"
+              data-testid="test-dark-tile-w-death-4"
+              id="w-death-4"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-b-death-6"
-              id="b-death-6"
+              data-testid="test-dark-tile-w-death-6"
+              id="w-death-6"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-b-death-8"
-              id="b-death-8"
+              data-testid="test-dark-tile-w-death-8"
+              id="w-death-8"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-b-death-10"
-              id="b-death-10"
+              data-testid="test-dark-tile-w-death-10"
+              id="w-death-10"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-b-death-12"
-              id="b-death-12"
+              data-testid="test-dark-tile-w-death-12"
+              id="w-death-12"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-b-death-14"
-              id="b-death-14"
+              data-testid="test-dark-tile-w-death-14"
+              id="w-death-14"
             />
           </div>
-          <div>
+          <div
+            class="capture-area-line"
+          >
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-b-death-1"
-              id="b-death-1"
+              data-testid="test-dark-tile-w-death-1"
+              id="w-death-1"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-b-death-3"
-              id="b-death-3"
+              data-testid="test-dark-tile-w-death-3"
+              id="w-death-3"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-b-death-5"
-              id="b-death-5"
+              data-testid="test-dark-tile-w-death-5"
+              id="w-death-5"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-b-death-7"
-              id="b-death-7"
+              data-testid="test-dark-tile-w-death-7"
+              id="w-death-7"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-b-death-9"
-              id="b-death-9"
+              data-testid="test-dark-tile-w-death-9"
+              id="w-death-9"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-b-death-11"
-              id="b-death-11"
+              data-testid="test-dark-tile-w-death-11"
+              id="w-death-11"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-b-death-13"
-              id="b-death-13"
+              data-testid="test-dark-tile-w-death-13"
+              id="w-death-13"
             />
             <div
               class="tile dark-tile "
-              data-testid="test-dark-tile-b-death-15"
-              id="b-death-15"
+              data-testid="test-dark-tile-w-death-15"
+              id="w-death-15"
             />
           </div>
         </div>
@@ -2062,25 +2078,27 @@ Object {
         id="container"
       >
         <div
-          data-testid="test-feedback"
-          id="feedback"
-        >
-          Iniciando...
-          <button
-            class="board-button"
-            data-testid="surrender-button"
-          >
-            DESISTIR
-          </button>
-        </div>
-        <div
           id="view"
         >
+          <div
+            data-testid="test-feedback"
+            id="feedback"
+          >
+            Iniciando...
+            <button
+              class="board-button"
+              data-testid="surrender-button"
+            >
+              DESISTIR
+            </button>
+          </div>
           <div
             class="capture-area-left"
             id="capture-area"
           >
-            <div>
+            <div
+              class="capture-area-line"
+            >
               <div
                 class="tile dark-tile "
                 data-testid="test-dark-tile-w-death-0"
@@ -2122,7 +2140,9 @@ Object {
                 id="w-death-14"
               />
             </div>
-            <div>
+            <div
+              class="capture-area-line"
+            >
               <div
                 class="tile dark-tile "
                 data-testid="test-dark-tile-w-death-1"
@@ -2966,7 +2986,9 @@ Object {
             class="capture-area-right"
             id="capture-area"
           >
-            <div>
+            <div
+              class="capture-area-line"
+            >
               <div
                 class="tile dark-tile "
                 data-testid="test-dark-tile-b-death-0"
@@ -3008,7 +3030,9 @@ Object {
                 id="b-death-14"
               />
             </div>
-            <div>
+            <div
+              class="capture-area-line"
+            >
               <div
                 class="tile dark-tile "
                 data-testid="test-dark-tile-b-death-1"
@@ -3060,25 +3084,27 @@ Object {
       id="container"
     >
       <div
-        data-testid="test-feedback"
-        id="feedback"
-      >
-        Iniciando...
-        <button
-          class="board-button"
-          data-testid="surrender-button"
-        >
-          DESISTIR
-        </button>
-      </div>
-      <div
         id="view"
       >
+        <div
+          data-testid="test-feedback"
+          id="feedback"
+        >
+          Iniciando...
+          <button
+            class="board-button"
+            data-testid="surrender-button"
+          >
+            DESISTIR
+          </button>
+        </div>
         <div
           class="capture-area-left"
           id="capture-area"
         >
-          <div>
+          <div
+            class="capture-area-line"
+          >
             <div
               class="tile dark-tile "
               data-testid="test-dark-tile-w-death-0"
@@ -3120,7 +3146,9 @@ Object {
               id="w-death-14"
             />
           </div>
-          <div>
+          <div
+            class="capture-area-line"
+          >
             <div
               class="tile dark-tile "
               data-testid="test-dark-tile-w-death-1"
@@ -3964,7 +3992,9 @@ Object {
           class="capture-area-right"
           id="capture-area"
         >
-          <div>
+          <div
+            class="capture-area-line"
+          >
             <div
               class="tile dark-tile "
               data-testid="test-dark-tile-b-death-0"
@@ -4006,7 +4036,9 @@ Object {
               id="b-death-14"
             />
           </div>
-          <div>
+          <div
+            class="capture-area-line"
+          >
             <div
               class="tile dark-tile "
               data-testid="test-dark-tile-b-death-1"

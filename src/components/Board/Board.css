@@ -120,7 +120,7 @@
   }
 
   #board{
-    margin-top: 30px;
+    margin-top: 45px;
     grid-template-columns: repeat(
     auto-fit,
     10px 50px 50px 50px 50px 50px 50px 50px 50px 10px
