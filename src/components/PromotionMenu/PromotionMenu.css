@@ -34,3 +34,35 @@
     max-width: 300%;
     height: auto;
 }
+
+@media (max-width: 1060px) {
+    #promotion {
+        margin-top: 10px;
+        position: absolute;
+        height: 150px;
+    }
+}
+
+@media (max-width:620px) {
+    #promotion {
+        margin-top: 10px;
+        position: absolute;
+        height: 150px;
+    }
+}
+
+@media (max-height:575px) {
+    #promotion {
+        margin-top: 150px;
+        position: absolute;
+        height: 150px;
+    }
+}
+
+@media (max-height:460px), (max-width:460px) {
+    #promotion {
+        margin-top: 10px;
+        position: absolute;
+        height: 150px;
+    }
+}

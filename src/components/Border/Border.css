@@ -23,6 +23,25 @@
   height: 20px;
 }
 
+@media (max-width: 1060px) {
+  .border-horizontal {
+    font-size: 9px;
+    width: 55px;
+    height: 10px;
+  }
+
+  .border-vertical {
+    font-size: 9px;
+    width: 10px;
+    height: 55px;
+  }
+
+  .border-corner {
+    font-size: 9px;
+    width: 10px;
+    height: 10px;
+  }
+}
 
 @media (max-height:650px) {
 
@@ -73,14 +92,14 @@
 
   .border-horizontal {
     font-size: 9px;
-    width: 30px;
+    width: 45px;
     height: 10px;
   }
 
   .border-vertical {
     font-size: 9px;
     width: 10px;
-    height: 30px;
+    height: 45px;
   }
 
   .border-corner {

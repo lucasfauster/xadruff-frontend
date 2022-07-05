@@ -293,11 +293,11 @@ export default function Board({level, starter, boardRequest, initialPieces, setC
 
   return (
     <div id='container'>
-      <div id='feedback' data-testid="test-feedback">
-        {isGameOver ? endgameFeedback : feedback}
-        {isGameOver ? renderPlayAgainButton(setCurrentMenu) : renderSurrenderButton(currentBoardID!, handleEndgame)}
-      </div>
       <div id='view'>
+        <div id='feedback' data-testid="test-feedback">
+          {isGameOver ? endgameFeedback : feedback}
+          {isGameOver ? renderPlayAgainButton(setCurrentMenu) : renderSurrenderButton(currentBoardID!, handleEndgame)}
+        </div>
         {whiteCaptureArea}
         <div onClick={(e) => selectPiece(e)}
              id="board" data-testid="test-board">

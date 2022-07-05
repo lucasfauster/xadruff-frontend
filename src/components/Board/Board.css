@@ -12,6 +12,7 @@
 #board {
   display: grid;
   position: fixed;
+  margin-top: 60px;
   z-index: 1;
   grid-template-columns: repeat(
     auto-fit,
@@ -24,7 +25,9 @@
 }
 
 #feedback {
-  margin: 1%;
+  z-index: 1;
+  margin-top: 10px;
+  position: fixed;
   height: 10%;
   text-align: center;
   font-weight: bold;
@@ -51,17 +54,46 @@
   transition: 0.3s;
 }
 
+@media (max-width: 1060px) {
+  #feedback {
+    position: static;
+  }
+  #view {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #board{
+    margin-top: 30px;
+    position: relative;
+    margin-bottom: 25px;
+  }
+
+  #board{
+    margin-top: 30px;
+    grid-template-columns: repeat(
+    auto-fit,
+    10px 55px 55px 55px 55px 55px 55px 55px 55px 10px
+  );
+    grid-template-rows: repeat(
+    auto-fit,
+    10px 55px 55px 55px 55px 55px 55px 55px 55px 10px
+  );
+  }
+
+}
+
 @media (max-height:650px) {
 
   .board-button {
-    width: 70px;
-    font-size: 11px;
+    width: 90px;
+    font-size: 16px;
     font-weight: bold;
     padding: 2px;
   }
 
   #board{
-
+    margin-top: 60px;
     grid-template-columns: repeat(
     auto-fit,
     10px 60px 60px 60px 60px 60px 60px 60px 60px 10px
@@ -76,6 +108,7 @@
 @media (max-height:575px), (max-width:620px) {
 
   #feedback {
+    position: static;
     font-size:small;
     margin: 5px 0 5px 0;
   }
@@ -87,6 +120,7 @@
   }
 
   #board{
+    margin-top: 30px;
     grid-template-columns: repeat(
     auto-fit,
     10px 50px 50px 50px 50px 50px 50px 50px 50px 10px
@@ -100,6 +134,17 @@
 
 
 @media (max-height:460px), (max-width:460px) {
+
+  #view {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #board{
+    margin-top: 30px;
+    position: relative;
+    margin-bottom: 25px;
+  }
 
   #feedback {
     font-size:small;
@@ -115,11 +160,11 @@
   #board{
     grid-template-columns: repeat(
     auto-fit,
-    10px 30px 30px 30px 30px 30px 30px 30px 30px 10px
+    10px 45px 45px 45px 45px 45px 45px 45px 45px 10px
   );
     grid-template-rows: repeat(
     auto-fit,
-    10px 30px 30px 30px 30px 30px 30px 30px 30px 10px
+    10px 45px 45px 45px 45px 45px 45px 45px 45px 10px
   );
   }
 }
