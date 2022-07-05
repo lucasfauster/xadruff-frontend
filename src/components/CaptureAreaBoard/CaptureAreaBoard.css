@@ -21,6 +21,7 @@
 }
 
 @media (max-width: 1600px) {
+
     .capture-area-left{
         margin-right: 60%;
         position: fixed;
@@ -33,6 +34,7 @@
 }
 
 @media (max-width: 1240px) {
+
     .capture-area-left{
         margin-right: 70%;
         position: fixed;
@@ -44,7 +46,20 @@
     }
 }
 
+@media (max-height:650px) {
+    #capture-area{
+        margin-top: 65px;
+    }
+}
+
+@media (max-height:575px) {
+    #capture-area{
+        margin-top: 50px;
+    }
+}
+
 @media (max-width: 1060px) {
+
     #capture-area{
         margin-top: 0.5%;
         display: flex;
@@ -67,18 +82,25 @@
     }
 }
 
-@media (max-height:650px) {
-    #capture-area{
-        margin-top: 60px;
-    }
-    .capture-area-left{
-        margin-right: 700px;
-    }
-    .capture-area-right{
-        margin-left: 700px;
-    }
-}
+@media (max-height:650px) and (max-width: 1060px) {
 
+    #capture-area{
+        margin-top: 0.5%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .capture-area-left{
+        margin-right: 0;
+        position: relative;
+    }
+
+    .capture-area-right{
+        margin-left: 0;
+        position: relative;
+    }
+
+}
 
 @media (max-height:460px), (max-width:460px) {
 
