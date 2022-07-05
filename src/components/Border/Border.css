@@ -23,3 +23,88 @@
   height: 20px;
 }
 
+@media (max-width: 1060px) {
+  .border-horizontal {
+    font-size: 9px;
+    width: 55px;
+    height: 10px;
+  }
+
+  .border-vertical {
+    font-size: 9px;
+    width: 10px;
+    height: 55px;
+  }
+
+  .border-corner {
+    font-size: 9px;
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-height:650px) {
+
+  .border-horizontal {
+    font-size: 10px;
+    width: 60px;
+    height: 10px;
+  }
+
+  .border-vertical {
+    font-size: 10px;
+    width: 10px;
+    height: 60px;
+  }
+
+  .border-corner {
+    font-size: 10px;
+    width: 10px;
+    height: 10px;
+  }
+
+
+}
+
+
+@media (max-height:575px), (max-width:620px) {
+
+  .border-horizontal {
+    font-size: 9px;
+    width: 50px;
+    height: 10px;
+  }
+
+  .border-vertical {
+    font-size: 9px;
+    width: 10px;
+    height: 50px;
+  }
+
+  .border-corner {
+    font-size: 9px;
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-height:460px), (max-width:460px) {
+
+  .border-horizontal {
+    font-size: 9px;
+    width: 45px;
+    height: 10px;
+  }
+
+  .border-vertical {
+    font-size: 9px;
+    width: 10px;
+    height: 45px;
+  }
+
+  .border-corner {
+    font-size: 9px;
+    width: 10px;
+    height: 10px;
+  }
+}

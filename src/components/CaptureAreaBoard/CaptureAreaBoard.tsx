@@ -15,10 +15,10 @@ export function renderCaptureAreaBoard(
     renderBoardVerticalBorder(captureAreaBoardLeft, pieces, color, 0);
     renderBoardVerticalBorder(captureAreaBoardRight, pieces, color, 1);
     return <div id="capture-area" className={`capture-area-${direction}`}>
-        <div>
+        <div className={"capture-area-line"}>
             {captureAreaBoardLeft}
         </div>
-        <div>
+        <div className={"capture-area-line"}>
             {captureAreaBoardRight}
         </div>
     </div>;

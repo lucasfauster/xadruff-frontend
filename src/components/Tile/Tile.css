@@ -60,3 +60,67 @@
 .piece:active {
     cursor: grabbing;
 }
+
+@media (max-width: 1060px) {
+    .tile {
+        display: grid;
+        place-content: center;
+        width: 55px;
+        height: 55px;
+    }
+    .piece {
+        width: 55px;
+        height: 55px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 55px;
+    }
+}
+
+@media (max-height:650px) {
+    .tile {
+        display: grid;
+        place-content: center;
+        width: 60px;
+        height: 60px;
+    }
+    .piece {
+        width: 60px;
+        height: 60px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 60px;
+    }
+}
+
+@media (max-height:575px), (max-width:620px) {
+    .tile {
+        display: grid;
+        place-content: center;
+        width: 50px;
+        height: 50px;
+    }
+    .piece {
+        width: 50px;
+        height: 50px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 50px;
+    }
+}
+
+@media (max-height:460px), (max-width:460px) {
+    .tile {
+        display: grid;
+        place-content: center;
+        width: 45px;
+        height: 45px;
+    }
+    .piece {
+        width: 45px;
+        height: 45px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 45px;
+    }
+}
