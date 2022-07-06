@@ -6,6 +6,9 @@ Esse projeto é responsável pela parte de Front-End do XadrUFF, ele foi desenvo
 [Visualize o Projeto de Back-End aqui!](https://github.com/lucasfauster/xadruff-backend)
 
 
+## Endpoint de produção
+https://xadruff-backend.herokuapp.com
+
 
  - [Visualize nossa página no Notion](https://luamz.notion.site/XadrUFF-7e272f2c22a74ca9be39b6a00ae1c440)
  - [Visualize a Análise de Valor Agregado](https://docs.google.com/spreadsheets/d/1GNKjPhV9bs--8fbKKEkWH3g1j96xQNvAf8fyJ7w5q3w/edit#gid=692033079)
